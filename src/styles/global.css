@@ -179,3 +179,32 @@ img {
   outline: 2px solid #00C853;
   outline-offset: 2px;
 }
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  /* Prevent zoom on inputs */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Skip to content link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #00C853;
+  color: white;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Scroll Padding for sticky header */
+html {
+  scroll-padding-top: 5rem;
+}
