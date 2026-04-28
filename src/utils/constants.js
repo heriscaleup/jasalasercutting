@@ -570,7 +570,7 @@ export const FAQ = [
 
 // ===== PESAN WHATSAPP =====
 export const WHATSAPP_MESSAGES = {
-  default: "Halo, saya tertarik dengan jasa laser cutting. Bisa konsultasi gratis?",
+  default: "saya ingin konsultasi jasa laser cutting dong kak",
   cnc: "Halo, saya butuh jasa CNC Router untuk material kayu/MDF. Bisa konsultasi?",
   fiber: "Halo, saya perlu laser fiber untuk cutting metal. Bisa diskusi project saya?",
   co2: "Halo, saya tertarik laser CO2 untuk cutting acrylic/kayu. Bisa konsultasi?",
