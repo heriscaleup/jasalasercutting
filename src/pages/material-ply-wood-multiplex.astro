@@ -13,24 +13,24 @@ if (!recommendedService) throw new Error('Recommended service not found');
 
 // Generate JSON-LD - Fix: return array instead of object
 const jsonLd = [generateJsonLd({
-  title: `${material.name} - Material Laser Cutting Premium`,
-  description: material.description,
-  url: `${SITE_CONFIG.url}material-ply-wood-multiplex/`,
-  type: 'article' // Fix: change from 'Product' to 'article'
+  title: 'Jasa Laser Cutting Plywood & Multiplex | ±0.1mm – Serang, Tangerang, Cilegon',
+  description: 'Cutting plywood & multiplex presisi tinggi ketebalan 4–40mm. Hasil rapi, tepi halus, toleransi ±0.1mm. Tersedia grade Marine, Interior & Exterior. Melayani Serang, Tangerang & Jabodetabek. Konsultasi gratis!',
+  url: `${SITE_CONFIG.url}/material-ply-wood-multiplex/`,
+  type: 'article'
 })];
 
 // Create metaTags object for BaseLayout
 const metaTags = {
-  title: `${material.name} - Material Laser Cutting Premium`,
-  description: material.description,
+  title: 'Jasa Laser Cutting Plywood & Multiplex | ±0.1mm – Serang, Tangerang, Cilegon',
+  description: 'Cutting plywood & multiplex presisi tinggi ketebalan 4–40mm. Hasil rapi, tepi halus, toleransi ±0.1mm. Tersedia grade Marine, Interior & Exterior. Melayani Serang, Tangerang & Jabodetabek. Konsultasi gratis!',
   keywords: material.keywords,
-  canonical: `${SITE_CONFIG.url}material-ply-wood-multiplex/`,
-  url: `${SITE_CONFIG.url}material-ply-wood-multiplex/`,
-  type: 'article', // Fix: valid type
+  canonical: `${SITE_CONFIG.url}/material-ply-wood-multiplex/`,
+  url: `${SITE_CONFIG.url}/material-ply-wood-multiplex/`,
+  type: 'article',
   openGraph: {
-    title: `${material.name} - Material Laser Cutting Premium`,
-    description: material.description,
-    url: `${SITE_CONFIG.url}material-ply-wood-multiplex/`,
+    title: 'Jasa Laser Cutting Plywood & Multiplex | ±0.1mm – Serang, Tangerang, Cilegon',
+    description: 'Cutting plywood & multiplex presisi tinggi ketebalan 4–40mm. Hasil rapi, tepi halus, toleransi ±0.1mm. Tersedia grade Marine, Interior & Exterior. Melayani Serang, Tangerang & Jabodetabek. Konsultasi gratis!',
+    url: `${SITE_CONFIG.url}/material-ply-wood-multiplex/`,
     image: material.image,
     type: 'article',
     siteName: 'Jasa Cutting Laser',
@@ -38,8 +38,8 @@ const metaTags = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${material.name} - Material Laser Cutting Premium`,
-    description: material.description,
+    title: 'Jasa Laser Cutting Plywood & Multiplex | ±0.1mm – Serang, Tangerang, Cilegon',
+    description: 'Cutting plywood & multiplex presisi tinggi ketebalan 4–40mm. Hasil rapi, tepi halus, toleransi ±0.1mm. Tersedia grade Marine, Interior & Exterior. Melayani Serang, Tangerang & Jabodetabek. Konsultasi gratis!',
     image: material.image
   }
 };
@@ -58,7 +58,7 @@ const metaTags = {
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">
-            Jasa Laser Cutting {material.name}
+            Jasa Laser Cutting Plywood & Multiplex – Presisi Tinggi, Hasil Rapi
           </h1>
           <p class="text-xl mb-8 text-amber-100">
             {material.description}
@@ -73,7 +73,7 @@ const metaTags = {
               Konsultasi Gratis
             </a>
             <a 
-              href="contact" 
+              href="/contact/" 
               class="border-2 border-white text-white hover:bg-white hover:text-amber-900 px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Request Quote
@@ -97,7 +97,7 @@ const metaTags = {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          Karakteristik {material.name}
+          Keunggulan Plywood & Multiplex sebagai Material Laser Cutting
         </h2>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">
           Material kayu engineered dengan kekuatan dan stabilitas dimensi yang superior
@@ -144,7 +144,7 @@ const metaTags = {
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <h2 class="text-3xl font-bold text-gray-900 mb-6">
-            Spesifikasi Teknis
+            Spesifikasi Teknis Cutting Plywood & Multiplex
           </h2>
           <div class="space-y-4">
             <div class="flex justify-between py-3 border-b border-gray-200">
@@ -187,7 +187,7 @@ const metaTags = {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          Mesin Rekomendasi untuk {material.name}
+          Mesin CNC Router untuk Cutting Plywood Presisi
         </h2>
         <p class="text-xl text-gray-600">
           Teknologi CNC Router untuk cutting kayu dengan presisi dan finishing terbaik
@@ -234,7 +234,7 @@ const metaTags = {
   <section class="py-16 bg-gradient-to-r from-amber-600 to-amber-700 text-white">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-4">
-        Siap Memulai Project {material.name} Anda?
+        Butuh Jasa Cutting Plywood di Serang atau Tangerang?
       </h2>
       <p class="text-xl mb-8 text-amber-100">
         Konsultasikan kebutuhan cutting Anda dengan tim ahli kami. Gratis estimasi dan saran teknis.
@@ -252,7 +252,7 @@ const metaTags = {
           Chat WhatsApp
         </a>
         <a 
-          href="contact" 
+          href="/contact/" 
           class="border-2 border-white text-white hover:bg-white hover:text-amber-700 px-8 py-3 rounded-lg font-semibold transition-colors"
         >
           Request Quote Detail

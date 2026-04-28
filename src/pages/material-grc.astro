@@ -17,8 +17,8 @@ if (!recommendedService) throw new Error('Recommended service not found');
 
 // Generate Meta Tags with proper typing
 const metaTags = generateMetaTags({
-  title: `${material.name} - Material Laser Cutting Premium`,
-  description: material.description,
+  title: 'Jasa Laser Cutting GRC Terpercaya | Presisi Tinggi – Serang & Tangerang',
+  description: 'Spesialis cutting GRC (Glassfibre Reinforced Concrete) presisi ±0.1mm. Pengerjaan rapi, tepi bersih, tanpa retak. Melayani Serang, Tangerang, Cilegon & Jabodetabek. Konsultasi gratis – hubungi sekarang!',
   keywords: material.keywords,
   image: material.image,
   type: 'article'
@@ -37,11 +37,12 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
 
 ---
 
-<BaseLayout 
-  title={`${material.name} - Material Laser Cutting Premium`}
-  description={material.description}
+<BaseLayout
+  title="Jasa Laser Cutting GRC Terpercaya | Presisi Tinggi – Serang & Tangerang"
+  description="Spesialis cutting GRC (Glassfibre Reinforced Concrete) presisi ±0.1mm. Pengerjaan rapi, tepi bersih, tanpa retak. Melayani Serang, Tangerang, Cilegon & Jabodetabek. Konsultasi gratis – hubungi sekarang!"
   keywords={material.keywords}
   image={material.image}
+  canonical="https://jasalasercutting.com/material-grc/"
   jsonLd={jsonLd}
 >
   <Header slot="header" />
@@ -53,7 +54,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">
-            Jasa Laser Cutting {material.name}
+            Jasa Laser Cutting GRC – Cutting Presisi untuk Material Beton Fiber
           </h1>
           <p class="text-xl mb-8 text-stone-100">
             {material.description}
@@ -68,7 +69,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
               Konsultasi Gratis
             </a>
             <a 
-              href="contact" 
+              href="/contact/" 
               class="border-2 border-white text-white hover:bg-white hover:text-stone-900 px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Request Quote
@@ -92,7 +93,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-stone-900 mb-4">
-          Karakteristik {material.name}
+          Keunggulan Material GRC untuk Laser Cutting
         </h2>
         <p class="text-xl text-stone-600 max-w-3xl mx-auto">
           Cutting GRC (Glassfibre Reinforced Concrete) untuk fasad dan ornamen bangunan
@@ -139,7 +140,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <h2 class="text-3xl font-bold text-stone-900 mb-6">
-            Spesifikasi Teknis
+            Spesifikasi Teknis Laser Cutting GRC
           </h2>
           <div class="space-y-4">
             <div class="flex justify-between py-3 border-b border-stone-200">
@@ -182,7 +183,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-stone-900 mb-4">
-          Mesin Rekomendasi untuk {material.name}
+          Mesin Cutting Rekomendasi untuk Material GRC
         </h2>
         <p class="text-xl text-stone-600">
           Teknologi CNC Router untuk hasil cutting presisi pada material GRC
@@ -229,7 +230,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
   <section class="py-16 bg-gradient-to-r from-stone-600 to-stone-700 text-white">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-4">
-        Siap Memulai Project {material.name} Anda?
+        Butuh Jasa Cutting GRC di Serang atau Tangerang?
       </h2>
       <p class="text-xl mb-8 text-stone-100">
         Konsultasikan kebutuhan cutting Anda dengan tim ahli kami. Gratis estimasi dan saran teknis.
@@ -247,7 +248,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
           Chat WhatsApp
         </a>
         <a 
-          href="contact" 
+          href="/contact/" 
           class="border-2 border-white text-white hover:bg-white hover:text-stone-700 px-8 py-3 rounded-lg font-semibold transition-colors"
         >
           Request Quote Detail
