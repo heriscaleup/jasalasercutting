@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CTA from '../components/CTA.astro';
+import { SERVICES, SITE_CONFIG, WHATSAPP_MESSAGES, FAQ } from '../utils/constants.js';
+import { generateMetaTags, generateLocalBusinessSchema, generateBreadcrumbSchema, generateFAQSchema } from '../utils/seo.ts';
+
+const city = 'Bekasi';
+const cityLower = 'bekasi';
+
+const metaTags = generateMetaTags({
+  title: `Jasa Laser Cutting ${city} - CNC Router & Engraving Terpercaya`,
+  description: `Jasa laser cutting ${city} profesional. Melayani cutting acrylic, kayu, metal, MDF, ACP, PVC di ${city} dan sekitarnya. Presisi tinggi, harga terjangkau, pengerjaan cepat. Hubungi kami sekarang!`,
+  keywords: `jasa laser cutting ${cityLower}, laser cutting ${cityLower}, cnc router ${cityLower}, laser fiber ${cityLower}, laser co2 ${cityLower}, jasa cutting acrylic ${cityLower}, cutting metal ${cityLower}, laser engraving ${cityLower}, jasa laser bekasi jawa barat`,
+  url: `/laser-cutting-${cityLower}/`,
+  type: "website",
+  image: "/images/laserfiber.webp"
+});
+
+const localBusinessSchema = generateLocalBusinessSchema(city);
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Beranda', url: '/' },
+  { name: `Laser Cutting ${city}`, url: `/laser-cutting-${cityLower}/` }
+]);
+const faqSchema = generateFAQSchema(FAQ.slice(0, 5));
+
+const waMessage = encodeURIComponent(`Halo Jasalasercutting.com, saya butuh jasa laser cutting di ${city}. Bisa konsultasi?`);
+---
+
+<BaseLayout
+  metaTags={metaTags}
+  jsonLd={[localBusinessSchema, breadcrumbSchema, faqSchema]}
+>
+  <Header slot="header" />
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-charcoal to-gray-800 text-white py-24 mt-16">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <div class="inline-flex items-center px-4 py-2 bg-laser-green/20 border border-laser-green/30 rounded-full text-laser-green text-sm font-semibold mb-6">
+        Melayani Area {city} & Sekitarnya
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        Jasa Laser Cutting <span class="text-laser-green">{city}</span>
+      </h1>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+        Melayani kota industri terbesar di Jawa Barat — dari kawasan MM2100 hingga EJIP dan Delta Mas, kami menjadi mitra terpercaya laser cutting acrylic, metal, MDF, ACP, dan PVC untuk manufaktur dan bisnis Anda.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={`https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=${waMessage}`}
+          class="inline-flex items-center justify-center bg-laser-green hover:bg-green-600 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+          target="_blank" rel="noopener noreferrer"
+        >
+          Konsultasi Gratis via WhatsApp
+        </a>
+        <a href="/portfolio/" class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl border border-white/20 transition-all duration-300">
+          Lihat Portfolio
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <nav class="bg-gray-50 py-3 border-b" aria-label="Breadcrumb">
+    <div class="max-w-7xl mx-auto px-4">
+      <ol class="flex items-center space-x-2 text-sm">
+        <li><a href="/" class="text-gray-600 hover:text-laser-green">Beranda</a></li>
+        <li class="text-gray-400">/</li>
+        <li class="text-gray-800 font-medium">Laser Cutting {city}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Wilayah Layanan -->
+  <section class="py-10 bg-laser-green/5 border-b border-laser-green/10">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="text-sm font-semibold text-laser-green uppercase tracking-wider mb-3">Jangkauan Layanan</p>
+      <h2 class="text-xl font-bold text-charcoal mb-5">Kecamatan & Kawasan yang Kami Layani di Bekasi</h2>
+      <div class="flex flex-wrap justify-center gap-2">
+        {['Bekasi Kota', 'Bekasi Selatan', 'Bekasi Utara', 'Bekasi Timur', 'Bekasi Barat', 'Rawalumbu', 'Mustikajaya', 'Bantargebang', 'Cikarang', 'Tambun'].map(area => (
+          <span class="px-4 py-1.5 bg-white border border-gray-200 rounded-full text-sm text-gray-700 shadow-sm">{area}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Layanan di Kota Ini -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-charcoal mb-4">Layanan Laser Cutting di {city}</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Kami melayani berbagai kebutuhan laser cutting di {city} dengan teknologi terdepan dan tim berpengalaman.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {SERVICES.map(service => (
+          <a href={`/${service.slug}/`} class="group bg-gray-50 rounded-2xl p-6 border border-gray-200 hover:border-laser-green hover:shadow-lg transition-all duration-300">
+            <img
+              src={service.image}
+              alt={`${service.name} di ${city}`}
+              class="w-full h-40 object-cover rounded-xl mb-4 group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+              width="300" height="160"
+            />
+            <h3 class="text-lg font-bold text-charcoal mb-2 group-hover:text-laser-green transition-colors">{service.name}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">{service.description.substring(0, 80)}...</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Kenapa Pilih Kami -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-charcoal mb-12">Kenapa Pilih Jasa Kami di {city}?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl p-8 shadow-sm text-center">
+          <div class="w-16 h-16 bg-laser-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-laser-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Pengerjaan Cepat</h3>
+          <p class="text-gray-600">Selesai dalam 1–3 hari kerja untuk order standar di area {city}</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm text-center">
+          <div class="w-16 h-16 bg-laser-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-laser-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Garansi Kualitas</h3>
+          <p class="text-gray-600">Hasil tidak sesuai spesifikasi? Kami ulang tanpa biaya tambahan</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm text-center">
+          <div class="w-16 h-16 bg-laser-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-laser-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Pickup & Delivery {city}</h3>
+          <p class="text-gray-600">Layanan antar-jemput material di seluruh area {city} dan sekitarnya</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Material -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-charcoal mb-4">Material yang Kami Kerjakan di {city}</h2>
+      <p class="text-center text-gray-600 mb-12">Dari acrylic hingga metal — kami siap memproses berbagai material untuk kebutuhan Anda</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        {['Acrylic', 'Stainless Steel', 'MDF', 'Plywood', 'PVC', 'ACP', 'GRC', 'Kayu', 'Kain', 'Kulit'].map(mat => (
+          <span class="px-5 py-2 bg-gray-100 hover:bg-laser-green hover:text-white rounded-full text-sm font-medium text-gray-700 transition-colors duration-200 cursor-default">
+            {mat}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-charcoal mb-12">FAQ Laser Cutting {city}</h2>
+      <div class="space-y-4">
+        {FAQ.slice(0, 5).map((item, i) => (
+          <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <button
+              class="w-full text-left px-6 py-5 font-semibold text-charcoal hover:text-laser-green transition-colors flex justify-between items-center"
+              onclick={`this.nextElementSibling.classList.toggle('hidden')`}
+            >
+              {item.question}
+              <svg class="w-5 h-5 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="hidden px-6 pb-5 text-gray-600 leading-relaxed">{item.answer}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    title={`Butuh Jasa Laser Cutting di ${city}?`}
+    description={`Konsultasi gratis dengan tim ahli kami. Dapatkan estimasi harga laser cutting di ${city} dalam 24 jam.`}
+    primaryText="WhatsApp Sekarang"
+    primaryLink={`https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=${waMessage}`}
+    secondaryText="Hubungi via Telepon"
+    secondaryLink={`tel:${SITE_CONFIG.phone}`}
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

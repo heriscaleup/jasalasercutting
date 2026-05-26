@@ -1,0 +1,2 @@
+# Redirect www ke non-www (canonical URL fix)
+https://www.jasalasercutting.com/* https://jasalasercutting.com/:splat 301!

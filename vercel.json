@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "https://www.jasalasercutting.com/:path*",
+      "destination": "https://jasalasercutting.com/:path*",
+      "permanent": true
+    }
+  ]
+}

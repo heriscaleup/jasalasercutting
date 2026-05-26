@@ -20,14 +20,14 @@ import { generateMetaTags, generateFAQSchema, generateReviewSchema } from '../ut
 // Semua meta tags (title, description, OG, Twitter card) dibuat secara dinamis
 // menggunakan fungsi generateMetaTags. Cukup isi data di bawah, sisanya diurus seo.ts.
 const metaTags = generateMetaTags({
-  title: "Jasa Laser Cutting Profesional & Akurat #1 indonesia - Akrilik, Kayu, Metal",
-  description: "Laser cutting presisi tinggi & pengerjaan cepat di indonesia! Spesialis akrilik, kayu, metal dengan teknologi terdepan. 10+ tahun pengalaman, hasil akurat, garansi kualitas. Melayani Serang, Tangerang, Cilegon.",
-  keywords: "jasa laser cutting indonesia, laser cutting serang, laser cutting tangerang, cnc router indonesia, laser fiber cutting, potong akrilik serang, potong kayu tangerang, cutting metal cilegon",
+  title: "Jasa Laser Cutting & Layanan Laser Cutting Profesional - Akrilik, Kayu, Metal Banten",
+  description: "Jasa laser cutting & layanan laser cutting presisi tinggi untuk akrilik, kayu, metal, MDF, ACP, PVC. Melayani Serang, Tangerang, Cilegon, Jakarta, Bekasi, Bogor, Depok & seluruh Jabodetabek-Banten. Konsultasi gratis!",
+  keywords: "jasa laser cutting, layanan laser cutting, jasa cutting laser, laser cutting serang, laser cutting tangerang, laser cutting jakarta, laser cutting bekasi, laser cutting bogor, cnc router, laser fiber cutting, potong akrilik, potong kayu, cutting metal, jasa metal presisi",
   url: "/", // URL canonical untuk halaman ini
   type: "website",
   image: "/images/logo.webp", // Gambar utama untuk social media sharing
   publishedTime: "2025-01-01T00:00:00Z",
-  modifiedTime: "2025-07-27T10:00:00Z", // Update tanggal modifikasi terakhir
+  modifiedTime: "2026-05-22T10:00:00Z",
   author: SITE_CONFIG.author
 });
 
@@ -382,6 +382,84 @@ const reviewSchema = generateReviewSchema(TESTIMONIALS);
             </div>
           ))}
         </div>
+      </div>
+    </section>
+
+    <!-- Bagian Area Layanan -->
+    <section id="area-layanan" class="section-padding bg-charcoal">
+      <div class="container-custom">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center px-6 py-3 bg-laser-green/20 border border-laser-green/30 rounded-full text-laser-green font-semibold text-sm mb-6">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            Jangkauan Layanan
+          </div>
+          <h2 class="heading-lg text-white mb-6">Wilayah yang Kami Layani</h2>
+          <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Kami melayani jasa laser cutting di seluruh wilayah Banten dan Jabodetabek. Pickup & delivery tersedia di semua kota berikut.
+          </p>
+        </div>
+
+        <!-- Banten -->
+        <div class="mb-10">
+          <p class="text-xs font-bold text-laser-green uppercase tracking-widest text-center mb-5">Banten</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+            {[
+              { name: 'Serang', slug: 'serang' },
+              { name: 'Cilegon', slug: 'cilegon' },
+              { name: 'Tangerang', slug: 'tangerang' },
+              { name: 'Tangerang Selatan', slug: 'tangerang-selatan' },
+              { name: 'Pandeglang', slug: 'pandeglang' },
+              { name: 'Lebak', slug: 'lebak' },
+            ].map(city => (
+              <a
+                href={`/laser-cutting-${city.slug}/`}
+                class="group bg-white/5 hover:bg-laser-green border border-white/10 hover:border-laser-green rounded-xl p-4 text-center transition-all duration-300 hover:-translate-y-1"
+              >
+                <div class="w-9 h-9 bg-laser-green/20 group-hover:bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 transition-colors duration-300">
+                  <svg class="w-4 h-4 text-laser-green group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <p class="font-semibold text-white text-sm leading-tight">{city.name}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Jabodetabek -->
+        <div>
+          <p class="text-xs font-bold text-laser-green uppercase tracking-widest text-center mb-5">Jabodetabek</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3">
+            {[
+              { name: 'Jakarta Barat', slug: 'jakarta-barat' },
+              { name: 'Jakarta Selatan', slug: 'jakarta-selatan' },
+              { name: 'Jakarta Timur', slug: 'jakarta-timur' },
+              { name: 'Jakarta Utara', slug: 'jakarta-utara' },
+              { name: 'Jakarta Pusat', slug: 'jakarta-pusat' },
+              { name: 'Bogor', slug: 'bogor' },
+              { name: 'Depok', slug: 'depok' },
+              { name: 'Bekasi', slug: 'bekasi' },
+            ].map(city => (
+              <a
+                href={`/laser-cutting-${city.slug}/`}
+                class="group bg-white/5 hover:bg-laser-green border border-white/10 hover:border-laser-green rounded-xl p-4 text-center transition-all duration-300 hover:-translate-y-1"
+              >
+                <div class="w-9 h-9 bg-laser-green/20 group-hover:bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 transition-colors duration-300">
+                  <svg class="w-4 h-4 text-laser-green group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <p class="font-semibold text-white text-sm leading-tight">{city.name}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
 

@@ -37,24 +37,30 @@
             
             <!-- Social Media -->
             <div class="flex space-x-4">
-              <a href={SITE_CONFIG.socialMedia.facebook} target="_blank" rel="noopener noreferrer" 
-                 class="group w-12 h-12 bg-silver-dark/20 hover:bg-laser-green rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
-                <svg class="w-5 h-5 text-silver-light group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </a>
-              <a href={SITE_CONFIG.socialMedia.instagram} target="_blank" rel="noopener noreferrer"
-                 class="group w-12 h-12 bg-silver-dark/20 hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
-                <svg class="w-5 h-5 text-silver-light group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.611-3.197-1.559-.187-.237-.318-.507-.391-.799-.073-.292-.088-.598-.043-.898.089-.598.35-1.155.739-1.614.389-.459.897-.798 1.474-.985.577-.187 1.2-.214 1.794-.077.594.137 1.136.428 1.571.842.435.414.748.948.906 1.546.158.598.154 1.235-.011 1.831-.165.596-.479 1.136-.909 1.563-.43.427-.97.741-1.566.906-.298.083-.608.125-.918.125-.31 0-.62-.042-.918-.125-.596-.165-1.136-.479-1.563-.909z"/>
-                </svg>
-              </a>
-              <a href={SITE_CONFIG.socialMedia.youtube} target="_blank" rel="noopener noreferrer"
-                 class="group w-12 h-12 bg-silver-dark/20 hover:bg-red-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
-                <svg class="w-5 h-5 text-silver-light group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-              </a>
+              {SITE_CONFIG.socialMedia.facebook && (
+                <a href={SITE_CONFIG.socialMedia.facebook} target="_blank" rel="noopener noreferrer" 
+                   class="group w-12 h-12 bg-silver-dark/20 hover:bg-laser-green rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
+                  <svg class="w-5 h-5 text-silver-light group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+              )}
+              {SITE_CONFIG.socialMedia.instagram && (
+                <a href={SITE_CONFIG.socialMedia.instagram} target="_blank" rel="noopener noreferrer"
+                   class="group w-12 h-12 bg-silver-dark/20 hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
+                  <svg class="w-5 h-5 text-silver-light group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.611-3.197-1.559-.187-.237-.318-.507-.391-.799-.073-.292-.088-.598-.043-.898.089-.598.35-1.155.739-1.614.389-.459.897-.798 1.474-.985.577-.187 1.2-.214 1.794-.077.594.137 1.136.428 1.571.842.435.414.748.948.906 1.546.158.598.154 1.235-.011 1.831-.165.596-.479 1.136-.909 1.563-.43.427-.97.741-1.566.906-.298.083-.608.125-.918.125-.31 0-.62-.042-.918-.125-.596-.165-1.136-.479-1.563-.909z"/>
+                  </svg>
+                </a>
+              )}
+              {SITE_CONFIG.socialMedia.youtube && (
+                <a href={SITE_CONFIG.socialMedia.youtube} target="_blank" rel="noopener noreferrer"
+                   class="group w-12 h-12 bg-silver-dark/20 hover:bg-red-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
+                  <svg class="w-5 h-5 text-silver-light group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
+              )}
               
             </div>
           </div>
@@ -165,6 +171,36 @@
         </div>
       </div>
   
+      <!-- Wilayah Layanan -->
+      <div class="border-t border-silver-dark/30 pt-10 pb-2">
+        <h4 class="text-base font-bold text-white mb-5 text-center">Wilayah Layanan Kami</h4>
+        <div class="flex flex-wrap justify-center gap-2 pb-8">
+          {[
+            { name: 'Serang', slug: 'serang' },
+            { name: 'Cilegon', slug: 'cilegon' },
+            { name: 'Tangerang', slug: 'tangerang' },
+            { name: 'Tangerang Selatan', slug: 'tangerang-selatan' },
+            { name: 'Pandeglang', slug: 'pandeglang' },
+            { name: 'Lebak', slug: 'lebak' },
+            { name: 'Jakarta Barat', slug: 'jakarta-barat' },
+            { name: 'Jakarta Selatan', slug: 'jakarta-selatan' },
+            { name: 'Jakarta Timur', slug: 'jakarta-timur' },
+            { name: 'Jakarta Utara', slug: 'jakarta-utara' },
+            { name: 'Jakarta Pusat', slug: 'jakarta-pusat' },
+            { name: 'Bogor', slug: 'bogor' },
+            { name: 'Depok', slug: 'depok' },
+            { name: 'Bekasi', slug: 'bekasi' },
+          ].map(city => (
+            <a
+              href={`/laser-cutting-${city.slug}/`}
+              class="px-3 py-1.5 bg-silver-dark/20 hover:bg-laser-green rounded-lg text-sm text-silver-mid hover:text-white transition-all duration-300"
+            >
+              {city.name}
+            </a>
+          ))}
+        </div>
+      </div>
+
       <!-- Bottom Bar -->
       <div class="border-t border-silver-dark/30 bg-charcoal/50">
         <div class="container-custom py-8">
@@ -179,7 +215,7 @@
             </div>
             <div class="text-silver-mid text-sm text-center md:text-right">
               <p class="font-medium">Melayani Area:</p>
-              <p>Serang, Tangerang, Cilegon, Pandeglang, Lebak & Sekitarnya</p>
+              <p>Banten, Jabodetabek & Sekitarnya</p>
             </div>
           </div>
         </div>
