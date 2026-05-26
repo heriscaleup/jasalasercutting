@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /_astro/
+Disallow: /api/
+Crawl-delay: 1
+
+# Allow important pages
+Allow: /jasa-*
+Allow: /material-*
+Allow: /laser-cutting-*
+Allow: /blog*
+Allow: /about
+Allow: /contact
+Allow: /portfolio
 
 Sitemap: https://jasalasercutting.com/sitemap-index.xml

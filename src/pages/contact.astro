@@ -5,22 +5,25 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CTA from '../components/CTA.astro';
 import { FAQ, SITE_CONFIG, WHATSAPP_MESSAGES } from '../utils/constants.js';
-import { generateMetaTags } from '../utils/seo.ts';
+import { generateMetaTags, generateBreadcrumbSchema, generateLocalBusinessSchema } from '../utils/seo.ts';
 
 import type { Props as BaseLayoutProps } from '../components/BaseLayout.astro';
 
-const seoData = {
-  title: "Kontak Kami - jasa cutting laser Jabodetabek",
-  description: "Hubungi jasa cutting laser untuk layanan laser cutting, engraving, dan CNC router terbaik di Jakarta, Bogor, Depok, Tangerang, Bekasi. Dapatkan konsultasi & harga terbaik!",
-  keywords: "kontak laser cutting, jasa laser jakarta, laser cutting bekasi, laser engraving bogor, cnc router depok, tangerang laser service",
-  url: "/jasalasercutting/contact/",
+const metaTags = generateMetaTags({
+  title: "Kontak Kami - Jasa Cutting Laser Banten & Tangerang",
+  description: "Hubungi Jasa Cutting Laser untuk layanan laser cutting, engraving, dan CNC router di Serang, Tangerang, Cilegon, Pandeglang, dan Lebak. Dapatkan konsultasi & estimasi harga gratis.",
+  keywords: "kontak laser cutting, jasa laser serang, laser cutting tangerang, laser engraving cilegon, cnc router banten",
+  url: "/contact/",
   type: "website" as const,
   image: "/images/logo.webp"
-};
+}) as BaseLayoutProps;
 
-// Get meta tags with proper typing
-const metaTags = generateMetaTags(seoData) as BaseLayoutProps;
-// ---
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Beranda', url: '/' },
+  { name: 'Kontak', url: '/contact/' }
+]);
+
+const localBusinessSchema = generateLocalBusinessSchema('Serang');
 ---
 
 <!-- --- Script untuk Form dan Phone Formatting --- -->
@@ -97,7 +100,7 @@ const metaTags = generateMetaTags(seoData) as BaseLayoutProps;
   keywords={metaTags.keywords}
   url={metaTags.canonical}
   type="website"
-  jsonLd={metaTags.jsonLd}
+  jsonLd={[breadcrumbSchema, localBusinessSchema]}
 >
   <Header slot="header" />
 
@@ -242,7 +245,7 @@ const metaTags = generateMetaTags(seoData) as BaseLayoutProps;
       <div class="text-center mb-16">
         <h2 class="heading-lg text-gray-900 mb-4">Area Layanan Kami</h2>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Menjangkau seluruh wilayah Jabodetabek dengan layanan pickup & delivery yang cepat
+          Menjangkau area Banten dan Tangerang dengan layanan pickup & delivery yang cepat
         </p>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -250,48 +253,48 @@ const metaTags = generateMetaTags(seoData) as BaseLayoutProps;
           <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
             <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
           </div>
-          <h3 class="font-semibold text-gray-900">Jakarta</h3>
-          <p class="text-sm text-gray-600">Pusat & Cabang</p>
+          <h3 class="font-semibold text-gray-900">Serang</h3>
+          <p class="text-sm text-gray-600">Area utama</p>
         </div>
         <div class="text-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
           <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
             <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
           </div>
-          <h3 class="font-semibold text-gray-900">Bekasi</h3>
+          <h3 class="font-semibold text-gray-900">Tangerang</h3>
           <p class="text-sm text-gray-600">Pickup & Delivery</p>
         </div>
         <div class="text-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
           <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
             <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
           </div>
-          <h3 class="font-semibold text-gray-900">Bogor</h3>
+          <h3 class="font-semibold text-gray-900">Cilegon</h3>
           <p class="text-sm text-gray-600">Pickup & Delivery</p>
         </div>
         <div class="text-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
           <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
             <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
           </div>
-          <h3 class="font-semibold text-gray-900">Depok</h3>
+          <h3 class="font-semibold text-gray-900">Pandeglang</h3>
           <p class="text-sm text-gray-600">Pickup & Delivery</p>
         </div>
         <div class="text-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
           <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
             <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
           </div>
-          <h3 class="font-semibold text-gray-900">Cimahi</h3>
+          <h3 class="font-semibold text-gray-900">Lebak</h3>
           <p class="text-sm text-gray-600">Pickup & Delivery</p>
         </div>
         <div class="text-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
           <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-3">
             <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
           </div>
-          <h3 class="font-semibold text-gray-900">Sukabumi</h3>
+          <h3 class="font-semibold text-gray-900">Area Lain</h3>
           <p class="text-sm text-gray-600">Pickup & Delivery</p>
         </div>
       </div>
       <div class="text-center mt-12">
-        <p class="text-gray-600 mb-4">Wilayah lain di Jawa Barat? Hubungi kami untuk informasi layanan.</p>
-        <a href={`https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=Halo,%20saya%20ingin%20tanya%20tentang%20area%20layanan%20di%20wilayah%20saya.`} target="_blank" rel="noopener noreferrer" class="btn-secondary">
+        <p class="text-gray-600 mb-4">Wilayah lain di sekitar Banten dan Tangerang Raya? Hubungi kami untuk informasi layanan.</p>
+        <a href={`https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=Halo%20Jasalasercutting.com%2C%20saya%20ingin%20tanya%20tentang%20area%20layanan%20di%20wilayah%20saya.%20Bisa%20dibantu%3F`} target="_blank" rel="noopener noreferrer" class="btn-secondary">
           Tanya Area Layanan
         </a>
       </div>
@@ -343,7 +346,7 @@ const metaTags = generateMetaTags(seoData) as BaseLayoutProps;
       </div>
       <div class="text-center mt-12">
         <p class="text-gray-600 mb-4">Masih ada pertanyaan yang belum terjawab?</p>
-        <a href={`https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=Halo,%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20layanan%20LaserCut%20Pro.`} target="_blank" rel="noopener noreferrer" class="btn-primary">
+        <a href={`https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=Halo%20Jasalasercutting.com%2C%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20layanan%20laser%20cutting.%20Bisa%20dibantu%3F`} target="_blank" rel="noopener noreferrer" class="btn-primary">
           Tanya Langsung via WhatsApp
         </a>
       </div>

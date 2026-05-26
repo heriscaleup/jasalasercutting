@@ -17,10 +17,10 @@ if (!service) {
 
 // SEO Meta Tags
 const metaTags = generateMetaTags({
-  title: `${service.name} - Engraving Presisi untuk Material Metal`,
-  description: `${service.description}. Teknologi galvo laser tercepat & akurat untuk engraving stainless steel, aluminium hingga ketebalan 20mm. Quote gratis 24 jam.`,
-  keywords: service.keywords,
-  url: `/jasalasercutting/${service.slug}/`,
+  title: `Jasa Galvo Engraving - Marking Logo, Serial Number & QR Code Permanen`,
+  description: `Jasa galvo engraving profesional. Marking logo, serial number, QR code, dan barcode permanen di metal, plastik, kayu. Kecepatan tinggi, detail 0.05mm. Harga terjangkau, konsultasi gratis!`,
+  keywords: `${service.keywords}, galvo engraving murah, laser marking logo, serial number engraving, qr code laser, engraving permanen`,
+  url: `/${service.slug}/`,
   type: "article",
   image: service.image,
   publishedTime: "2025-01-01T00:00:00Z",
@@ -33,7 +33,7 @@ const serviceSchema = generateServiceSchema(service);
 const breadcrumbSchema = generateBreadcrumbSchema([
   { name: 'Beranda', url: '' },
   { name: 'Layanan', url: '#services' },
-  { name: service.name, url: `/jasalasercutting/${service.slug}/` }
+  { name: service.name, url: `/${service.slug}/` }
 ]);
 
 const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
@@ -68,7 +68,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
         <div class="order-1 lg:order-2">
           <h2 class="heading-lg text-gray-900 mb-6">Solusi Engraving Presisi Tinggi</h2>
           <p class="text-xl text-gray-600 mb-8">
-            Galvo Engraving kami menggunakan teknologi laser galvanometer tercepat untuk memberikan hasil engraving yang sangat detail dan presisi pada berbagai material, menjadikannya pilihan utama untuk branding produk dan personalisasi di Jabodetabek.
+            Galvo Engraving kami menggunakan teknologi laser galvanometer tercepat untuk memberikan hasil engraving yang sangat detail dan presisi pada berbagai material, menjadikannya pilihan utama untuk branding produk dan personalisasi di Banten dan Tangerang.
           </p>
           <div class="space-y-6">
             <div class="flex items-start space-x-4">

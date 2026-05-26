@@ -4,21 +4,21 @@
 // ===== KONFIGURASI SITUS =====
 export const SITE_CONFIG = {
   name: "Jasa Cutting Laser",
-  title: "Jasa Laser Cutting Profesional & Akurat #1 indonesia - Akrilik, Kayu, Metal",
-  description: "Laser cutting presisi tinggi & pengerjaan cepat di indonesia! Spesialis akrilik, kayu, metal dengan teknologi terdepan. 10+ tahun pengalaman, hasil akurat, garansi kualitas. Melayani Serang, Tangerang, Cilegon.",
-  keywords: "jasa laser cutting indonesia, laser cutting serang, laser cutting tangerang, cnc router indonesia, laser fiber cutting, potong akrilik serang, potong kayu tangerang, cutting metal cilegon",
+  title: "Jasa Laser Cutting Profesional & Akurat - Akrilik, Kayu, Metal",
+  description: "Laser cutting presisi tinggi & pengerjaan cepat. Spesialis akrilik, kayu, metal dengan teknologi terdepan. 10+ tahun pengalaman, hasil akurat, garansi kualitas. Melayani Serang, Tangerang, Cilegon, Pandeglang, dan Lebak.",
+  keywords: "jasa laser cutting, laser cutting serang, laser cutting tangerang, laser cutting cilegon, cnc router, laser fiber cutting, potong akrilik, potong kayu, cutting metal",
   url: "https://jasalasercutting.com",
   phone: "+62 851 6569 3179",
   whatsapp: "6285165693179",
-  email: "info@tepatlaser.com",
-  address: "Jl. Raya Serang No. 123, Serang, indonesia 42111",
+  email: "info@jasalasercutting.com",
+  address: "Jl. Raya Serang No. 123, Serang, Banten 42111",
   businessHours: "Senin - Sabtu, 08:00 - 17:00 WIB",
   author: "Jasa Cutting Laser Team",
   socialMedia: {
-    facebook: "https://facebook.com/tepatlaser",
-    instagram: "https://instagram.com/tepatlaser",
-    youtube: "https://youtube.com/tepatlaser",
-    linkedin: "https://linkedin.com/company/tepatlaser"
+    facebook: "",
+    instagram: "",
+    youtube: "",
+    linkedin: ""
   }
 };
 
@@ -500,7 +500,7 @@ export const TESTIMONIALS = [
     content: "Pelayanan sangat memuaskan! Hasil cutting stainless steel sangat presisi dan tepat waktu. Tim jasa cutting laser sangat profesional dan responsif.",
     image: "/images/budisantoso.webp",
     project: "Cutting Komponen Industri",
-    location: "Jakarta"
+    location: "Tangerang"
   },
   {
     id: 2,
@@ -510,7 +510,7 @@ export const TESTIMONIALS = [
     content: "Kualitas cutting acrylic luar biasa! Detail yang rumit bisa dikerjakan dengan sempurna. Sangat recommended untuk project interior premium.",
     image: "/images/Sari Dewi.webp",
     project: "Display Acrylic Custom",
-    location: "Bogor"
+    location: "Serang"
   },
   {
     id: 3,
@@ -520,7 +520,7 @@ export const TESTIMONIALS = [
     content: "CNC Router untuk kayu jati hasilnya fantastis! Detail ukiran sangat halus dan presisi. Pasti akan order lagi untuk project selanjutnya.",
     image: "/images/Ahmad Rizki.webp",
     project: "Furniture Kayu Custom",
-    location: "Depok"
+    location: "Cilegon"
   }
 ];
 
@@ -554,7 +554,7 @@ export const FAQ = [
   {
     id: 6,
     question: "Apakah menyediakan layanan pickup dan delivery?",
-    answer: "Ya, kami menyediakan layanan pickup dan delivery untuk area Jabodetabek. Biaya delivery disesuaikan dengan jarak dan berat material. Untuk area luar Jabodetabek bisa via ekspedisi."
+    answer: "Ya, kami menyediakan layanan pickup dan delivery untuk area Serang, Tangerang, Cilegon, Pandeglang, Lebak, dan sekitarnya. Biaya delivery disesuaikan dengan jarak dan berat material. Untuk area luar Banten bisa via ekspedisi."
   },
   {
     id: 7,
@@ -570,15 +570,15 @@ export const FAQ = [
 
 // ===== PESAN WHATSAPP =====
 export const WHATSAPP_MESSAGES = {
-  default: "saya ingin konsultasi jasa laser cutting dong kak",
-  cnc: "Halo, saya butuh jasa CNC Router untuk material kayu/MDF. Bisa konsultasi?",
-  fiber: "Halo, saya perlu laser fiber untuk cutting metal. Bisa diskusi project saya?",
-  co2: "Halo, saya tertarik laser CO2 untuk cutting acrylic/kayu. Bisa konsultasi?",
-  engraving: "Halo, saya butuh jasa galvo engraving untuk marking produk. Bisa bantuan?",
-  quote: "Halo, saya mau request quote untuk project laser cutting. Bisa dibantu?",
-  material: "Halo, saya mau tanya tentang material yang bisa di-cutting. Bisa info?",
-  portfolio: "Halo, saya sudah lihat portfolio Anda. Bisa diskusi project serupa?",
-  urgent: "Halo, saya ada project urgent laser cutting. Bisa dibantu segera?"
+  default: "Halo Jasalasercutting.com, saya ingin konsultasi jasa laser cutting. Bisa dibantu?",
+  cnc: "Halo Jasalasercutting.com, saya butuh jasa CNC Router untuk material kayu/MDF. Bisa konsultasi?",
+  fiber: "Halo Jasalasercutting.com, saya perlu laser fiber untuk cutting metal. Bisa diskusi project saya?",
+  co2: "Halo Jasalasercutting.com, saya tertarik laser CO2 untuk cutting acrylic/kayu. Bisa konsultasi?",
+  engraving: "Halo Jasalasercutting.com, saya butuh jasa galvo engraving untuk marking produk. Bisa dibantu?",
+  quote: "Halo Jasalasercutting.com, saya mau request quote untuk project laser cutting. Bisa dibantu?",
+  material: "Halo Jasalasercutting.com, saya mau tanya tentang material yang bisa di-cutting. Bisa info?",
+  portfolio: "Halo Jasalasercutting.com, saya sudah lihat portfolio Anda. Bisa diskusi project serupa?",
+  urgent: "Halo Jasalasercutting.com, saya ada project urgent laser cutting. Bisa dibantu segera?"
 };
 
 // ===== DATA BLOG POSTS =====
@@ -963,7 +963,7 @@ export const SERVICE_AREAS = [
   {
     id: 1,
     city: "Serang",
-    province: "indonesia",
+    province: "Banten",
     description: "Melayani laser cutting di Serang dan sekitarnya dengan pickup & delivery gratis untuk order minimal.",
     keywords: "laser cutting serang, cnc router serang, jasa laser serang",
     coordinates: { lat: -6.1175, lng: 106.1516 }
@@ -971,7 +971,7 @@ export const SERVICE_AREAS = [
   {
     id: 2,
     city: "Tangerang",
-    province: "indonesia",
+    province: "Banten",
     description: "Layanan laser cutting profesional di Tangerang dengan teknologi terdepan dan harga kompetitif.",
     keywords: "laser cutting tangerang, cnc router tangerang, jasa laser tangerang",
     coordinates: { lat: -6.1781, lng: 106.6298 }
@@ -979,7 +979,7 @@ export const SERVICE_AREAS = [
   {
     id: 3,
     city: "Cilegon",
-    province: "indonesia",
+    province: "Banten",
     description: "Solusi laser cutting terpercaya di Cilegon untuk kebutuhan industri dan komersial.",
     keywords: "laser cutting cilegon, cnc router cilegon, jasa laser cilegon",
     coordinates: { lat: -6.0025, lng: 106.0640 }
@@ -987,7 +987,7 @@ export const SERVICE_AREAS = [
   {
     id: 4,
     city: "Pandeglang",
-    province: "indonesia",
+    province: "Banten",
     description: "Jasa laser cutting berkualitas di Pandeglang dengan layanan konsultasi gratis.",
     keywords: "laser cutting pandeglang, cnc router pandeglang, jasa laser pandeglang",
     coordinates: { lat: -6.3086, lng: 106.1067 }
@@ -995,7 +995,7 @@ export const SERVICE_AREAS = [
   {
     id: 5,
     city: "Lebak",
-    province: "indonesia",
+    province: "Banten",
     description: "Melayani kebutuhan laser cutting di Lebak dengan standar kualitas internasional.",
     keywords: "laser cutting lebak, cnc router lebak, jasa laser lebak",
     coordinates: { lat: -6.5644, lng: 106.2522 }

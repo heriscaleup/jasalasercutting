@@ -25,7 +25,7 @@ const metaTags = generateMetaTags({
   title: `${service.name} - Cutting & Engraving Material Non-Metal`,
   description: `${service.description}. Teknologi laser CO2 terdepan untuk cutting dan engraving acrylic, kayu, kain dengan detail sempurna. Quote gratis 24 jam.`,
   keywords: service.keywords,
-  url: `/jasalasercutting/${service.slug}/`, // Disesuaikan dengan struktur URL
+  url: `/${service.slug}/`,
   type: "service",
   image: service.image,
   // --- TAMBAHAN UNTUK MENGATASI ERROR ---
@@ -40,7 +40,7 @@ const serviceSchema = service ? generateServiceSchema(service) : null;
 const breadcrumbSchema = generateBreadcrumbSchema([
   { name: 'Beranda', url: '' },
   { name: 'Layanan', url: '#services' },
-  { name: service.name, url: `/jasalasercutting/${service.slug}/` }
+  { name: service.name, url: `/${service.slug}/` }
 ]);
 ---
 <BaseLayout
@@ -78,7 +78,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
         <div class="order-1 lg:order-2">
           <h2 class="heading-lg text-gray-900 mb-6">Solusi Cutting & Engraving Presisi</h2>
           <p class="text-xl text-gray-600 mb-8">
-            Laser CO2 kami memberikan hasil cutting dan engraving yang sangat presisi pada berbagai material non-metal. Dengan kontrol yang akurat, kami mampu menghasilkan tepi yang halus dan detail yang tajam, menjadikannya pilihan utama untuk signage berkualitas dan produk custom di Jabodetabek.
+            Laser CO2 kami memberikan hasil cutting dan engraving yang sangat presisi pada berbagai material non-metal. Dengan kontrol yang akurat, kami mampu menghasilkan tepi yang halus dan detail yang tajam, menjadikannya pilihan utama untuk signage berkualitas dan produk custom di Banten dan Tangerang.
           </p>
           <div class="space-y-6">
             <div class="flex items-start space-x-4">

@@ -13,23 +13,23 @@ if (!recommendedService) throw new Error('Recommended service not found');
 
 // Generate JSON-LD - Fix: return array instead of object
 const jsonLd = [generateJsonLd({
-  title: `${material.name} - Material Laser Cutting Premium`,
-  description: material.description,
+  title: `Jasa Laser Cutting MDF & Jasa Cutting MDF Terpercaya | Presisi ±0.1mm`,
+  description: `Jasa laser cutting MDF dan jasa cutting MDF terbaik. Cutting MDF 3–30mm dengan hasil halus, tepi rapi, dan presisi ±0.1mm. Cocok untuk furniture, kitchen set, dekorasi. Harga terjangkau!`,
   url: `${SITE_CONFIG.url}material-mdf/`,
   type: 'article' // Fix: change from 'Product' to 'article'
 })];
 
 // Create metaTags object for BaseLayout
 const metaTags = {
-  title: `${material.name} - Material Laser Cutting Premium`,
-  description: material.description,
+  title: `Jasa Laser Cutting MDF & Jasa Cutting MDF Terpercaya | Presisi ±0.1mm`,
+  description: `Jasa laser cutting MDF dan jasa cutting MDF terbaik. Cutting MDF 3–30mm dengan hasil halus, tepi rapi, dan presisi ±0.1mm. Cocok untuk furniture, kitchen set, dekorasi. Harga terjangkau!`,
   keywords: material.keywords,
   canonical: `${SITE_CONFIG.url}material-mdf/`,
   url: `${SITE_CONFIG.url}material-mdf/`,
   type: 'article', // Fix: valid type
   openGraph: {
-    title: `${material.name} - Material Laser Cutting Premium`,
-    description: material.description,
+    title: `Jasa Laser Cutting MDF & Jasa Cutting MDF Terpercaya | Presisi ±0.1mm`,
+    description: `Jasa laser cutting MDF dan jasa cutting MDF terbaik. Cutting MDF 3–30mm dengan hasil halus, tepi rapi, dan presisi ±0.1mm. Cocok untuk furniture, kitchen set, dekorasi. Harga terjangkau!`,
     url: `${SITE_CONFIG.url}material-mdf/`,
     image: material.image,
     type: 'article',
@@ -38,8 +38,8 @@ const metaTags = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${material.name} - Material Laser Cutting Premium`,
-    description: material.description,
+    title: `Jasa Laser Cutting MDF & Jasa Cutting MDF Terpercaya | Presisi ±0.1mm`,
+    description: `Jasa laser cutting MDF dan jasa cutting MDF terbaik. Cutting MDF 3–30mm dengan hasil halus, tepi rapi, dan presisi ±0.1mm. Cocok untuk furniture, kitchen set, dekorasi. Harga terjangkau!`,
     image: material.image
   }
 };
@@ -65,7 +65,7 @@ const metaTags = {
           </p>
           <div class="flex flex-wrap gap-4">
             <a 
-              href={`https://api.whatsapp.com/send?phone=6285165693179&text=Halo,%20saya%20tertarik%20dengan%20jasa%20laser%20cutting%20${material.name}.%20Bisa%20konsultasi?`}
+              href={`https://api.whatsapp.com/send?phone=6285165693179&text=Halo%20Jasalasercutting.com%2C%20saya%20tertarik%20dengan%20jasa%20laser%20cutting%20${material.name}.%20Bisa%20konsultasi%3F`}
               target="_blank"
               rel="noopener noreferrer"
               class="bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
@@ -73,7 +73,7 @@ const metaTags = {
               Konsultasi Gratis
             </a>
             <a 
-              href="contact" 
+              href="/contact/" 
               class="border-2 border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Request Quote
@@ -241,7 +241,7 @@ const metaTags = {
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a 
-          href={`https://api.whatsapp.com/send?phone=6285165693179&text=Halo,%20saya%20tertarik%20dengan%20jasa%20laser%20cutting%20${material.name}.%20Bisa%20konsultasi?`}
+          href={`https://api.whatsapp.com/send?phone=6285165693179&text=Halo%20Jasalasercutting.com%2C%20saya%20tertarik%20dengan%20jasa%20laser%20cutting%20${material.name}.%20Bisa%20konsultasi%3F`}
           target="_blank"
           rel="noopener noreferrer"
           class="bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center"
@@ -252,7 +252,7 @@ const metaTags = {
           Chat WhatsApp
         </a>
         <a 
-          href="contact" 
+          href="/contact/" 
           class="border-2 border-white text-white hover:bg-white hover:text-gray-700 px-8 py-3 rounded-lg font-semibold transition-colors"
         >
           Request Quote Detail

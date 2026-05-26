@@ -58,7 +58,7 @@ export function generateMetaTags({
   const fullTitle = title ? `${title} | ${SITE_CONFIG.name}` : SITE_CONFIG.title;
   const fullDescription = description || SITE_CONFIG.description;
   const fullUrl = url ? `${SITE_CONFIG.url}${url}` : SITE_CONFIG.url;
-  const fullImage = image ? `${SITE_CONFIG.url}${image}` : `${SITE_CONFIG.url}/logo.webp`;
+  const fullImage = image ? `${SITE_CONFIG.url}${image}` : `${SITE_CONFIG.url}/images/logo.webp`;
   
   // Default keywords fallback
   const defaultKeywords = 'laser cutting, cnc router, laser fiber, laser co2, jabodetabek';
@@ -186,7 +186,7 @@ export function generateJsonLd(options: MetaTagOptions = {}): object {
       name: SITE_CONFIG.name,
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_CONFIG.url}/logo.webp`
+      url: `${SITE_CONFIG.url}/images/logo.webp`
       }
     }
   };
@@ -313,18 +313,18 @@ interface CityCoordinates {
 }
 
 /**
- * Generate local business schema for Jabodetabek cities
+ * Generate local business schema for Banten service areas
  */
-export function generateLocalBusinessSchema(city: string = 'Jakarta'): object {
+export function generateLocalBusinessSchema(city: string = 'Serang'): object {
   const cityCoordinates: CityCoordinates = {
-    'Jakarta': { lat: -6.2088, lng: 106.8456 },
-    'Bogor': { lat: -6.5971, lng: 106.8060 },
-    'Depok': { lat: -6.4025, lng: 106.7942 },
+    'Serang': { lat: -6.1175, lng: 106.1516 },
     'Tangerang': { lat: -6.1781, lng: 106.6298 },
-    'Bekasi': { lat: -6.2383, lng: 106.9756 }
+    'Cilegon': { lat: -6.0025, lng: 106.0640 },
+    'Pandeglang': { lat: -6.3086, lng: 106.1067 },
+    'Lebak': { lat: -6.5644, lng: 106.2522 }
   };
 
-  const coords = cityCoordinates[city] || cityCoordinates['Jakarta'];
+  const coords = cityCoordinates[city] || cityCoordinates['Serang'];
 
   return {
     '@context': 'https://schema.org',
@@ -338,7 +338,7 @@ export function generateLocalBusinessSchema(city: string = 'Jakarta'): object {
     address: {
       '@type': 'PostalAddress',
       addressLocality: city,
-      addressRegion: city === 'Jakarta' ? 'DKI Jakarta' : 'Jawa Barat',
+      addressRegion: 'Banten',
       addressCountry: 'ID'
     },
     geo: {
@@ -393,7 +393,7 @@ interface SitemapURL {
 }
 
 /**
- * Generate sitemap URLs for Jabodetabek
+ * Generate sitemap URLs for core pages and Banten service areas
  */
 export function generateSitemapUrls(): SitemapURL[] {
   const baseUrls: SitemapURL[] = [
@@ -421,11 +421,11 @@ export function generateSitemapUrls(): SitemapURL[] {
   ].map(url => ({ url, priority: 0.8, changefreq: 'monthly' }));
 
   const locationUrls = [
-    '/laser-cutting-jakarta',
-    '/laser-cutting-bogor',
-    '/laser-cutting-depok', 
+    '/laser-cutting-serang',
     '/laser-cutting-tangerang',
-    '/laser-cutting-bekasi'
+    '/laser-cutting-cilegon',
+    '/laser-cutting-pandeglang',
+    '/laser-cutting-lebak'
   ].map(url => ({ url, priority: 0.7, changefreq: 'monthly' }));
 
   return [...baseUrls, ...serviceUrls, ...materialUrls, ...locationUrls];

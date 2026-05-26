@@ -1,11 +1,11 @@
 {
   "name": "jasa cutting laser - Jasa Laser Cutting Terpercaya",
   "short_name": "jasa cutting laser",
-  "description": "Jasa laser cutting profesional di Jawa Barat dengan teknologi terdepan. CNC Router, Laser Fiber, Laser CO2, dan Galvo Engraving dengan kualitas premium.",
+  "description": "Jasa laser cutting profesional untuk area Banten dan Tangerang. CNC Router, Laser Fiber, Laser CO2, dan Galvo Engraving dengan kualitas premium.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#2563eb",
+  "theme_color": "#00C853",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "id",
@@ -62,13 +62,13 @@
   "categories": ["business", "productivity", "utilities"],
   "screenshots": [
     {
-      "src": "//images/screenshot-desktop.png",
+      "src": "/images/screenshot-desktop.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide"
     },
     {
-      "src": "//images/screenshot-mobile.png",
+      "src": "/images/screenshot-mobile.png",
       "sizes": "375x667",
       "type": "image/png",
       "form_factor": "narrow"

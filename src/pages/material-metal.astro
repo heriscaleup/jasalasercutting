@@ -13,10 +13,10 @@ if (!recommendedService) throw new Error('Recommended service not found');
 
 // Generate Meta Tags
 const metaTags = generateMetaTags({
-  title: `${material.name} - Material Laser Cutting Premium`,
-  description: material.description,
-  keywords: material.keywords,
-  url: `/jasalasercutting/material-metal/`,
+  title: `Jasa Metal Presisi - Laser Cutting Stainless Steel, Aluminium & Carbon Steel`,
+  description: `Jasa metal presisi dengan laser fiber terbaik. Cutting stainless steel, aluminium, carbon steel 0.5–20mm dengan toleransi ±0.05mm. Hasil bersih tanpa burr. Konsultasi gratis, quote 24 jam!`,
+  keywords: `${material.keywords}, jasa metal presisi, cutting stainless steel presisi, laser cutting aluminium, laser fiber metal, cutting carbon steel`,
+  url: `/material-metal/`,
   type: "article",
   image: material.image,
   publishedTime: "2025-01-01T00:00:00Z", 
@@ -29,7 +29,7 @@ const serviceSchema = recommendedService ? generateServiceSchema(recommendedServ
 const breadcrumbSchema = generateBreadcrumbSchema([
   { name: 'Beranda', url: '' },
   { name: 'Material', url: '#materials' },
-  { name: material.name, url: `/jasalasercutting/material-metal/` }
+  { name: material.name, url: `/material-metal/` }
 ]);
 
 // Combine schemas for jsonLd
@@ -61,7 +61,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
           </p>
           <div class="flex flex-wrap gap-4">
             <a 
-              href={`https://api.whatsapp.com/send?phone=6285165693179&text=Halo,%20saya%20tertarik%20dengan%20jasa%20laser%20cutting%20${material.name}.%20Bisa%20konsultasi?`}
+              href={`https://api.whatsapp.com/send?phone=6285165693179&text=Halo%20Jasalasercutting.com%2C%20saya%20tertarik%20dengan%20jasa%20laser%20cutting%20${material.name}.%20Bisa%20konsultasi%3F`}
               target="_blank"
               rel="noopener noreferrer"
               class="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
@@ -69,7 +69,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
               Konsultasi Gratis
             </a>
             <a 
-              href="contact" 
+              href="/contact/" 
               class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Request Quote
@@ -237,7 +237,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a 
-          href={`https://api.whatsapp.com/send?phone=6285165693179&text=Halo,%20saya%20tertarik%20dengan%20jasa%20laser%20cutting%20${material.name}.%20Bisa%20konsultasi?`}
+          href={`https://api.whatsapp.com/send?phone=6285165693179&text=Halo%20Jasalasercutting.com%2C%20saya%20tertarik%20dengan%20jasa%20laser%20cutting%20${material.name}.%20Bisa%20konsultasi%3F`}
           target="_blank"
           rel="noopener noreferrer"
           class="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center"
@@ -248,7 +248,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
           Chat WhatsApp
         </a>
         <a 
-          href="contact" 
+          href="/contact/" 
           class="border-2 border-white text-white hover:bg-white hover:text-gray-700 px-8 py-3 rounded-lg font-semibold transition-colors"
         >
           Request Quote Detail

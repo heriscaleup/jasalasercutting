@@ -8,10 +8,12 @@ import { generateBlogPostSchema, generateBreadcrumbSchema } from '../../utils/se
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
-  return allPosts.map(post => ({
-    params: { slug: post.slug },
-    props: { post }
-  }));
+  return allPosts
+    .filter(post => !post.data.draft)
+    .map(post => ({
+      params: { slug: post.slug },
+      props: { post }
+    }));
 }
 
 const { post }: { post: CollectionEntry<'blog'> } = Astro.props;
@@ -161,7 +163,7 @@ const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="https://api.whatsapp.com/send?phone=6285165693179&text=Halo,%20saya%20tertarik%20dengan%20jasa%20laser%20cutting.%20Bisa%20konsultasi?"
+              href="https://api.whatsapp.com/send?phone=6285165693179&text=Halo%20Jasalasercutting.com%2C%20saya%20tertarik%20dengan%20jasa%20laser%20cutting.%20Bisa%20konsultasi%3F"
               target="_blank"
               rel="noopener noreferrer"
               class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center"
@@ -172,7 +174,7 @@ const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
               Konsultasi Gratis
             </a>
             <a 
-              href="/jasalasercutting/contact/" 
+              href="/contact/" 
               class="border-2 border-white text-white hover:bg-white hover:text-blue-700 px-6 py-3 rounded-lg font-semibold transition-colors"
             >
               Request Quote

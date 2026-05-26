@@ -18,10 +18,10 @@ if (!service) {
 
 // SEO Meta Tags
 const metaTags = generateMetaTags({
-  title: `${service.name} - Presisi Tinggi untuk Material Metal`,
-  description: `${service.description}. Teknologi laser fiber tercepat & akurat untuk cutting stainless steel, carbon steel, aluminium hingga ketebalan 20mm. Quote gratis 24 jam.`,
-  keywords: service.keywords,
-  url: `/jasalasercutting/${service.slug}/`,
+  title: `Jasa Metal Presisi - ${service.name} Stainless, Aluminium, Carbon Steel`,
+  description: `Jasa metal presisi dengan teknologi laser fiber. Cutting stainless steel, aluminium, carbon steel hingga 20mm dengan toleransi ±0.05mm. Harga kompetitif, pengerjaan cepat. Konsultasi gratis!`,
+  keywords: `${service.keywords}, jasa metal presisi, cutting metal presisi, laser fiber stainless steel, laser fiber aluminium`,
+  url: `/${service.slug}/`,
   type: "service",
   image: service.image,
   publishedTime: "2025-01-01T00:00:00Z",
@@ -34,7 +34,7 @@ const serviceSchema = service ? generateServiceSchema(service) : null;
 const breadcrumbSchema = generateBreadcrumbSchema([
   { name: 'Beranda', url: '' },
   { name: 'Layanan', url: '#services' },
-  { name: service.name, url: `/jasalasercutting/${service.slug}/` }
+  { name: service.name, url: `/${service.slug}/` }
 ]);
 ---
 <BaseLayout
@@ -69,7 +69,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
         <div class="order-1 lg:order-2">
           <h2 class="heading-lg text-gray-900 mb-6">Solusi Cutting & Marking Logam Terdepan</h2>
           <p class="text-xl text-gray-600 mb-8">
-            Laser Fiber kami menggunakan teknologi berkekuatan tinggi untuk memberikan hasil cutting dan marking yang sangat presisi pada berbagai material logam. Dengan kecepatan tinggi dan efisiensi biaya, kami menjadi pilihan utama industri manufaktur dan otomotif di Jabodetabek.
+            Laser Fiber kami menggunakan teknologi berkekuatan tinggi untuk memberikan hasil cutting dan marking yang sangat presisi pada berbagai material logam. Dengan kecepatan tinggi dan efisiensi biaya, kami menjadi pilihan utama industri manufaktur dan otomotif di Banten dan Tangerang.
           </p>
           <div class="space-y-6">
             <div class="flex items-start space-x-4">

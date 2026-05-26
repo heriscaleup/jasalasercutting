@@ -13,23 +13,23 @@ if (!recommendedService) throw new Error('Recommended service not found');
 
 // Generate JSON-LD - Fix: return array instead of object
 const jsonLd = [generateJsonLd({
-  title: 'Jasa Laser Cutting Plywood & Multiplex | ±0.1mm – Serang, Tangerang, Cilegon',
-  description: 'Cutting plywood & multiplex presisi tinggi ketebalan 4–40mm. Hasil rapi, tepi halus, toleransi ±0.1mm. Tersedia grade Marine, Interior & Exterior. Melayani Serang, Tangerang & Jabodetabek. Konsultasi gratis!',
+  title: 'Laser Plywood & Jasa Cutting Plywood Multiplex | Presisi ±0.1mm Serang, Tangerang',
+  description: 'Laser plywood dan jasa cutting plywood multiplex 4–40mm. Tersedia Marine, Interior & Exterior grade. Presisi ±0.1mm, tepi halus. Melayani Serang, Tangerang, Cilegon & Jabodetabek. Konsultasi gratis!',
   url: `${SITE_CONFIG.url}/material-ply-wood-multiplex/`,
   type: 'article'
 })];
 
 // Create metaTags object for BaseLayout
 const metaTags = {
-  title: 'Jasa Laser Cutting Plywood & Multiplex | ±0.1mm – Serang, Tangerang, Cilegon',
-  description: 'Cutting plywood & multiplex presisi tinggi ketebalan 4–40mm. Hasil rapi, tepi halus, toleransi ±0.1mm. Tersedia grade Marine, Interior & Exterior. Melayani Serang, Tangerang & Jabodetabek. Konsultasi gratis!',
-  keywords: material.keywords,
+  title: 'Laser Plywood & Jasa Cutting Plywood Multiplex | Presisi ±0.1mm Serang, Tangerang',
+  description: 'Laser plywood dan jasa cutting plywood multiplex 4–40mm. Tersedia Marine, Interior & Exterior grade. Presisi ±0.1mm, tepi halus. Melayani Serang, Tangerang, Cilegon & Jabodetabek. Konsultasi gratis!',
+  keywords: `${material.keywords}, laser plywood, cutting plywood, jasa laser cutting plywood`,
   canonical: `${SITE_CONFIG.url}/material-ply-wood-multiplex/`,
   url: `${SITE_CONFIG.url}/material-ply-wood-multiplex/`,
   type: 'article',
   openGraph: {
-    title: 'Jasa Laser Cutting Plywood & Multiplex | ±0.1mm – Serang, Tangerang, Cilegon',
-    description: 'Cutting plywood & multiplex presisi tinggi ketebalan 4–40mm. Hasil rapi, tepi halus, toleransi ±0.1mm. Tersedia grade Marine, Interior & Exterior. Melayani Serang, Tangerang & Jabodetabek. Konsultasi gratis!',
+    title: 'Laser Plywood & Jasa Cutting Plywood Multiplex | Presisi ±0.1mm Serang, Tangerang',
+    description: 'Laser plywood dan jasa cutting plywood multiplex 4–40mm. Tersedia Marine, Interior & Exterior grade. Presisi ±0.1mm, tepi halus. Melayani Serang, Tangerang, Cilegon & Jabodetabek. Konsultasi gratis!',
     url: `${SITE_CONFIG.url}/material-ply-wood-multiplex/`,
     image: material.image,
     type: 'article',
@@ -38,8 +38,8 @@ const metaTags = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jasa Laser Cutting Plywood & Multiplex | ±0.1mm – Serang, Tangerang, Cilegon',
-    description: 'Cutting plywood & multiplex presisi tinggi ketebalan 4–40mm. Hasil rapi, tepi halus, toleransi ±0.1mm. Tersedia grade Marine, Interior & Exterior. Melayani Serang, Tangerang & Jabodetabek. Konsultasi gratis!',
+    title: 'Laser Plywood & Jasa Cutting Plywood Multiplex | Presisi ±0.1mm Serang, Tangerang',
+    description: 'Laser plywood dan jasa cutting plywood multiplex 4–40mm. Tersedia Marine, Interior & Exterior grade. Presisi ±0.1mm, tepi halus. Melayani Serang, Tangerang, Cilegon & Jabodetabek. Konsultasi gratis!',
     image: material.image
   }
 };
@@ -65,7 +65,7 @@ const metaTags = {
           </p>
           <div class="flex flex-wrap gap-4">
             <a 
-              href={`https://api.whatsapp.com/send?phone=6285165693179&text=Halo,%20saya%20tertarik%20dengan%20jasa%20laser%20cutting%20${material.name}.%20Bisa%20konsultasi?`}
+              href={`https://api.whatsapp.com/send?phone=6285165693179&text=Halo%20Jasalasercutting.com%2C%20saya%20tertarik%20dengan%20jasa%20laser%20cutting%20${material.name}.%20Bisa%20konsultasi%3F`}
               target="_blank"
               rel="noopener noreferrer"
               class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
@@ -241,7 +241,7 @@ const metaTags = {
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a 
-          href={`https://api.whatsapp.com/send?phone=6285165693179&text=Halo,%20saya%20tertarik%20dengan%20jasa%20laser%20cutting%20${material.name}.%20Bisa%20konsultasi?`}
+          href={`https://api.whatsapp.com/send?phone=6285165693179&text=Halo%20Jasalasercutting.com%2C%20saya%20tertarik%20dengan%20jasa%20laser%20cutting%20${material.name}.%20Bisa%20konsultasi%3F`}
           target="_blank"
           rel="noopener noreferrer"
           class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center"

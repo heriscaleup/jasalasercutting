@@ -4,18 +4,28 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CTA from '../components/CTA.astro';
 import { SITE_CONFIG } from '../utils/constants.js';
+import { generateMetaTags, generateBreadcrumbSchema, generateLocalBusinessSchema } from '../utils/seo.ts';
 
-const metaTags = {
-  title: "Tentang Kami - jasa cutting laser | 10+ Tahun Pengalaman Laser Cutting",
-  description: "Mengenal jasa cutting laser, perusahaan laser cutting terpercaya di Jabodetabek dengan 10+ tahun pengalaman.",
-  canonical: new URL('/about/', Astro.site).href
-};
+const metaTags = generateMetaTags({
+  title: "Tentang Kami - Jasa Cutting Laser | 10+ Tahun Pengalaman Laser Cutting Banten",
+  description: "Mengenal Jasa Cutting Laser, penyedia laser cutting terpercaya untuk area Banten dan Tangerang dengan 10+ tahun pengalaman dan 1000+ proyek selesai.",
+  keywords: "tentang jasa cutting laser, profil perusahaan laser cutting, laser cutting serang banten, jasa laser cutting terpercaya",
+  url: "/about/",
+  type: "website",
+  image: "/images/logo.webp"
+});
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Beranda', url: '/' },
+  { name: 'Tentang Kami', url: '/about/' }
+]);
+
+const localBusinessSchema = generateLocalBusinessSchema('Serang');
 ---
 
-<BaseLayout 
-  title={metaTags.title}
-  description={metaTags.description}
-  url={metaTags.canonical}
+<BaseLayout
+  metaTags={metaTags}
+  jsonLd={[breadcrumbSchema, localBusinessSchema]}
 >
   <Header slot="header" />
   
@@ -47,7 +57,7 @@ const metaTags = {
         <div>
           <h2 class="text-3xl font-bold mb-6">Siapa Kami</h2>
           <p class="text-lg text-gray-700 mb-6">
-            jasa cutting laser adalah perusahaan terdepan dalam industri laser cutting di Jabodetabek 
+            Jasa Cutting Laser adalah penyedia layanan laser cutting untuk kebutuhan industri, interior, signage, dan produk custom di Banten dan Tangerang 
             yang telah berpengalaman lebih dari 10 tahun.
           </p>
           <p class="text-lg text-gray-700 mb-8">
@@ -209,7 +219,7 @@ const metaTags = {
     title="Siap Berkolaborasi dengan Kami?"
     description="Mari wujudkan project laser cutting Anda bersama tim ahli jasa cutting laser."
     primaryText="Konsultasi Gratis"
-    primaryLink={`https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=Halo, saya tertarik berkolaborasi dengan jasa cutting laser`}
+    primaryLink={`https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=Halo%20Jasalasercutting.com%2C%20saya%20tertarik%20berkolaborasi%20dengan%20jasa%20cutting%20laser.%20Bisa%20diskusi%3F`}
     secondaryText="Lihat Portfolio"
     secondaryLink="/portfolio/"
   />
