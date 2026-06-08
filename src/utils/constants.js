@@ -11,7 +11,7 @@ export const SITE_CONFIG = {
   phone: "+62 851 6569 3179",
   whatsapp: "6285165693179",
   email: "info@jasalasercutting.com",
-  address: "Jl. Raya Serang No. 123, Serang, Banten 42111",
+  address: "Jl. BSD Bintaro No.1, Parigi, Kec. Pd. Aren, Kota Tangerang Selatan, Banten 15228",
   businessHours: "Senin - Sabtu, 08:00 - 17:00 WIB",
   author: "Jasa Cutting Laser Team",
   socialMedia: {
