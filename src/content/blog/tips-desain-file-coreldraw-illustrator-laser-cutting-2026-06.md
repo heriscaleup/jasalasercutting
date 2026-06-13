@@ -10,9 +10,21 @@ author: "Tim Jasalasercutting"
 draft: false
 ---
 
-Tips desain file CorelDRAW dan Illustrator untuk laser cutting yang benar adalah fondasi dari hasil pekerjaan yang presisi dan bebas masalah. Tidak sedikit klien yang mengirim file desain dan harus menunggu lama karena perlu perbaikan berulang — hanya karena beberapa setting dasar yang terlewat.
+File desain yang rapi adalah separuh dari kualitas hasil laser cutting. Mesin bisa sangat presisi, tetapi jika file CorelDRAW atau Illustrator berisi path terbuka, ukuran tidak 1:1, layer berantakan, atau stroke terlalu tebal, hasil produksi tetap berisiko meleset.
 
-Artikel ini membahas checklist teknis lengkap yang perlu kamu perhatikan sebelum mengirim file ke jasa laser cutting, mulai dari setup dokumen hingga pengaturan warna dan stroke yang benar.
+Panduan ini dibuat sebagai checklist praktis sebelum kamu mengirim file ke jasa laser cutting. Bahasanya teknis, tetapi fokusnya sederhana: mengurangi revisi, mempercepat proses quote, dan membuat hasil potong lebih presisi.
+
+## Checklist Cepat Sebelum Kirim File
+
+Pastikan lima hal ini sudah benar:
+
+- Ukuran desain sudah skala **1:1** dalam satuan milimeter.
+- Jalur potong memakai stroke hairline atau sangat tipis.
+- Area cut, engrave, dan raster dipisahkan dengan warna/layer jelas.
+- Semua teks sudah diubah menjadi curve/path.
+- Tidak ada duplicate path, hidden object, atau clipping mask yang belum di-expand.
+
+Kalau checklist ini aman, file biasanya jauh lebih cepat masuk proses produksi.
 
 ## Kenapa Setting File Sangat Penting?
 
@@ -129,3 +141,17 @@ Sebelum mengirimkan file desainmu, pastikan:
 Sudah siap kirim file desainmu? **Tim Jasalasercutting** siap membantu mewujudkan proyek laser cutting kamu dengan hasil yang presisi dan rapi. Kami melayani cutting acrylic, MDF, kayu, dan berbagai material non-logam lainnya.
 
 **Hubungi kami via WhatsApp** untuk konsultasi desain, estimasi biaya, dan informasi material. Kirim file desainmu sekarang dan dapatkan preview hasil cutting sebelum produksi!
+
+## FAQ File Laser Cutting
+
+### Format file apa yang paling aman untuk laser cutting?
+
+File vektor seperti CDR, AI, SVG, DXF, atau PDF vektor biasanya paling aman. Untuk produksi presisi, hindari mengirim JPG/PNG sebagai file utama karena itu raster, bukan jalur potong.
+
+### Kenapa teks harus di-convert ke curve?
+
+Agar bentuk huruf tidak berubah saat file dibuka di komputer operator. Font yang tidak terpasang bisa membuat layout bergeser atau karakter berubah.
+
+### Apakah semua warna punya arti yang sama di setiap workshop?
+
+Tidak selalu. Warna merah untuk cut dan biru untuk engrave adalah konvensi umum, tetapi tetap konfirmasi standar warna/layer ke operator sebelum produksi.
