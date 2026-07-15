@@ -7,43 +7,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Custom “Silver + Charcoal + Laser Green” palette
-        'silver-light': '#F5F6F7',
-        'silver-mid':   '#E1E2E4',
-        'silver-dark':  '#B0B1B4',
-        'charcoal':     '#1F2023',
-        'graphite':     '#4A4B4E',
-        'laser-green':  '#00C853',
-
-        // Existing palettes
-        primary: {
-          50:  '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-        },
-        secondary: {
-          50:  '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-        },
+        // High-end minimalist color palette
+        'silver-light': '#FAFAFA', // Pure premium white/light grey
+        'silver-mid':   '#F0F1F3', // Soft contrast lines/backgrounds
+        'silver-dark':  '#D4D6D9', // Muted borders/icons
+        'charcoal':     '#0A0B0D', // Rich, pure high-end black
+        'graphite':     '#3A3C40', // Refined, highly legible body color
+        'laser-green':  '#10B981', // Vibrant emerald/laser-green
+        'laser-green-hover': '#059669', // Deep emerald hover state
       },
       fontFamily: {
-        sans:    ['Inter', 'system-ui', 'sans-serif'],
-        heading: ['Poppins', 'system-ui', 'sans-serif'],
+        // Space Grotesk / Plus Jakarta Sans are the gold standards for Awwwards sites
+        sans:    ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        heading: ['"Space Grotesk"', 'Poppins', 'system-ui', 'sans-serif'],
       },
       spacing: {
         '18':  '4.5rem',
@@ -51,9 +27,11 @@ export default {
         '128': '32rem',
       },
       animation: {
-        'fade-in':     'fadeIn 0.5s ease-in-out',
-        'slide-up':    'slideUp 0.5s ease-out',
-        'bounce-slow': 'bounce 2s infinite',
+        'fade-in':     'fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'slide-up':    'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'slide-right': 'slideRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'bounce-slow': 'bounce 3s infinite',
+        'spin-slow':   'spin 12s linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -61,16 +39,23 @@ export default {
           '100%': { opacity: '1' },
         },
         slideUp: {
-          '0%':   { transform: 'translateY(20px)', opacity: '0' },
+          '0%':   { transform: 'translateY(40px)', opacity: '0' },
           '100%': { transform: 'translateY(0)',       opacity: '1' },
+        },
+        slideRight: {
+          '0%':   { transform: 'translateX(-40px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)',       opacity: '1' },
         },
       },
       boxShadow: {
-        'xl-colored': '0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 10px 10px -5px rgba(37, 99, 235, 0.04)',
-        'inner-lg':   'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+        'premium': '0 10px 40px -10px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.01)',
+        'premium-hover': '0 20px 50px -10px rgba(0, 0, 0, 0.08), 0 1px 1px rgba(0, 0, 0, 0.02)',
+        'laser-glow': '0 0 30px rgba(16, 185, 129, 0.15)',
+        'inner-lg':   'inset 0 2px 4px 0 rgba(0, 0, 0, 0.02)',
       },
       backdropBlur: {
         xs: '2px',
+        md: '12px',
       },
     },
   },

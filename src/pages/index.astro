@@ -1,7 +1,6 @@
 ---
 // src/pages/index.astro
-// Halaman utama yang dioptimalkan untuk kecepatan dan SEO maksimal.
-// Semua data dan logika SEO ditarik dari /utils/constants.js dan /utils/seo.ts.
+// Halaman utama yang diredesain ke standar visual "Awwwards" dengan fitur interaktif tingkat tinggi.
 
 // Import komponen-komponen utama
 import BaseLayout from '../components/BaseLayout.astro';
@@ -17,8 +16,6 @@ import { SERVICES, MATERIALS, TESTIMONIALS, PORTFOLIO, FAQ, SITE_CONFIG } from '
 import { generateMetaTags, generateFAQSchema, generateReviewSchema } from '../utils/seo.ts';
 
 // 1. GENERATE META TAGS
-// Semua meta tags (title, description, OG, Twitter card) dibuat secara dinamis
-// menggunakan fungsi generateMetaTags. Cukup isi data di bawah, sisanya diurus seo.ts.
 const metaTags = generateMetaTags({
   title: "Jasa Laser Cutting & Layanan Laser Cutting Profesional - Akrilik, Kayu, Metal Banten",
   description: "Jasa laser cutting & layanan laser cutting presisi tinggi untuk akrilik, kayu, metal, MDF, ACP, PVC. Melayani Serang, Tangerang, Cilegon, Jakarta, Bekasi, Bogor, Depok & seluruh Jabodetabek-Banten. Konsultasi gratis!",
@@ -32,7 +29,6 @@ const metaTags = generateMetaTags({
 });
 
 // 2. GENERATE STRUCTURED DATA (JSON-LD)
-// Schema untuk FAQ dan Review juga digenerate dari seo.ts untuk hasil SEO yang lebih kaya.
 const faqSchema = generateFAQSchema(FAQ);
 const reviewSchema = generateReviewSchema(TESTIMONIALS);
 ---
@@ -43,300 +39,466 @@ const reviewSchema = generateReviewSchema(TESTIMONIALS);
 >
   <Header slot="header" />
 
-  <main>
+  <main class="space-y-0">
     <Hero />
 
-    <!-- Bagian Layanan -->
-    <section id="services" class="section-padding bg-white">
-      <div class="container-custom">
-        <div class="text-center mb-20">
-          <div class="inline-flex items-center px-6 py-3 bg-laser-green/10 border border-laser-green/20 rounded-full text-laser-green font-semibold text-sm mb-6">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-            Teknologi Terdepan
+    <!-- Bagian Layanan / Services -->
+    <section id="services" class="section-padding bg-white relative overflow-hidden">
+      <div class="container-custom relative z-10">
+        <div class="text-center mb-20 max-w-3xl mx-auto space-y-4">
+          <div class="inline-flex items-center px-4 py-1.5 bg-laser-green/10 border border-laser-green/20 rounded-full text-laser-green font-bold text-xs tracking-wider uppercase">
+            Teknologi Presisi Tinggi
           </div>
-          <h2 class="heading-lg text-charcoal mb-8">Layanan Laser Cutting Profesional</h2>
-          <p class="text-xl text-graphite max-w-4xl mx-auto leading-relaxed">
-            Teknologi terdepan dengan presisi tinggi untuk semua kebutuhan industri dan kreatif Anda di indonesia.
+          <h2 class="heading-lg text-charcoal">
+            Layanan Laser Cutting Profesional
+          </h2>
+          <p class="text-lg text-graphite/80 leading-relaxed font-sans">
+            Solusi pemotongan terbaik menggunakan mesin mutakhir untuk hasil potongan super rapi dengan akurasi pengerjaan kelas satu.
           </p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {SERVICES.map((service, index) => (
-            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 flex flex-col overflow-hidden border border-silver-mid/50">
-              <div class="relative overflow-hidden">
+            <div class="group bg-white rounded-3xl overflow-hidden hover-lift border border-silver-mid/50 flex flex-col">
+              <div class="relative h-60 overflow-hidden">
                 <img
                   src={service.image}
-                  alt={`Layanan ${service.name} di indonesia`}
-                  class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
+                  alt={`Layanan ${service.name} di Indonesia`}
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   loading="lazy"
                   width="400"
-                  height="224"
+                  height="240"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div class="absolute top-4 left-4">
-                  <div class="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg">
-                    <span class="text-laser-green font-bold text-lg">{index + 1}</span>
-                  </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3.5 py-1.5 rounded-full text-xs font-bold text-laser-green shadow-sm">
+                  Service 0{index + 1}
                 </div>
               </div>
               
-              <div class="p-8 flex flex-col flex-grow">
-                <h3 class="text-xl font-bold text-charcoal mb-4 group-hover:text-laser-green transition-colors duration-300">
-                  {service.name}
-                </h3>
-                <p class="text-graphite mb-6 text-sm leading-relaxed flex-grow">
-                  {service.description}
-                </p>
-                
-                <!-- Features List -->
-                <div class="mb-6">
-                  <ul class="space-y-2">
-                    {service.features.slice(0, 2).map((feature) => (
-                      <li class="flex items-center text-sm text-graphite">
-                        <div class="w-2 h-2 bg-laser-green rounded-full mr-3 flex-shrink-0"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+              <div class="p-8 flex flex-col flex-1 space-y-6 justify-between">
+                <div class="space-y-3">
+                  <h3 class="text-xl font-bold text-charcoal group-hover:text-laser-green transition-colors duration-200">
+                    {service.name}
+                  </h3>
+                  <p class="text-sm text-graphite/90 leading-relaxed font-sans">
+                    {service.description}
+                  </p>
                 </div>
                 
-                <div class="mt-auto pt-6 border-t border-silver-mid">
+                <div class="space-y-4 border-t border-silver-mid/50 pt-6">
+                  <div class="flex justify-between text-xs text-graphite/60 font-semibold uppercase tracking-wider">
+                    <span>Ketebalan</span>
+                    <span class="text-charcoal font-bold">{service.thickness}</span>
+                  </div>
+                  <div class="flex justify-between text-xs text-graphite/60 font-semibold uppercase tracking-wider">
+                    <span>Toleransi</span>
+                    <span class="text-laser-green font-bold">{service.tolerance}</span>
+                  </div>
+
                   <a
                     href={`/${service.slug}/`}
-                    class="group/btn inline-flex items-center justify-center w-full bg-white text-charcoal font-semibold px-6 py-4 rounded-xl transition-all duration-300 hover:bg-charcoal hover:text-white border-2 border-charcoal hover:shadow-lg transform hover:scale-105"
+                    class="btn-accent w-full group/btn text-sm py-3.5"
                   >
-                  >
-                    <span class="flex items-center justify-center">
-                      Lihat Detail
-                      <svg class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                      </svg>
-                    </span>
+                    <span>Pelajari Detail</span>
+                    <svg class="w-4 h-4 text-charcoal group-hover/btn:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+                    </svg>
                   </a>
                 </div>
               </div>
             </div>
           ))}
         </div>
+      </div>
+    </section>
 
-        <!-- Tombol Konsultasi untuk Teknologi -->
-        <div class="text-center mt-16">
-          <a href="/contact/" class="inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-green-700 text-white font-semibold text-lg px-10 py-5 rounded-xl shadow-xl hover:from-green-700 hover:to-green-800 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-            </svg>
-            Konsultasi Gratis
-          </a>
+    <!-- INTERACTIVE SECTION 1: TAB-BASED MATERIAL SHOWCASE -->
+    <section id="materials" class="section-padding bg-[#FAFAFA] border-t border-b border-silver-mid/50 relative overflow-hidden">
+      <div class="container-custom relative z-10">
+        <div class="text-center mb-16 max-w-3xl mx-auto space-y-4">
+          <div class="inline-flex items-center px-4 py-1.5 bg-laser-green/10 border border-laser-green/20 rounded-full text-laser-green font-bold text-xs tracking-wider uppercase">
+            Material Showcase
+          </div>
+          <h2 class="heading-lg text-charcoal">
+            Eksplorasi Material Premium Kami
+          </h2>
+          <p class="text-lg text-graphite/80 font-sans">
+            Klik material untuk memvisualisasikan spesifikasi teknis, ketebalan optimal, dan aplikasi utama secara dinamis.
+          </p>
+        </div>
+
+        <!-- Interactive Tabs Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+
+          <!-- Tab Selectors (Left side) -->
+          <div class="lg:col-span-4 flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible gap-3 p-1 scrollbar-none" id="material-tab-selectors">
+            {MATERIALS.slice(0, 6).map((material, idx) => (
+              <button
+                class="material-tab-btn flex-1 flex items-center justify-between text-left px-6 py-5 rounded-2xl border transition-all duration-300 font-sans group/btn flex-shrink-0"
+                data-material-id={material.id}
+                class:list={[
+                  idx === 0
+                    ? 'bg-charcoal text-white border-charcoal shadow-premium'
+                    : 'bg-white text-charcoal border-silver-dark/30 hover:border-laser-green'
+                ]}
+              >
+                <div class="flex items-center space-x-4">
+                  <span class="w-7 h-7 bg-laser-green/20 text-laser-green rounded-lg flex items-center justify-center text-xs font-bold group-hover/btn:bg-laser-green group-hover/btn:text-white transition-colors">
+                    0{idx + 1}
+                  </span>
+                  <span class="font-bold text-base tracking-tight">{material.name}</span>
+                </div>
+                <svg class="w-4 h-4 hidden lg:block opacity-60 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            ))}
+          </div>
+
+          <!-- Active Material Visual Panel (Right side) -->
+          <div class="lg:col-span-8 bg-white border border-silver-mid/50 rounded-3xl p-8 md:p-12 shadow-premium flex flex-col md:flex-row gap-8 relative overflow-hidden" id="material-panel-content">
+            <!-- Content gets rendered and updated via client script dynamically -->
+            <div class="flex-1 space-y-6">
+              <h3 class="text-3xl font-heading font-bold text-charcoal" id="panel-title">{MATERIALS[0].name}</h3>
+              <p class="text-base text-graphite/90 font-sans leading-relaxed" id="panel-desc">
+                {MATERIALS[0].description}
+              </p>
+              
+              <div class="grid grid-cols-2 gap-6 pt-4 border-t border-silver-mid/60">
+                <div>
+                  <span class="block text-xs font-bold text-graphite/50 uppercase tracking-widest mb-1">Ketebalan Optimal</span>
+                  <span class="text-lg font-bold text-charcoal" id="panel-thickness">{MATERIALS[0].thickness}</span>
+                </div>
+                <div>
+                  <span class="block text-xs font-bold text-graphite/50 uppercase tracking-widest mb-1">Keunggulan Utama</span>
+                  <span class="text-lg font-bold text-laser-green" id="panel-advantage">{MATERIALS[0].advantages?.[0] || 'Kualitas Premium'}</span>
+                </div>
+              </div>
+
+              <div class="space-y-2 pt-2">
+                <span class="block text-xs font-bold text-graphite/50 uppercase tracking-widest">Aplikasi Penggunaan</span>
+                <div class="flex flex-wrap gap-2" id="panel-apps">
+                  {MATERIALS[0].applications.map((app) => (
+                    <span class="px-3.5 py-1.5 bg-silver-mid text-charcoal font-semibold text-xs rounded-full">{app}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div class="pt-6">
+                <a href={`/${MATERIALS[0].slug}`} class="btn-primary inline-flex text-sm py-3.5" id="panel-link">
+                  <span>Lihat Detail Material</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Material Image Frame with Depth effect -->
+            <div class="flex-1 relative aspect-video md:aspect-square bg-silver-mid/30 rounded-2xl overflow-hidden shadow-inner border border-silver-mid/30">
+              <img
+                src={MATERIALS[0].image}
+                alt={MATERIALS[0].name}
+                class="w-full h-full object-cover"
+                id="panel-image"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-charcoal/30 via-transparent to-transparent"></div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- Bagian Material -->
-    <section id="materials" class="section-padding bg-white">
-      <div class="container-custom">
-        <div class="text-center mb-20">
-          <div class="inline-flex items-center px-6 py-3 bg-charcoal/10 border border-charcoal/20 rounded-full text-charcoal font-semibold text-sm mb-6">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-            </svg>
-            Material Premium
+    <!-- INTERACTIVE SECTION 2: PROCESS STEP-BY-STEP TIMELINE -->
+    <section class="section-padding bg-white relative overflow-hidden">
+      <div class="container-custom relative z-10">
+        <div class="text-center mb-20 max-w-3xl mx-auto space-y-4">
+          <div class="inline-flex items-center px-4 py-1.5 bg-laser-green/10 border border-laser-green/20 rounded-full text-laser-green font-bold text-xs tracking-wider uppercase">
+            Workflow Pengerjaan
           </div>
-          <h2 class="heading-lg text-charcoal mb-8">Material Pilihan Terbaik</h2>
-          <p class="text-xl text-graphite max-w-4xl mx-auto leading-relaxed">
-            Kami memproses berbagai jenis material kualitas premium dengan hasil cutting yang presisi dan rapi.
+          <h2 class="heading-lg text-charcoal">
+            Alur Kerja Presisi & Transparan
+          </h2>
+          <p class="text-lg text-graphite/80 font-sans">
+            Kami memprioritaskan komunikasi transparan dari awal file design dikirim hingga produk terdistribusi sempurna ke tangan Anda.
           </p>
         </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {MATERIALS.slice(0, 6).map((material, index) => (
-            <div class="group bg-silver-light rounded-2xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-silver-mid/50">
-              <div class="relative overflow-hidden">
-                <img
-                  src={material.image}
-                  alt={`Jasa laser cutting material ${material.name}`}
-                  class="w-full h-52 object-cover group-hover:scale-110 transition-transform duration-700"
-                  loading="lazy"
-                  width="400"
-                  height="208"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div class="absolute top-4 right-4">
-                  <div class="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
-                    <svg class="w-5 h-5 text-laser-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                  </div>
-                </div>
+
+        <!-- Interactive Stepper Timeline -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+          <!-- Large Interactive Visualizer Panel (Left) -->
+          <div class="lg:col-span-7 bg-[#FAFAFA] border border-silver-mid/50 rounded-3xl p-8 md:p-12 shadow-premium flex flex-col justify-between space-y-8" id="workflow-visualizer">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3">
+                <span class="w-10 h-10 bg-laser-green text-white font-bold rounded-xl flex items-center justify-center font-heading" id="wf-num">1</span>
+                <h3 class="text-2xl font-heading font-bold text-charcoal" id="wf-title">Konsultasi & Penawaran</h3>
               </div>
-              
-              <div class="p-8">
-                <h3 class="text-xl font-bold text-charcoal mb-3 group-hover:text-laser-green transition-colors duration-300">
-                  {material.name}
-                </h3>
-                <p class="text-graphite mb-4 text-sm leading-relaxed">
-                  {material.description}
-                </p>
-                
-                <!-- Thickness Info -->
-                <div class="flex items-center justify-between mb-6 p-3 bg-white rounded-lg border border-silver-mid/50">
-                  <span class="text-sm font-medium text-graphite">Ketebalan:</span>
-                  <span class="text-sm font-bold text-charcoal">{material.thickness}</span>
-                </div>
-                
-                <a href={`/${material.slug}`} 
-                   class="group/link inline-flex items-center font-semibold text-charcoal hover:text-laser-green transition-all duration-300">
-                  <span class="group-hover/link:translate-x-1 transition-transform duration-300">Info Selengkapnya</span>
-                  <svg class="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
-                </a>
+              <p class="text-base text-graphite/90 leading-relaxed font-sans" id="wf-desc">
+                Diskusi intensif tentang kebutuhan project, material terbaik, estimasi pengerjaan, dan pengiriman penawaran harga (quote) resmi yang transparan tanpa biaya tersembunyi.
+              </p>
+            </div>
+
+            <!-- Beautiful Mockup detailing tools used per step -->
+            <div class="bg-white rounded-2xl p-6 border border-silver-mid/50 grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div class="space-y-1">
+                <span class="block text-[10px] font-bold text-graphite/50 uppercase tracking-wider">Durasi</span>
+                <span class="block text-sm font-bold text-charcoal" id="wf-duration">30 menit - 2 jam</span>
+              </div>
+              <div class="space-y-1 col-span-3">
+                <span class="block text-[10px] font-bold text-graphite/50 uppercase tracking-wider">Metode & Alat Komunikasi</span>
+                <span class="block text-sm font-bold text-laser-green" id="wf-tools">WhatsApp, Email, Telepon, Kunjungan Langsung</span>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
 
-        <!-- Tombol Konsultasi untuk Material -->
-        <div class="text-center mt-16">
-          <a href="/contact/" class="inline-flex items-center justify-center bg-white text-charcoal font-semibold text-lg px-10 py-5 rounded-xl shadow-xl hover:bg-charcoal hover:text-white border-2 border-charcoal hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-            </svg>
-            Konsultasi Material
-          </a>
+          <!-- Step Navigation Panel (Right) -->
+          <div class="lg:col-span-5 flex flex-col gap-3">
+            {[
+              { step: 1, title: 'Konsultasi & Quote', duration: '30 menit - 2 jam', desc: 'Diskusi intensif tentang kebutuhan project, material terbaik, estimasi pengerjaan, dan pengiriman penawaran harga (quote) resmi yang transparan tanpa biaya tersembunyi.', tools: 'WhatsApp, Email, Telepon, Kunjungan Langsung' },
+              { step: 2, title: 'Persiapan File & Optimasi', duration: '2 - 24 jam', desc: 'Melakukan peninjauan format file (DWG, AI, DXF), optimasi tata letak (nesting) untuk meminimalisir waste material, serta membuat simulasi sebelum mesin memproses.', tools: 'AutoCAD, CorelDraw, Illustrator, Lantek Nesting' },
+              { step: 3, title: 'Pengadaan Material', duration: '1 - 3 hari', desc: 'Pengadaan bahan baku sesuai ukuran, ketebalan, dan standar kualitas industri yang disepakati bersama sebelum masuk ke fase pemotongan.', tools: 'Mitra Vendor Resmi, Quality Control Bahan' },
+              { step: 4, title: 'Produksi & Quality Control', duration: '1 - 7 hari', desc: 'Proses pemotongan (cutting/engraving) dipantau real-time oleh teknisi ahli serta pengecekan visual menyeluruh untuk memastikan toleransi ketebalan ideal.', tools: 'Laser Fiber, Laser CO2, CNC Router, Galvo' },
+              { step: 5, title: 'Pengemasan & Pengiriman', duration: '1 - 2 hari', desc: 'Pengemasan khusus menggunakan bubble wrap/kayu peti agar aman dari risiko benturan, dilanjutkan ekspedisi pengantaran langsung ke gudang tujuan.', tools: 'Peti Kayu, Bubble Wrap, Armada Pickup, Ekspedisi' }
+            ].map((wf, idx) => (
+              <button
+                class="wf-step-btn flex items-center justify-between text-left p-5 rounded-2xl border transition-all duration-300 font-sans group/btn cursor-pointer"
+                data-step={wf.step}
+                data-title={wf.title}
+                data-duration={wf.duration}
+                data-desc={wf.desc}
+                data-tools={wf.tools}
+                class:list={[
+                  idx === 0
+                    ? 'bg-charcoal text-white border-charcoal shadow-premium'
+                    : 'bg-white text-charcoal border-silver-dark/30 hover:border-laser-green'
+                ]}
+              >
+                <div class="flex items-center space-x-4">
+                  <span class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs bg-laser-green/20 text-laser-green font-heading group-hover/btn:bg-laser-green group-hover/btn:text-white transition-colors">
+                    0{wf.step}
+                  </span>
+                  <span class="font-bold text-base tracking-tight">{wf.title}</span>
+                </div>
+                <div class="text-xs opacity-60 font-medium hidden sm:block">{wf.duration}</div>
+              </button>
+            ))}
+          </div>
+
         </div>
       </div>
     </section>
 
     <!-- Bagian Portfolio -->
-    <section id="portfolio" class="section-padding bg-silver-light">
+    <section id="portfolio" class="section-padding bg-[#FAFAFA] border-t border-b border-silver-mid/50">
       <div class="container-custom">
-        <div class="text-center mb-20">
-          <div class="inline-flex items-center px-6 py-3 bg-laser-green/10 border border-laser-green/20 rounded-full text-laser-green font-semibold text-sm mb-6">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-            </svg>
-            Hasil Karya Terbaik
+        <div class="text-center mb-16 max-w-3xl mx-auto space-y-4">
+          <div class="inline-flex items-center px-4 py-1.5 bg-laser-green/10 border border-laser-green/20 rounded-full text-laser-green font-bold text-xs tracking-wider uppercase">
+            Galeri Kerja
           </div>
-          <h2 class="heading-lg text-charcoal mb-8">Portfolio Proyek Kami</h2>
-          <p class="text-xl text-graphite max-w-4xl mx-auto leading-relaxed">
-            Beberapa hasil karya terbaik kami yang telah dipercaya oleh berbagai klien di indonesia.
+          <h2 class="heading-lg text-charcoal">
+            Portfolio Proyek Pilihan
+          </h2>
+          <p class="text-lg text-graphite/80 font-sans">
+            Lihat hasil pengerjaan fabrikasi profesional kami untuk berbagai korporasi, UMKM, dan arsitek di Indonesia.
           </p>
         </div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {PORTFOLIO.map((project, index) => (
-            <a href="/portfolio/" class="group relative block overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-              <div class="relative overflow-hidden">
+          {PORTFOLIO.map((project) => (
+            <div class="group relative block overflow-hidden rounded-3xl bg-white border border-silver-mid/50 shadow-premium hover-lift">
+              <div class="relative h-80 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                   width="400"
                   height="320"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/40 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent opacity-80"></div>
                 
-                <!-- Category Badge -->
                 <div class="absolute top-4 left-4">
-                  <span class="px-3 py-1 bg-laser-green text-white text-xs font-semibold rounded-full">
+                  <span class="px-3.5 py-1.5 bg-laser-green text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-sm">
                     {project.category}
                   </span>
                 </div>
                 
-                <!-- Project Info -->
-                <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 class="text-lg font-bold mb-2 group-hover:text-laser-green transition-colors duration-300">
+                <div class="absolute bottom-0 left-0 right-0 p-6 text-white space-y-2">
+                  <h3 class="text-lg font-bold font-heading line-clamp-1">
                     {project.title}
                   </h3>
-                  <p class="text-sm text-silver-light mb-2">{project.material}</p>
-                  <div class="flex items-center justify-between">
-                    <span class="text-xs text-silver-mid">{project.service}</span>
-                    <svg class="w-5 h-5 text-laser-green group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
+                  <div class="flex justify-between items-center text-xs text-silver-mid/90 font-sans">
+                    <span>{project.material}</span>
+                    <span class="font-bold text-laser-green">{project.service}</span>
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
         
-        <div class="text-center mt-16">
-          <a href="/portfolio/" class="inline-flex items-center justify-center bg-white text-charcoal font-semibold text-lg px-10 py-5 rounded-xl shadow-xl hover:bg-charcoal hover:text-white border-2 border-charcoal hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+        <div class="text-center mt-12">
+          <a href="/portfolio/" class="btn-secondary inline-flex text-base py-4 px-10">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
-            Lihat Semua Portfolio
+            <span>Buka Semua Galeri Portfolio</span>
           </a>
         </div>
       </div>
     </section>
 
+    <!-- INTERACTIVE SECTION 3: INTERACTIVE WHATSAPP QUOTE BUILDER -->
+    <section class="section-padding bg-white relative overflow-hidden" id="interactive-quote">
+      <div class="container-custom relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+          <div class="lg:col-span-5 space-y-6">
+            <div class="inline-flex items-center px-4 py-1.5 bg-laser-green/10 border border-laser-green/20 rounded-full text-laser-green font-bold text-xs tracking-wider uppercase">
+              Estimator & Penawaran Instan
+            </div>
+            <h2 class="heading-lg text-charcoal leading-tight">
+              Dapatkan Kalkulasi Penawaran Sekarang
+            </h2>
+            <p class="text-base md:text-lg text-graphite/90 leading-relaxed font-sans">
+              Formulir pintar kami akan otomatis menyusun rincian spesifikasi project Anda, siap diteruskan ke tim marketing kami untuk diproses cepat.
+            </p>
+            <div class="p-5 bg-[#FAFAFA] rounded-2xl border border-silver-mid/50 space-y-4">
+              <div class="flex items-center space-x-3 text-sm font-semibold text-charcoal">
+                <div class="w-6 h-6 bg-laser-green/15 text-laser-green rounded-full flex items-center justify-center font-bold">✓</div>
+                <span>Free Penyesuaian Nesting Layout</span>
+              </div>
+              <div class="flex items-center space-x-3 text-sm font-semibold text-charcoal">
+                <div class="w-6 h-6 bg-laser-green/15 text-laser-green rounded-full flex items-center justify-center font-bold">✓</div>
+                <span>Diskon Spesial Volume Industri / Bulk</span>
+              </div>
+              <div class="flex items-center space-x-3 text-sm font-semibold text-charcoal">
+                <div class="w-6 h-6 bg-laser-green/15 text-laser-green rounded-full flex items-center justify-center font-bold">✓</div>
+                <span>Garansi 100% Retur Jika Salah Potong</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7">
+            <form class="bg-[#FAFAFA] border border-silver-mid/50 rounded-3xl p-8 md:p-10 shadow-premium space-y-6" id="quote-builder-form">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Select Material -->
+                <div class="space-y-2">
+                  <label for="quote-material" class="block text-sm font-bold text-charcoal uppercase tracking-wider">Pilih Material</label>
+                  <select id="quote-material" class="w-full bg-white border border-silver-dark/40 rounded-xl px-4 py-3 text-sm focus:border-laser-green focus:ring-laser-green">
+                    {MATERIALS.map((m) => (
+                      <option value={m.name}>{m.name}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <!-- Thickness Selection -->
+                <div class="space-y-2">
+                  <label for="quote-thickness" class="block text-sm font-bold text-charcoal uppercase tracking-wider">Ketebalan Bahan</label>
+                  <input type="text" id="quote-thickness" placeholder="Contoh: 3mm, 5mm, 10mm" class="w-full bg-white border border-silver-dark/40 rounded-xl px-4 py-3 text-sm focus:border-laser-green focus:ring-laser-green" required />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Volume / Quantity -->
+                <div class="space-y-2">
+                  <label for="quote-qty" class="block text-sm font-bold text-charcoal uppercase tracking-wider">Volume / Jumlah (Pcs)</label>
+                  <input type="number" id="quote-qty" min="1" placeholder="Contoh: 50" class="w-full bg-white border border-silver-dark/40 rounded-xl px-4 py-3 text-sm focus:border-laser-green focus:ring-laser-green" required />
+                </div>
+
+                <!-- Laser/CNC Service Type -->
+                <div class="space-y-2">
+                  <label for="quote-service" class="block text-sm font-bold text-charcoal uppercase tracking-wider">Jenis Pemrosesan</label>
+                  <select id="quote-service" class="w-full bg-white border border-silver-dark/40 rounded-xl px-4 py-3 text-sm focus:border-laser-green focus:ring-laser-green">
+                    {SERVICES.map((s) => (
+                      <option value={s.name}>{s.name}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <!-- Message/Dimensions -->
+              <div class="space-y-2">
+                <label for="quote-notes" class="block text-sm font-bold text-charcoal uppercase tracking-wider">Detail Tambahan / Ukuran Dimensi</label>
+                <textarea id="quote-notes" rows="3" placeholder="Tulis rincian ukuran (P x L dalam cm), catatan tambahan, atau jenis finishing..." class="w-full bg-white border border-silver-dark/40 rounded-xl px-4 py-3 text-sm focus:border-laser-green focus:ring-laser-green" required></textarea>
+              </div>
+
+              <!-- Submit to WhatsApp Button -->
+              <button
+                type="submit"
+                class="btn-primary w-full py-4 text-base shadow-laser-glow flex items-center justify-center space-x-2"
+              >
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                </svg>
+                <span>Selesaikan & Ajukan Quote via WhatsApp</span>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- Bagian Testimoni -->
-    <section id="testimonials" class="section-padding bg-white">
+    <section id="testimonials" class="section-padding bg-[#FAFAFA] border-t border-b border-silver-mid/50">
       <div class="container-custom">
-        <div class="text-center mb-20">
-          <div class="inline-flex items-center px-6 py-3 bg-charcoal/10 border border-charcoal/20 rounded-full text-charcoal font-semibold text-sm mb-6">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-            </svg>
+        <div class="text-center mb-16 max-w-3xl mx-auto space-y-4">
+          <div class="inline-flex items-center px-4 py-1.5 bg-laser-green/10 border border-laser-green/20 rounded-full text-laser-green font-bold text-xs tracking-wider uppercase">
             Testimoni Klien
           </div>
-          <h2 class="heading-lg text-charcoal mb-8">Apa Kata Klien Kami</h2>
-          <p class="text-xl text-graphite max-w-4xl mx-auto leading-relaxed">
-            Kepuasan klien adalah prioritas utama. Dengarkan pengalaman mereka yang telah mempercayakan proyeknya kepada kami.
+          <h2 class="heading-lg text-charcoal">
+            Apa Kata Klien Kami
+          </h2>
+          <p class="text-lg text-graphite/80 font-sans">
+            Umpan balik tulus dari para partner kami yang telah mempercayakan pengerjaan fabrikasi presisinya.
           </p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {TESTIMONIALS.map((testimonial, index) => (
-            <div class="group bg-silver-light rounded-2xl p-8 border border-silver-mid/50 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden">
-              <!-- Quote Icon -->
-              <div class="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
-                <svg class="w-12 h-12 text-charcoal" fill="currentColor" viewBox="0 0 24 24">
+          {TESTIMONIALS.map((testimonial) => (
+            <div class="group bg-white rounded-3xl p-8 border border-silver-mid/50 hover-lift relative overflow-hidden flex flex-col justify-between">
+              <div class="absolute top-6 right-6 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
+                <svg class="w-16 h-16 text-charcoal" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"></path>
                 </svg>
               </div>
               
-              <!-- Rating Stars -->
-              <div class="flex items-center mb-6">
-                {Array(testimonial.rating).fill(0).map(() => (
-                  <svg class="w-5 h-5 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                  </svg>
-                ))}
+              <div class="space-y-4">
+                <div class="flex items-center">
+                  {Array(testimonial.rating).fill(0).map(() => (
+                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                  ))}
+                </div>
+
+                <p class="text-base text-graphite/90 italic leading-relaxed font-sans">
+                  "{testimonial.content}"
+                </p>
               </div>
               
-              <!-- Testimonial Content -->
-              <p class="text-graphite mb-8 italic leading-relaxed group-hover:text-charcoal transition-colors duration-300">
-                "{testimonial.content}"
-              </p>
-              
-              <!-- Client Info -->
-              <div class="flex items-center">
-                <div class="relative">
+              <div class="flex items-center pt-8 border-t border-silver-mid/50 mt-8">
+                <div class="relative w-12 h-12 mr-4 flex-shrink-0">
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
-                    class="w-14 h-14 rounded-full object-cover mr-4 border-2 border-silver-mid group-hover:border-laser-green transition-colors duration-300"
+                    class="w-full h-full rounded-full object-cover border border-silver-mid"
                     loading="lazy"
-                    width="56"
-                    height="56"
+                    width="48"
+                    height="48"
                   />
-                  <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-laser-green rounded-full flex items-center justify-center">
-                    <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-laser-green rounded-full flex items-center justify-center border-2 border-white">
+                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
                     </svg>
                   </div>
                 </div>
                 <div>
-                  <h3 class="font-bold text-charcoal group-hover:text-laser-green transition-colors duration-300">
+                  <h3 class="font-bold text-charcoal font-heading leading-tight">
                     {testimonial.name}
                   </h3>
-                  <p class="text-sm text-graphite">{testimonial.company}</p>
+                  <p class="text-xs text-graphite/60 font-semibold">{testimonial.company}</p>
                 </div>
               </div>
             </div>
@@ -346,37 +508,36 @@ const reviewSchema = generateReviewSchema(TESTIMONIALS);
     </section>
 
     <!-- Bagian FAQ -->
-    <section id="faq" class="section-padding bg-silver-light">
+    <section id="faq" class="section-padding bg-white">
       <div class="container-custom">
-        <div class="text-center mb-20">
-          <div class="inline-flex items-center px-6 py-3 bg-laser-green/10 border border-laser-green/20 rounded-full text-laser-green font-semibold text-sm mb-6">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            FAQ
+        <div class="text-center mb-16 max-w-3xl mx-auto space-y-4">
+          <div class="inline-flex items-center px-4 py-1.5 bg-laser-green/10 border border-laser-green/20 rounded-full text-laser-green font-bold text-xs tracking-wider uppercase">
+            Pusat Jawaban
           </div>
-          <h2 class="heading-lg text-charcoal mb-8">Pertanyaan Umum (FAQ)</h2>
-          <p class="text-xl text-graphite max-w-4xl mx-auto leading-relaxed">
-            Temukan jawaban cepat untuk pertanyaan yang sering diajukan tentang layanan kami.
+          <h2 class="heading-lg text-charcoal">
+            Pertanyaan Umum (FAQ)
+          </h2>
+          <p class="text-lg text-graphite/80 font-sans">
+            Menjawab tuntas rasa penasaran Anda mengenai material, waktu pengerjaan, dan skema pemesanan.
           </p>
         </div>
         
-        <div class="max-w-4xl mx-auto space-y-6" data-faq-container>
-          {FAQ.map((faq, index) => (
-            <div class="bg-white rounded-2xl shadow-lg border border-silver-mid/50 overflow-hidden hover:shadow-xl transition-all duration-300">
-              <button class="flex items-center justify-between w-full text-left p-8 group" data-faq-button>
-                <h3 class="text-lg font-semibold text-charcoal pr-6 group-hover:text-laser-green transition-colors duration-300">
+        <div class="max-w-4xl mx-auto space-y-4" data-faq-container>
+          {FAQ.map((faq) => (
+            <div class="bg-[#FAFAFA] rounded-2xl border border-silver-mid/50 overflow-hidden hover:shadow-premium transition-all duration-300">
+              <button class="flex items-center justify-between w-full text-left p-6 md:p-8 group" data-faq-button>
+                <h3 class="text-base md:text-lg font-bold text-charcoal pr-6 group-hover:text-laser-green transition-colors duration-200 font-heading">
                   {faq.question}
                 </h3>
-                <div class="flex-shrink-0 w-10 h-10 bg-silver-light rounded-full flex items-center justify-center group-hover:bg-laser-green transition-colors duration-300">
-                  <svg class="w-5 h-5 text-charcoal group-hover:text-white transition-all duration-300" data-faq-icon fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <div class="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center group-hover:bg-laser-green transition-colors duration-300 border border-silver-mid/40">
+                  <svg class="w-4 h-4 md:w-5 md:h-5 text-charcoal group-hover:text-white transition-all duration-300" data-faq-icon fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </div>
               </button>
               <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out" data-faq-answer>
-                <div class="px-8 pb-8">
-                  <p class="text-graphite leading-relaxed">{faq.answer}</p>
+                <div class="px-6 md:px-8 pb-6 md:pb-8 border-t border-silver-mid/20 pt-4">
+                  <p class="text-sm md:text-base text-graphite/90 leading-relaxed font-sans">{faq.answer}</p>
                 </div>
               </div>
             </div>
@@ -385,27 +546,28 @@ const reviewSchema = generateReviewSchema(TESTIMONIALS);
       </div>
     </section>
 
-    <!-- Bagian Area Layanan -->
-    <section id="area-layanan" class="section-padding bg-charcoal">
-      <div class="container-custom">
-        <div class="text-center mb-16">
-          <div class="inline-flex items-center px-6 py-3 bg-laser-green/20 border border-laser-green/30 rounded-full text-laser-green font-semibold text-sm mb-6">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-            </svg>
-            Jangkauan Layanan
+    <!-- Area Layanan (Service Areas map listings with cards) -->
+    <section id="area-layanan" class="section-padding bg-charcoal relative overflow-hidden">
+      <!-- Ambient Geometric Grid overlay -->
+      <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 1.5px 1.5px, #10B981 1.5px, transparent 0); background-size: 32px 32px;"></div>
+
+      <div class="container-custom relative z-10 space-y-16">
+        <div class="text-center max-w-3xl mx-auto space-y-4">
+          <div class="inline-flex items-center px-4 py-1.5 bg-laser-green/20 border border-laser-green/30 rounded-full text-laser-green font-bold text-xs tracking-wider uppercase">
+            Jangkauan Area Distribusi
           </div>
-          <h2 class="heading-lg text-white mb-6">Wilayah yang Kami Layani</h2>
-          <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Kami melayani jasa laser cutting di seluruh wilayah Banten dan Jabodetabek. Pickup & delivery tersedia di semua kota berikut.
+          <h2 class="heading-lg text-white">
+            Cakupan Layanan Seluruh Banten & Jabodetabek
+          </h2>
+          <p class="text-lg text-silver-dark/90 font-sans">
+            Kami melayani pengiriman logistik aman & pickup material gratis untuk area-area berikut di Indonesia.
           </p>
         </div>
 
-        <!-- Banten -->
-        <div class="mb-10">
-          <p class="text-xs font-bold text-laser-green uppercase tracking-widest text-center mb-5">Banten</p>
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+        <!-- Banten Grid Layout -->
+        <div class="space-y-6">
+          <p class="text-xs font-bold text-laser-green uppercase tracking-widest text-center">Provinsi Banten</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
             {[
               { name: 'Serang', slug: 'serang' },
               { name: 'Cilegon', slug: 'cilegon' },
@@ -416,24 +578,24 @@ const reviewSchema = generateReviewSchema(TESTIMONIALS);
             ].map(city => (
               <a
                 href={`/laser-cutting-${city.slug}/`}
-                class="group bg-white/5 hover:bg-laser-green border border-white/10 hover:border-laser-green rounded-xl p-4 text-center transition-all duration-300 hover:-translate-y-1"
+                class="group bg-white/5 hover:bg-laser-green border border-white/10 hover:border-laser-green rounded-2xl p-6 text-center transition-all duration-300 hover:-translate-y-1.5"
               >
-                <div class="w-9 h-9 bg-laser-green/20 group-hover:bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 transition-colors duration-300">
-                  <svg class="w-4 h-4 text-laser-green group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <div class="w-10 h-10 bg-laser-green/20 group-hover:bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors duration-300">
+                  <svg class="w-5 h-5 text-laser-green group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                   </svg>
                 </div>
-                <p class="font-semibold text-white text-sm leading-tight">{city.name}</p>
+                <p class="font-bold text-white text-sm leading-snug">{city.name}</p>
               </a>
             ))}
           </div>
         </div>
 
-        <!-- Jabodetabek -->
-        <div>
-          <p class="text-xs font-bold text-laser-green uppercase tracking-widest text-center mb-5">Jabodetabek</p>
-          <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3">
+        <!-- Jabodetabek Grid Layout -->
+        <div class="space-y-6">
+          <p class="text-xs font-bold text-laser-green uppercase tracking-widest text-center">Wilayah Jabodetabek</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
             {[
               { name: 'Jakarta Barat', slug: 'jakarta-barat' },
               { name: 'Jakarta Selatan', slug: 'jakarta-selatan' },
@@ -446,20 +608,19 @@ const reviewSchema = generateReviewSchema(TESTIMONIALS);
             ].map(city => (
               <a
                 href={`/laser-cutting-${city.slug}/`}
-                class="group bg-white/5 hover:bg-laser-green border border-white/10 hover:border-laser-green rounded-xl p-4 text-center transition-all duration-300 hover:-translate-y-1"
+                class="group bg-white/5 hover:bg-laser-green border border-white/10 hover:border-laser-green rounded-2xl p-5 text-center transition-all duration-300 hover:-translate-y-1.5"
               >
-                <div class="w-9 h-9 bg-laser-green/20 group-hover:bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 transition-colors duration-300">
-                  <svg class="w-4 h-4 text-laser-green group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <div class="w-10 h-10 bg-laser-green/20 group-hover:bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 transition-colors duration-300">
+                  <svg class="w-5 h-5 text-laser-green group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                   </svg>
                 </div>
-                <p class="font-semibold text-white text-sm leading-tight">{city.name}</p>
+                <p class="font-bold text-white text-xs leading-snug">{city.name}</p>
               </a>
             ))}
           </div>
         </div>
-
       </div>
     </section>
 
@@ -469,33 +630,136 @@ const reviewSchema = generateReviewSchema(TESTIMONIALS);
   <Footer slot="footer" />
 </BaseLayout>
 
-<script>
-  // Script minimalis untuk fungsionalitas FAQ Accordion.
-  // Ditempatkan di sini agar tidak memblokir rendering.
+<!-- Core Client-Side Interactivity Scripts -->
+<script is:inline define:vars={{ MATERIALS }}>
   document.addEventListener('DOMContentLoaded', () => {
+    // FAQ Accordion logic
     const faqContainer = document.querySelector('[data-faq-container]');
-    if (!faqContainer) return;
+    if (faqContainer) {
+      faqContainer.addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return;
+        const button = e.target.closest('[data-faq-button]');
+        if (!button) return;
 
-    faqContainer.addEventListener('click', (e) => {
-      // FIX: Pastikan target adalah sebuah elemen sebelum memanggil method .closest
-      if (!(e.target instanceof Element)) return;
+        const answer = button.nextElementSibling;
+        const icon = button.querySelector('[data-faq-icon]');
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
 
-      const button = e.target.closest('[data-faq-button]');
-      if (!button) return;
+        button.setAttribute('aria-expanded', String(!isExpanded));
 
-      const answer = button.nextElementSibling;
-      const icon = button.querySelector('[data-faq-icon]');
-      const isExpanded = button.getAttribute('aria-expanded') === 'true';
-      
-      button.setAttribute('aria-expanded', String(!isExpanded));
+        if (answer && answer instanceof HTMLElement) {
+          answer.style.maxHeight = isExpanded ? "0" : answer.scrollHeight + "px";
+        }
+        if (icon) {
+          icon.classList.toggle('rotate-180');
+        }
+      });
+    }
 
-      // FIX: Tambahkan pengecekan null sebelum mengakses properti .style atau .classList
-      if (answer && answer instanceof HTMLElement) {
-        answer.style.maxHeight = isExpanded ? "0" : answer.scrollHeight + "px";
-      }
-      if (icon) {
-        icon.classList.toggle('rotate-180');
-      }
+    // Material tab logic
+    const tabButtons = document.querySelectorAll('.material-tab-btn');
+    const panelTitle = document.getElementById('panel-title');
+    const panelDesc = document.getElementById('panel-desc');
+    const panelThickness = document.getElementById('panel-thickness');
+    const panelAdvantage = document.getElementById('panel-advantage');
+    const panelApps = document.getElementById('panel-apps');
+    const panelLink = document.getElementById('panel-link');
+    const panelImage = document.getElementById('panel-image');
+
+    tabButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const materialId = btn.getAttribute('data-material-id');
+        const activeMaterial = MATERIALS.find((m) => m.id === materialId);
+
+        if (!activeMaterial) return;
+
+        // Reset classes
+        tabButtons.forEach((b) => {
+          b.classList.remove('bg-charcoal', 'text-white', 'border-charcoal', 'shadow-premium');
+          b.classList.add('bg-white', 'text-charcoal', 'border-silver-dark/30');
+        });
+
+        // Set active classes
+        btn.classList.remove('bg-white', 'text-charcoal', 'border-silver-dark/30');
+        btn.classList.add('bg-charcoal', 'text-white', 'border-charcoal', 'shadow-premium');
+
+        // Update Panel Content
+        if (panelTitle) panelTitle.innerText = activeMaterial.name;
+        if (panelDesc) panelDesc.innerText = activeMaterial.description;
+        if (panelThickness) panelThickness.innerText = activeMaterial.thickness;
+        if (panelAdvantage) panelAdvantage.innerText = activeMaterial.advantages?.[0] || 'Kualitas Premium';
+
+        if (panelApps) {
+          panelApps.innerHTML = activeMaterial.applications
+            .map((app) => `<span class="px-3.5 py-1.5 bg-silver-mid text-charcoal font-semibold text-xs rounded-full">${app}</span>`)
+            .join('');
+        }
+
+        if (panelLink) panelLink.setAttribute('href', `/${activeMaterial.slug}`);
+        if (panelImage) {
+          panelImage.setAttribute('src', activeMaterial.image);
+          panelImage.setAttribute('alt', activeMaterial.name);
+        }
+      });
     });
+
+    // Workflow process steps timeline interaction
+    const wfButtons = document.querySelectorAll('.wf-step-btn');
+    const wfNum = document.getElementById('wf-num');
+    const wfTitle = document.getElementById('wf-title');
+    const wfDesc = document.getElementById('wf-desc');
+    const wfDuration = document.getElementById('wf-duration');
+    const wfTools = document.getElementById('wf-tools');
+
+    wfButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const step = btn.getAttribute('data-step');
+        const title = btn.getAttribute('data-title');
+        const duration = btn.getAttribute('data-duration');
+        const desc = btn.getAttribute('data-desc');
+        const tools = btn.getAttribute('data-tools');
+
+        // Reset buttons
+        wfButtons.forEach((b) => {
+          b.classList.remove('bg-charcoal', 'text-white', 'border-charcoal', 'shadow-premium');
+          b.classList.add('bg-white', 'text-charcoal', 'border-silver-dark/30');
+        });
+
+        // Set active
+        btn.classList.remove('bg-white', 'text-charcoal', 'border-silver-dark/30');
+        btn.classList.add('bg-charcoal', 'text-white', 'border-charcoal', 'shadow-premium');
+
+        // Update Visualizer
+        if (wfNum) wfNum.innerText = step;
+        if (wfTitle) wfTitle.innerText = title;
+        if (wfDesc) wfDesc.innerText = desc;
+        if (wfDuration) wfDuration.innerText = duration;
+        if (wfTools) wfTools.innerText = tools;
+      });
+    });
+
+    // Smart Quote builder to WhatsApp format
+    const form = document.getElementById('quote-builder-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const mat = document.getElementById('quote-material').value;
+        const thick = document.getElementById('quote-thickness').value;
+        const qty = document.getElementById('quote-qty').value;
+        const service = document.getElementById('quote-service').value;
+        const notes = document.getElementById('quote-notes').value;
+
+        const baseMessage = `Halo Jasa Cutting Laser, saya ingin mengajukan permohonan penawaran quote resmi untuk pengerjaan project berikut:\n\n` +
+          `• Jenis Layanan: ${service}\n` +
+          `• Material Utama: ${mat}\n` +
+          `• Ketebalan Bahan: ${thick}\n` +
+          `• Estimasi Volume: ${qty} Pcs\n` +
+          `• Rincian Ukuran / Catatan Tambahan: ${notes}\n\n` +
+          `Mohon estimasi biaya pengerjaan dan total waktu produksinya. Terima kasih!`;
+
+        const waURL = `https://api.whatsapp.com/send?phone=6285165693179&text=${encodeURIComponent(baseMessage)}`;
+        window.open(waURL, '_blank');
+      });
+    }
   });
 </script>
