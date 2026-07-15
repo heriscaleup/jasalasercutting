@@ -39,6 +39,9 @@ export interface Props {
   jsonLd?: any[];
   canonical?: string;
   metaTags?: MetaTags;
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
 }
 
 const {
@@ -51,7 +54,10 @@ const {
   type = "website",
   canonical,
   noindex = false,
-  jsonLd
+  jsonLd,
+  publishedTime,
+  modifiedTime,
+  author
 } = Astro.props;
 
 if (!Astro.site) {
@@ -83,7 +89,10 @@ const generatedMetaTags = {
     image: pageImage,
     type,
     siteName: "Jasa Cutting Laser",
-    locale: "id_ID"
+    locale: "id_ID",
+    ...(publishedTime && { publishedTime }),
+    ...(modifiedTime && { modifiedTime }),
+    ...(author && { author })
   },
   twitter: {
     card: "summary_large_image",
@@ -119,6 +128,9 @@ const meta = metaTags || generatedMetaTags;
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content={meta.openGraph.siteName} />
     <meta property="og:locale" content={meta.openGraph.locale} />
+    {meta.openGraph.publishedTime && <meta property="article:published_time" content={meta.openGraph.publishedTime} />}
+    {meta.openGraph.modifiedTime && <meta property="article:modified_time" content={meta.openGraph.modifiedTime} />}
+    {meta.openGraph.author && <meta property="article:author" content={meta.openGraph.author} />}
 
     <meta name="twitter:card" content={meta.twitter.card} />
     <meta name="twitter:title" content={meta.twitter.title} />
@@ -138,8 +150,8 @@ const meta = metaTags || generatedMetaTags;
 
     <!-- Google Analytics 4 -->
     <!-- Ganti G-LWLLCS1PG4 dengan GA4 Measurement ID kamu -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWLLCS1PG4"></script>
-    <script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-LWLLCS1PG4"></script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -188,7 +200,7 @@ const meta = metaTags || generatedMetaTags;
     <slot name="footer" />
 
     <!-- WhatsApp Click Tracking -->
-    <script>
+    <script is:inline>
       document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('a[href*="api.whatsapp.com"], a[href*="wa.me"]').forEach(function (link) {
           link.addEventListener('click', function () {

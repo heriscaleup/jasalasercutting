@@ -1,2 +1,2 @@
-# Redirect www ke non-www (canonical URL fix)
+# Canonical host only. All 68 legacy blog URLs remain live articles.
 https://www.jasalasercutting.com/* https://jasalasercutting.com/:splat 301!

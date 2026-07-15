@@ -1,157 +1,93 @@
 ---
-title: "Tips File CorelDRAW & Illustrator untuk Laser Cutting"
-description: "Panduan teknis menyiapkan file desain di CorelDRAW dan Illustrator agar hasil laser cutting presisi, minim error, dan siap produksi tanpa revisi berulang."
-pubDate: 2026-06-12T07:00:00.000Z
-category: "Tips"
-tags: ["laser cutting", "CorelDRAW", "Illustrator"]
-image: "/images/blog/tips-desain-file-coreldraw-illustrator-laser-cutting-2026-06.jpg"
-readTime: "7 min read"
-author: "Tim Jasalasercutting"
+title: "Checklist File Vektor Sebelum Produksi"
+description: "Preflight terakhir perlu mengunci skala, kontur, revisi, jumlah, dan hubungan dengan assembly."
+pubDate: 2026-06-13T07:00:00.000+07:00
+updatedDate: 2026-07-15T09:00:00.000+07:00
+category: "Desain"
+tags: ["desain","laser cutting design","jasa laser cutting"]
+image: "/images/pcvboard (4).webp"
+imageAlt: "Contoh hasil dan proses produksi untuk checklist file vektor laser cutting"
+readTime: "5 menit baca"
+author: "Tim Jasa Laser Cutting"
+primaryKeyword: "checklist file vektor laser cutting"
+keyTakeaways: ["Preflight terakhir perlu mengunci skala, kontur, revisi, jumlah, dan hubungan dengan assembly","Kontur terbuka, duplikat, serta detail kecil","Kendalikan risiko utama: file pratinjau berbeda dari file produksi"]
+faq: [{"question":"Apa yang harus disiapkan untuk membahas checklist file vektor laser cutting?","answer":"Siapkan folder final berisi satu revisi aktif, daftar part dan jumlah, serta pdf pembanding serta catatan acceptance criteria. Vendor dapat memakai data itu untuk memeriksa kelayakan dan menuliskan asumsi penawaran."},{"question":"Apakah checklist file vektor laser cutting perlu sampel lebih dulu?","answer":"Sampel disarankan bila material, detail, finishing, atau sambungan belum pernah divalidasi. Gunakan bahan dan geometri yang mewakili risiko produksi, lalu setujui kriteria yang memang ingin diuji."},{"question":"Bagaimana membandingkan penawaran untuk checklist file vektor laser cutting?","answer":"Bandingkan revisi file, spesifikasi material, jumlah, lingkup finishing, jadwal, dan metode pemeriksaan yang sama. Harga tidak sebanding jika asumsi atau tanggung jawab setiap vendor berbeda."}]
+relatedLinks: [{"title":"Checklist File Vektor Sebelum Produksi — layanan terkait","href":"/contact/"},{"title":"Laser Cutting Tekstil untuk Produk Fashion","href":"/blog/trend-laser-cutting-industri-fashion/"},{"title":"Memilih Grade Baja untuk Fabrikasi","href":"/blog/fabrikasi-logam-konstruksi-baja-solusi-industri-pr/"}]
 draft: false
 ---
+Preflight terakhir perlu mengunci skala, kontur, revisi, jumlah, dan hubungan dengan assembly. Dalam proyek checklist file vektor laser cutting, kesalahan paling mahal biasanya terjadi sebelum mesin mulai memotong: brief belum lengkap atau kriteria penerimaan belum disepakati.
 
-File desain yang rapi adalah separuh dari kualitas hasil laser cutting. Mesin bisa sangat presisi, tetapi jika file CorelDRAW atau Illustrator berisi path terbuka, ukuran tidak 1:1, layer berantakan, atau stroke terlalu tebal, hasil produksi tetap berisiko meleset.
+Istilah “presisi” tidak otomatis berarti hasil akan sesuai kebutuhan. Material, geometri, orientasi permukaan, kuantitas, dan proses setelah cutting perlu dibaca sebagai satu rangkaian. Karena itu, artikel ini membahas apa yang harus diputuskan, bukti apa yang layak diminta, dan risiko apa yang perlu dikendalikan sebelum menyetujui produksi.
 
-Panduan ini dibuat sebagai checklist praktis sebelum kamu mengirim file ke jasa laser cutting. Bahasanya teknis, tetapi fokusnya sederhana: mengurangi revisi, mempercepat proses quote, dan membuat hasil potong lebih presisi.
+## File yang terlihat benar belum tentu siap dipotong
 
-## Checklist Cepat Sebelum Kirim File
+Layar dapat menyembunyikan garis ganda, objek terbuka, ukuran yang berubah, atau font yang belum dikonversi. Pada **checklist file vektor laser cutting**, masalah kecil seperti itu dapat menjadi lintasan potong tambahan atau bentuk yang tidak tersambung.
 
-Pastikan lima hal ini sudah benar:
+Sebelum ekspor, periksa tiga hal berikut:
 
-- Ukuran desain sudah skala **1:1** dalam satuan milimeter.
-- Jalur potong memakai stroke hairline atau sangat tipis.
-- Area cut, engrave, dan raster dipisahkan dengan warna/layer jelas.
-- Semua teks sudah diubah menjadi curve/path.
-- Tidak ada duplicate path, hidden object, atau clipping mask yang belum di-expand.
+- Kontur terbuka, duplikat, serta detail kecil
+- Nama part, revisi, dan jumlah
+- Dimensi antarmuka serta sisi muka
 
-Kalau checklist ini aman, file biasanya jauh lebih cepat masuk proses produksi.
+Gunakan satuan yang disepakati dan sertakan satu ukuran acuan pada pesan pengiriman. Cara ini membantu mendeteksi perubahan skala saat file berpindah aplikasi.
 
-## Kenapa Setting File Sangat Penting?
+## Pemeriksaan pra-produksi
 
-Mesin laser cutting tidak membaca "gambar" seperti mata manusia. Mesin membaca data vektor — path, node, dan koordinat — lalu mengikuti jalur tersebut dengan beam laser. Kesalahan kecil dalam file desain bisa berakibat:
+| Hal yang diperiksa | Bukti yang perlu diminta |
+|---|---|
+| Kontur terbuka, duplikat, serta detail kecil | Spesifikasi atau gambar yang menjelaskan kontur terbuka, duplikat, serta detail kecil |
+| Nama part, revisi, dan jumlah | Sampel, data material, atau catatan proses untuk nama part, revisi, dan jumlah |
+| Dimensi antarmuka serta sisi muka | Kriteria penerimaan tertulis mengenai dimensi antarmuka serta sisi muka |
 
-- Jalur potong yang tidak tersambung sempurna
-- Elemen yang dipotong ganda (double cut) sehingga boros material
-- Ukuran tidak akurat karena skala tidak di-set dengan benar
-- Mesin gagal membaca file karena format atau layer yang salah
+Perbesar tampilan pada sudut tajam, lubang kecil, dan pertemuan garis. Hapus objek tersembunyi serta layer referensi yang tidak perlu dipotong. Pisahkan garis cutting, engraving, dan anotasi memakai layer atau warna yang dijelaskan dalam legenda.
 
-Berikut panduan lengkapnya.
+## Desain untuk proses setelah cutting
 
-## Setup Dokumen yang Benar
+Part jarang berhenti pada tahap potong. Bila akan dirakit, pertimbangkan arah pemasangan, akses alat, toleransi pasangan, dan urutan kerja. Untuk bending, sisakan keputusan allowance kepada data proses aktual dan gambar produksi; jangan mengunci angka umum tanpa material serta tooling yang jelas.
 
-**Ukuran Dokumen = Ukuran Material**
-Set ukuran halaman/artboard sesuai ukuran material yang akan digunakan. Ini membantu operator memastikan desainmu muat di material yang tersedia dan memudahkan nesting (penempatan beberapa desain dalam satu lembar material).
+Jika tampilan permukaan penting, tandai sisi muka dan arah serat atau hairline. Penempatan yang salah dapat membuat panel tetap benar secara ukuran tetapi gagal secara visual.
 
-**Satuan Ukuran**
-Gunakan milimeter (mm) sebagai satuan. Ini standar industri laser cutting di Indonesia. Jangan gunakan pixel — pixel adalah satuan layar, bukan ukuran fisik, dan nilainya bergantung pada DPI yang bisa berbeda-beda.
+## Kesalahan yang paling sering menambah biaya
 
-**Skala 1:1**
-Pastikan desainmu berada pada skala 1:1. Apa yang kamu lihat di layar harus sama persis dengan ukuran produk jadi. Gunakan fitur "Transform" atau "Object Properties" untuk verifikasi dimensi.
+- File pratinjau berbeda dari file produksi
+- Jumlah pada drawing dan purchase order tidak sama
+- Orientasi permukaan belum ditandai
 
-## Pengaturan Warna untuk Membedakan Operasi
+Gunakan nama file yang memuat kode part dan revisi. Hindari akhiran seperti “final-baru-fix-2” karena mudah tertukar. Satu daftar part yang menghubungkan nama file, jumlah, dan material lebih aman untuk produksi batch.
 
-Ini adalah kesalahan paling umum yang kami temui: semua elemen desain berwarna hitam tanpa pembedaan.
+## Isi paket file yang rapi
 
-Dalam laser cutting, warna digunakan untuk membedakan jenis operasi mesin:
+- Folder final berisi satu revisi aktif
+- Daftar part dan jumlah
+- PDF pembanding serta catatan acceptance criteria
 
-- **Merah (255, 0, 0) — Cut/Potong**: Jalur yang akan dipotong tembus oleh laser
-- **Biru (0, 0, 255) — Engrave/Ukir**: Area yang akan diukir atau di-mark
-- **Hitam atau abu — Raster engrave**: Untuk gambar atau teks yang di-raster
+Setelah penyedia jasa melakukan preflight, mintalah konfirmasi jika ada geometri yang diperbaiki. Revisi teknis tetap dapat mengubah fungsi, sehingga persetujuan pemilik desain dibutuhkan sebelum produksi.
 
-Konvensi warna ini bisa berbeda di setiap jasa laser cutting, jadi selalu konfirmasi dengan operator sebelum mengirim file. Tapi memisahkan cut dan engrave ke layer/warna berbeda adalah keharusan universal.
+## Penerapan khusus: Checklist File Vektor Sebelum Produksi
 
-## Pengaturan Stroke dan Fill
+### Kontur terbuka, duplikat, serta detail kecil
 
-**Untuk Jalur Potong (Cut Lines)**
-- Stroke: warna sesuai konvensi (biasanya merah)
-- Stroke width: **0.001 mm** atau "hairline" — ini menandakan bahwa ini adalah jalur vektor untuk dipotong, bukan elemen dekoratif
-- Fill: **None/No fill** — jalur potong tidak boleh memiliki fill
+Kontur terbuka, duplikat, serta detail kecil perlu dibahas bersama pihak produksi dan penerima hasil. Hubungkan keputusan ini dengan kondisi utama proyek: preflight terakhir perlu mengunci skala, kontur, revisi, jumlah, dan hubungan dengan assembly. Bukti awal yang layak dipakai adalah spesifikasi atau gambar yang menjelaskan kontur terbuka, duplikat, serta detail kecil. Jika informasinya belum tersedia, tandai sebagai asumsi dan jangan membiarkannya berubah diam-diam saat produksi berjalan.
 
-**Untuk Area Ukir (Engrave)**
-- Fill: warna engrave (biasanya biru atau hitam)
-- Stroke: biasanya None, atau sama dengan fill
+### Nama part, revisi, dan jumlah
 
-Mengapa stroke harus hairline? Karena mesin membaca tengah stroke sebagai jalur potong. Stroke tebal 2mm berarti jalur potong akan bergeser 1mm dari posisi yang kamu maksud.
+Untuk nama part, revisi, dan jumlah, mintalah pembanding yang benar-benar mewakili material, ukuran, atau situasi pemakaian. Sampel, data material, atau catatan proses untuk nama part, revisi, dan jumlah. Catat siapa yang menilai hasil dan bagian mana yang disetujui; foto saja belum selalu cukup untuk menilai warna, tepi, fit-up, atau kualitas permukaan.
 
-## Memastikan Path Tersambung (Closed Path)
+### Dimensi antarmuka serta sisi muka
 
-Untuk objek yang akan dipotong (huruf, bentuk, lubang), semua path **harus closed** — tidak ada node yang menggantung atau jalur yang terbuka.
+Jadikan dimensi antarmuka serta sisi muka bagian dari kriteria penerimaan, bukan catatan tambahan setelah harga disepakati. Kriteria penerimaan tertulis mengenai dimensi antarmuka serta sisi muka. Keputusan ini membantu tim membedakan cacat, variasi yang masih diterima, dan perubahan desain yang membutuhkan persetujuan baru.
 
-**Di CorelDRAW:**
-1. Pilih objek
-2. Gunakan "Close Path" di Object Properties
-3. Atau gunakan Shape Tool (F10), klik kanan pada node terbuka → "Close Curve"
+## Rekam keputusan sebelum file dilepas
 
-**Di Illustrator:**
-1. Gunakan Direct Selection Tool (A)
-2. Pilih endpoint yang terbuka
-3. Object → Path → Join (Ctrl+J)
+Gunakan catatan satu halaman yang setidaknya memuat:
 
-Path yang tidak closed menyebabkan mesin berhenti di tengah jalur atau memotong dalam arah yang salah.
+- **Input:** Folder final berisi satu revisi aktif
+- **Kondisi produksi:** Daftar part dan jumlah
+- **Bukti penerimaan:** PDF pembanding serta catatan acceptance criteria
+- **Risiko pertama yang dikendalikan:** File pratinjau berbeda dari file produksi
 
-## Menghapus Elemen yang Tidak Diperlukan
+Lanjutkan dengan meninjau jumlah pada drawing dan purchase order tidak sama dan orientasi permukaan belum ditandai. Jika salah satunya berdampak pada fungsi, keselamatan, tampilan utama, atau jadwal, tetapkan tindakan pencegahan serta pihak yang berwenang menyetujuinya. Rekaman singkat seperti ini membuat pembahasan tetap konsisten ketika proyek berpindah dari desain ke estimasi, produksi, dan serah terima.
 
-Sebelum mengirim file, hapus:
+## Kesimpulan
 
-- **Duplicate paths** tersembunyi: Ini sering terjadi saat copy-paste. Path ganda menyebabkan double-cut yang boros waktu dan merusak material. Gunakan Edit → Select All Duplicates untuk menemukan dan menghapusnya
-- **Hidden layers**: Pastikan semua layer yang tidak ingin dipotong benar-benar dihapus, bukan hanya di-hide
-- **Clipping masks**: Jika ada, expand terlebih dahulu dan hapus elemen yang tersembunyi di balik mask
-- **Teks yang belum di-convert**: Semua teks harus di-convert ke kurva/path sebelum dikirim ke mesin
-
-**Di CorelDRAW:** Select teks → Object → Convert to Curves (Ctrl+Q)
-**Di Illustrator:** Select teks → Type → Create Outlines (Shift+Ctrl+O)
-
-## Toleransi Kerf (Laser Kerf)
-
-Laser memiliki lebar potongan (kerf) sekitar 0.1–0.3mm tergantung material dan mesin. Untuk part yang harus fit sempurna (misalnya sambungan jigsaw atau slot), kamu perlu memperhitungkan kerf ini dalam desain.
-
-Kompensasi kerf dilakukan dengan:
-- Memperbesar desain inner part sebesar setengah nilai kerf
-- Memperkecil outer path sebesar setengah nilai kerf
-
-Untuk pekerjaan presisi tinggi, konsultasikan nilai kerf dengan operator sebelum finalisasi desain.
-
-## Format File yang Direkomendasikan
-
-| Format | Rekomendasi |
-|--------|------------|
-| .CDR (CorelDRAW) | Terbaik untuk mesin berbasis CorelDRAW |
-| .AI (Illustrator) | Umum diterima hampir semua mesin |
-| .DXF | Universal, tapi periksa versi kompatibilitasnya |
-| .SVG | Alternatif modern yang banyak didukung |
-| .PDF (vektor) | Umumnya aman, tapi konfirmasi terlebih dahulu |
-
-Hindari mengirim file dalam format raster seperti JPG, PNG, atau BMP untuk pekerjaan laser cutting vektor.
-
-## Checklist Akhir Sebelum Kirim File
-
-Sebelum mengirimkan file desainmu, pastikan:
-
-- [ ] Satuan mm, skala 1:1
-- [ ] Semua teks sudah di-convert ke kurva
-- [ ] Jalur potong berwarna sesuai konvensi, stroke hairline, no fill
-- [ ] Semua path closed, tidak ada open node
-- [ ] Tidak ada duplicate paths
-- [ ] Layer hidden sudah dihapus
-- [ ] Format file sesuai yang diminta operator
-- [ ] Ukuran dokumen sesuai ukuran material
-
----
-
-Sudah siap kirim file desainmu? **Tim Jasalasercutting** siap membantu mewujudkan proyek laser cutting kamu dengan hasil yang presisi dan rapi. Kami melayani cutting acrylic, MDF, kayu, dan berbagai material non-logam lainnya.
-
-**Hubungi kami via WhatsApp** untuk konsultasi desain, estimasi biaya, dan informasi material. Kirim file desainmu sekarang dan dapatkan preview hasil cutting sebelum produksi!
-
-## FAQ File Laser Cutting
-
-### Format file apa yang paling aman untuk laser cutting?
-
-File vektor seperti CDR, AI, SVG, DXF, atau PDF vektor biasanya paling aman. Untuk produksi presisi, hindari mengirim JPG/PNG sebagai file utama karena itu raster, bukan jalur potong.
-
-### Kenapa teks harus di-convert ke curve?
-
-Agar bentuk huruf tidak berubah saat file dibuka di komputer operator. Font yang tidak terpasang bisa membuat layout bergeser atau karakter berubah.
-
-### Apakah semua warna punya arti yang sama di setiap workshop?
-
-Tidak selalu. Warna merah untuk cut dan biru untuk engrave adalah konvensi umum, tetapi tetap konfirmasi standar warna/layer ke operator sebelum produksi.
+File siap potong adalah file yang dapat dibaca tanpa menebak. Struktur layer, ukuran acuan, revisi, dan catatan proses membuat **checklist file vektor laser cutting** lebih cepat dihitung sekaligus lebih aman diproduksi. Pemeriksaan beberapa menit di awal biasanya jauh lebih murah daripada mengganti satu batch.
