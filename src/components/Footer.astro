@@ -16,15 +16,19 @@ import { SITE_CONFIG, SERVICES, MATERIALS } from '../utils/constants.js';
 
         <!-- Column 1: Company Logo & Pitch -->
         <div class="lg:col-span-4 space-y-6">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 bg-laser-green rounded-xl flex items-center justify-center font-heading font-bold text-white text-xl">
-              J
-            </div>
+          <a href="/" class="flex items-center space-x-3 group">
+            <img
+              src="/images/logo.webp"
+              alt={SITE_CONFIG.title}
+              class="w-10 h-10 object-contain rounded-xl brightness-0 invert group-hover:scale-105 transition-transform duration-300"
+              width="40"
+              height="40"
+            />
             <div>
-              <h3 class="text-xl font-bold font-heading text-white">Jasa Cutting Laser</h3>
+              <h3 class="text-xl font-bold font-heading text-white group-hover:text-laser-green transition-colors duration-300">Jasa Cutting Laser</h3>
               <p class="text-[10px] text-silver-dark font-bold uppercase tracking-wider">Premium CNC Workshop</p>
             </div>
-          </div>
+          </a>
 
           <p class="text-sm text-silver-dark leading-relaxed font-sans">
             One-stop solution untuk jasa laser cutting dan CNC Router presisi tinggi di Indonesia. Lebih dari 10 tahun melayani ribuan pengerjaan berskala manufaktur dengan garansi hasil pemotongan tanpa cacat.

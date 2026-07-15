@@ -13,10 +13,13 @@ const filteredNavigation = NAVIGATION.filter(item => item.name !== "Kontak").map
     <div class="flex items-center justify-between h-20 md:h-24 transition-all duration-300" id="header-inner">
       <!-- Logo Section -->
       <a href="/" class="flex items-center space-x-3 group z-50">
-        <div class="relative w-10 h-10 bg-laser-green rounded-xl flex items-center justify-center overflow-hidden shadow-laser-glow group-hover:scale-105 transition-transform duration-300">
-          <span class="text-white font-bold text-xl font-heading">J</span>
-          <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-        </div>
+        <img
+          src="/images/logo.webp"
+          alt={SITE_CONFIG.title}
+          class="w-10 h-10 object-contain rounded-xl shadow-laser-glow group-hover:scale-105 transition-transform duration-300"
+          width="40"
+          height="40"
+        />
         <div class="flex flex-col">
           <span class="text-lg font-bold text-charcoal tracking-tight font-heading group-hover:text-laser-green transition-colors duration-300">
             Jasa Cutting Laser
