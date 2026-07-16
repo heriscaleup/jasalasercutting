@@ -14,193 +14,33 @@ export interface Props {
 }
 
 const {
-  title = "Presisi Sempurna, Hasil Tanpa Batas",
-  subtitle = "Jasa Laser Cutting & CNC Router Premium No. 1 di Indonesia",
-  description = "Wujudkan desain paling kompleks sekalipun dengan akurasi pengerjaan hingga 0.05mm. Menggunakan mesin berteknologi mutakhir untuk material Acrylic, Metal, Kayu, MDF, ACP, hingga GRC. Cepat, bergaransi, dan berskala industri.",
-  primaryCTA = "Konsultasi Gratis Sekarang",
+  title = 'Presisi yang terlihat. Hasil yang terasa.',
+  subtitle = 'Laser cutting untuk project yang tidak boleh meleset.',
+  description = 'Kami memproses material metal dan non-metal dengan jalur produksi yang jelas, finishing rapi, dan kontrol teknis dari file sampai barang siap dipasang.',
+  primaryCTA = 'Konsultasi Gratis',
   primaryCTALink = `https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=${encodeURIComponent(WHATSAPP_MESSAGES.default)}`,
-  secondaryCTA = "Eksplorasi Proyek Kami",
-  secondaryCTALink = "/portfolio/",
-  backgroundImage = "/images/logo.webp",
+  secondaryCTA = 'Lihat Portfolio',
+  secondaryCTALink = '/portfolio/',
+  backgroundImage = '/images/metal.webp',
   whatsappMessage = WHATSAPP_MESSAGES.default
 } = Astro.props;
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#FAFAFA] pt-24 pb-16 geometric-bg" data-whatsapp-message={whatsappMessage}>
-  <img src={backgroundImage} alt="" aria-hidden="true" class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[.08]" width="1600" height="1000" loading="lazy" />
-  
-  <!-- Subtle Abstract Ambient Radial Glow -->
-  <div class="absolute top-1/4 left-10 w-96 h-96 bg-laser-green/5 rounded-full blur-3xl pointer-events-none"></div>
-  <div class="absolute bottom-1/4 right-10 w-96 h-96 bg-laser-green/10 rounded-full blur-3xl pointer-events-none"></div>
+<section class="service-hero relative isolate overflow-hidden border-b border-[var(--line)] pt-28" data-whatsapp-message={whatsappMessage} data-no-reveal>
+  <img src={backgroundImage} alt="" aria-hidden="true" class="absolute inset-0 -z-20 h-full w-full object-cover object-center" width="1920" height="1080" fetchpriority="high" />
+  <div class="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,11,10,.98)_0%,rgba(8,11,10,.88)_42%,rgba(8,11,10,.45)_75%,rgba(8,11,10,.72)_100%)]"></div>
+  <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_75%_38%,rgba(184,255,61,.18),transparent_26rem)]"></div>
+  <div class="absolute inset-0 -z-10 opacity-20 [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:5rem_5rem] [mask-image:linear-gradient(to_bottom,black,transparent)]"></div>
 
-  <div class="container-custom relative z-10 w-full">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-      
-      <!-- Asymmetrical Column 1: Copywriting -->
-      <div class="lg:col-span-7 text-left space-y-8 lg:pr-6">
-
-        <!-- Premium Brand Label Badge -->
-        <div class="inline-flex items-center space-x-2 px-4 py-2 bg-laser-green/10 border border-laser-green/20 rounded-full text-laser-green font-bold text-xs tracking-wider uppercase animate-fade-in">
-          <span class="w-2 h-2 rounded-full bg-laser-green animate-pulse"></span>
-          <span>Awwwards-Level Precision Workshop</span>
-        </div>
-
-        <!-- Majestic Title with Dual-weight typography hierarchy -->
-        <h1 class="heading-xl text-text-main tracking-tight leading-[1.1] animate-slide-up">
-          {title}
-        </h1>
-
-        <!-- High contrast Subtitle -->
-        <p class="text-xl md:text-2xl font-bold text-laser-green tracking-tight animate-slide-up" style="animation-delay: 0.15s;">
-          {subtitle}
-        </p>
-
-        <!-- Elegant Narrative Description -->
-        <p class="text-base md:text-lg text-text-secondary max-w-2xl leading-relaxed font-sans animate-slide-up" style="animation-delay: 0.3s;">
-          {description}
-        </p>
-
-        <!-- CTA Interactions: High contrast, raised buttons -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4 animate-slide-up" style="animation-delay: 0.45s;">
-          <a
-            href={primaryCTALink}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-primary text-base px-8 py-5 group  hover:-hover flex items-center justify-center"
-          >
-            <svg class="w-5 h-5 text-white mr-1" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-            </svg>
-            <span>{primaryCTA}</span>
-            <svg class="w-4 h-4 text-white ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-            </svg>
-          </a>
-
-          <a
-            href={secondaryCTALink}
-            class="btn-secondary text-base px-8 py-5 hover:bg-charcoal hover:text-white transition-all "
-          >
-            <span>{secondaryCTA}</span>
-          </a>
-        </div>
-
-        <!-- Trust Badges Block with Micro-grid -->
-        <div class="pt-6 grid grid-cols-3 gap-6 border-t border-[var(--line)]/70 animate-fade-in" style="animation-delay: 0.6s;">
-          <div class="space-y-1">
-            <span class="block text-2xl font-bold font-heading text-text-main">10+ Tahun</span>
-            <span class="block text-xs text-text-secondary font-semibold uppercase tracking-wider">Pengalaman Industri</span>
-          </div>
-          <div class="space-y-1">
-            <span class="block text-2xl font-bold font-heading text-text-main">1,000+</span>
-            <span class="block text-xs text-text-secondary font-semibold uppercase tracking-wider">Proyek Sukses</span>
-          </div>
-          <div class="space-y-1">
-            <span class="block text-2xl font-bold font-heading text-text-main">100% OK</span>
-            <span class="block text-xs text-text-secondary font-semibold uppercase tracking-wider">Garansi Kepuasan</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Asymmetrical Column 2: Visual Concept (Minimalist Machinery Blueprint/Geometric Display) -->
-      <div class="lg:col-span-5 relative w-full flex items-center justify-center animate-fade-in" style="animation-delay: 0.4s;">
-        <div class="relative w-full max-w-[450px] aspect-square">
-
-          <!-- Outer Floating Precision Reticle Ring -->
-          <div class="absolute inset-0 border-[1.5px] border-dashed border-[var(--line)]/40 rounded-full animate-spin-slow"></div>
-
-          <!-- Nested Ring with Compass Markings -->
-          <div class="absolute inset-8 border border-[var(--line)]/30 rounded-full flex items-center justify-center">
-            <div class="absolute inset-4 border-[2px] border-laser-green/20 rounded-full"></div>
-          </div>
-
-          <!-- Focal Card (The machinery concept card with glassmorphic layers) -->
-          <div class="absolute inset-16 bg-white border border-[var(--line)]/80 rounded-3xl  overflow-hidden p-8 flex flex-col justify-between hover-lift">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-2">
-                <span class="w-3 h-3 rounded-full bg-[#EF4444]"></span>
-                <span class="text-xs font-bold text-graphite/60 font-heading tracking-widest uppercase">Laser Active</span>
-              </div>
-              <div class="text-[10px] font-mono text-laser-green font-bold bg-laser-green/10 px-2 py-1 rounded">X-109 / Y-245</div>
-            </div>
-
-            <!-- Architectural Blueprint Mockup -->
-            <div class="relative flex-1 my-6 flex items-center justify-center">
-              <div class="absolute w-full h-0.5 bg-silver-mid/50"></div>
-              <div class="absolute h-full w-0.5 bg-silver-mid/50"></div>
-
-              <!-- Laser Cutting Head Mockup -->
-              <div class="relative z-10 w-24 h-24 border border-laser-green bg-white rounded-2xl flex items-center justify-center group cursor-pointer hover: transition-all duration-300">
-                <div class="w-10 h-10 border-2 border-dashed border-laser-green rounded-full flex items-center justify-center animate-spin-slow">
-                  <div class="w-3 h-3 bg-laser-green rounded-full"></div>
-                </div>
-                <span class="absolute -bottom-2 bg-laser-green text-white text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Tooling</span>
-              </div>
-
-              <!-- Animated target reticles -->
-              <div class="absolute top-2 left-6 w-3 h-3 border border-[var(--line)] rounded-full"></div>
-              <div class="absolute bottom-4 right-10 w-4 h-4 border border-[var(--line)] rounded-full"></div>
-            </div>
-
-            <div class="space-y-1 border-t border-[var(--line)] pt-4">
-              <span class="block text-xs font-semibold text-graphite/60 uppercase">Spesifikasi Aktif:</span>
-              <div class="flex justify-between items-center text-sm">
-                <span class="font-bold text-charcoal">Area Pemotongan</span>
-                <span class="font-bold text-laser-green">3000 x 1500 mm</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Abstract floating badge 1 -->
-          <div class="absolute -top-4 -right-4 bg-white p-4 rounded-2xl  border border-[var(--line)]/50 flex items-center space-x-3 hover-lift">
-            <div class="w-10 h-10 bg-laser-green/15 rounded-xl flex items-center justify-center text-laser-green">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-            </div>
-            <div>
-              <span class="block text-[10px] text-graphite/60 font-bold uppercase tracking-wider">Kecepatan Potong</span>
-              <span class="block text-sm font-bold text-charcoal">Hingga 50m/menit</span>
-            </div>
-          </div>
-
-          <!-- Abstract floating badge 2 -->
-          <div class="absolute -bottom-4 -left-4 bg-charcoal text-white p-4 rounded-2xl  flex items-center space-x-3 hover-lift">
-            <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-laser-green">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-              </svg>
-            </div>
-            <div>
-              <span class="block text-[10px] text-white/50 font-bold uppercase tracking-wider">Presisi Toleransi</span>
-              <span class="block text-sm font-bold text-laser-green">±0.05 mm</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
+  <div class="container-custom grid min-h-[min(780px,calc(100svh-5rem))] items-end gap-12 pb-12 md:pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,.46fr)] lg:gap-20">
+    <div class="max-w-4xl">
+      <div class="mb-7 inline-flex items-center gap-3 border border-[var(--acid)]/35 bg-[rgba(184,255,61,.08)] px-4 py-2 font-mono text-[.62rem] font-bold uppercase tracking-[.16em] text-[var(--acid)]"><span class="h-2 w-2 animate-pulse rounded-full bg-[var(--acid)]"></span>JCL / Production capability</div>
+      <h1 class="heading-xl max-w-4xl text-[var(--paper)]">{title}</h1>
+      <p class="mt-7 max-w-3xl font-heading text-xl font-bold leading-tight text-[var(--acid)] md:text-3xl">{subtitle}</p>
+      <p class="mt-6 max-w-2xl text-base leading-8 text-[rgba(237,240,232,.72)] md:text-lg">{description}</p>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row"><a href={primaryCTALink} target="_blank" rel="noopener noreferrer" class="btn-primary" data-wa-label="Service hero consultation"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89A11.82 11.82 0 0 0 12.05 0"/></svg>{primaryCTA} <span aria-hidden="true">↗</span></a><a href={secondaryCTALink} class="btn-secondary">{secondaryCTA} <span aria-hidden="true">↓</span></a></div>
     </div>
-  </div>
 
-  <!-- Animated Bottom Scroll Indicator -->
-  <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center space-y-1">
-    <span class="text-[10px] font-bold text-graphite/40 tracking-widest uppercase">Scroll Down</span>
-    <div class="w-6 h-10 border-2 border-[var(--line)]/40 rounded-full flex justify-center p-1">
-      <div class="w-1 h-2.5 bg-laser-green rounded-full animate-bounce"></div>
-    </div>
+    <div class="hidden lg:block"><div class="scanline border border-white/15 bg-[rgba(8,11,10,.64)] p-5 backdrop-blur-md"><div class="flex items-center justify-between border-b border-white/10 pb-4 font-mono text-[.6rem] uppercase tracking-[.14em] text-[rgba(237,240,232,.55)]"><span>Machine status</span><span class="text-[var(--acid)]">READY</span></div><div class="space-y-5 pt-5"><div><span class="font-mono text-[.6rem] uppercase tracking-[.14em] text-[rgba(237,240,232,.55)]">Process route</span><strong class="mt-2 block font-heading text-2xl text-[var(--paper)]">File → Nest → Cut</strong></div><div class="grid grid-cols-2 gap-4 border-t border-white/10 pt-4"><div><strong class="block font-heading text-3xl text-[var(--acid)]">±0.1</strong><span class="font-mono text-[.58rem] uppercase tracking-[.1em] text-[rgba(237,240,232,.55)]">mm tolerance</span></div><div><strong class="block font-heading text-3xl text-[var(--acid)]">QC</strong><span class="font-mono text-[.58rem] uppercase tracking-[.1em] text-[rgba(237,240,232,.55)]">before delivery</span></div></div></div></div><p class="mt-4 font-mono text-[.6rem] uppercase tracking-[.12em] text-[rgba(237,240,232,.55)]">Workshop Tangerang Selatan / Banten & Jabodetabek</p></div>
   </div>
-
 </section>
-
-<style>
-  /* Extra fluid animations */
-  @keyframes spin-slow {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  .animate-spin-slow {
-    animation: spin-slow 24s linear infinite;
-  }
-</style>

@@ -8,188 +8,61 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { generateBlogPostSchema, generateBreadcrumbSchema, generateFAQSchema } from '../../utils/seo';
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
-  return allPosts.filter(post => !post.data.draft).map(post => ({ params: { slug: post.slug }, props: { post } }));
+  const posts = await getCollection('blog');
+  return posts.filter((post) => !post.data.draft).map((post) => ({ params: { slug: post.slug }, props: { post } }));
 }
 
 const { post }: { post: CollectionEntry<'blog'> } = Astro.props;
 const { Content, headings } = await post.render();
-const toc = headings.filter(h => h.depth === 2 || h.depth === 3);
+const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 const allPosts = await getCollection('blog');
-const relatedPosts = allPosts
-  .filter(p => p.slug !== post.slug && !p.data.draft)
-  .map(p => ({
-    post: p,
-    score: (p.data.category === post.data.category ? 3 : 0) +
-      p.data.tags.filter(tag => post.data.tags.includes(tag)).length
-  }))
-  .filter(item => item.score > 0)
-  .sort((a, b) => b.score - a.score || b.post.data.updatedDate.getTime() - a.post.data.updatedDate.getTime())
-  .slice(0, 3);
-
-const siteName = 'Jasa Laser Cutting';
-const accent = 'text-emerald-700';
+const relatedPosts = allPosts.filter((candidate) => candidate.slug !== post.slug && !candidate.data.draft).map((candidate) => ({ post: candidate, score: (candidate.data.category === post.data.category ? 3 : 0) + candidate.data.tags.filter((tag) => post.data.tags.includes(tag)).length })).filter((item) => item.score > 0).sort((a, b) => b.score - a.score || b.post.data.updatedDate.getTime() - a.post.data.updatedDate.getTime()).slice(0, 3);
 const fallbackImage = '/images/metal.webp';
-function resolveImage(image: string | undefined): string {
+const resolveImage = (image: string | undefined) => {
   if (!image) return fallbackImage;
   if (image.startsWith('http://') || image.startsWith('https://')) return image;
   const normalized = image.startsWith('/') ? image : `/${image}`;
   return existsSync(join(process.cwd(), 'public', normalized.slice(1))) ? normalized : fallbackImage;
-}
-
-const jsonLd = generateBlogPostSchema({
-  title: post.data.title,
-  excerpt: post.data.description,
-  image: resolveImage(post.data.image),
-  publishDate: post.data.pubDate.toISOString(),
-  updatedDate: post.data.updatedDate.toISOString(),
-  slug: post.slug,
-  author: post.data.author,
-  category: post.data.category,
-  keywords: [post.data.primaryKeyword, ...post.data.tags]
-});
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: 'Beranda', url: '/' },
-  { name: 'Blog', url: '/blog/' },
-  { name: post.data.title, url: `/blog/${post.slug}/` }
-]);
+};
+const dateLong = (date: Date) => date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+const jsonLd = generateBlogPostSchema({ title: post.data.title, excerpt: post.data.description, image: resolveImage(post.data.image), publishDate: post.data.pubDate.toISOString(), updatedDate: post.data.updatedDate.toISOString(), slug: post.slug, author: post.data.author, category: post.data.category, keywords: [post.data.primaryKeyword, ...post.data.tags] });
+const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Beranda', url: '/' }, { name: 'Blog', url: '/blog/' }, { name: post.data.title, url: `/blog/${post.slug}/` }]);
 const structuredData = [jsonLd, breadcrumbSchema];
 if (post.data.faq.length > 0) structuredData.push(generateFAQSchema(post.data.faq));
 ---
 
-<BaseLayout
-  title={post.data.title}
-  description={post.data.description}
-  keywords={[post.data.primaryKeyword, ...post.data.tags].join(', ')}
-  image={resolveImage(post.data.image)}
-  type="article"
-  publishedTime={post.data.pubDate.toISOString()}
-  modifiedTime={post.data.updatedDate.toISOString()}
-  author={post.data.author}
-  jsonLd={structuredData}
->
+<BaseLayout title={post.data.title} description={post.data.description} keywords={[post.data.primaryKeyword, ...post.data.tags].join(', ')} image={resolveImage(post.data.image)} type="article" publishedTime={post.data.pubDate.toISOString()} modifiedTime={post.data.updatedDate.toISOString()} author={post.data.author} jsonLd={structuredData}>
   <Header slot="header" />
+  <div class="blog-article-page bg-[var(--ink)] text-[var(--paper)]">
+    <section class="border-b border-[var(--line)] bg-[var(--ink-soft)]" data-no-reveal><div class="container-custom py-28 md:py-36"><nav class="mb-10 flex flex-wrap items-center gap-2 font-mono text-[.62rem] uppercase tracking-[.12em] text-[var(--muted)]" aria-label="Breadcrumb"><a href="/" class="hover:text-[var(--acid)]">Beranda</a><span>/</span><a href="/blog/" class="hover:text-[var(--acid)]">Blog</a><span>/</span><span class="truncate text-[var(--acid)]">{post.data.category}</span></nav><div class="max-w-5xl"><div class="flex flex-wrap items-center gap-3 font-mono text-[.62rem] uppercase tracking-[.12em] text-[var(--muted)]"><span class="text-[var(--acid)]">{post.data.category}</span><span>·</span><time datetime={post.data.pubDate.toISOString()}>{dateLong(post.data.pubDate)}</time><span>·</span><span>{post.data.readTime}</span></div><h1 class="heading-lg mt-6 max-w-5xl">{post.data.title}</h1><p class="mt-7 max-w-3xl text-lg leading-8 text-[var(--muted)] md:text-xl">{post.data.description}</p><div class="mt-8 flex items-center gap-3 font-mono text-[.62rem] uppercase tracking-[.12em] text-[var(--muted)]"><span class="grid h-10 w-10 place-items-center rounded-full bg-[var(--acid)] font-heading text-lg font-bold text-[var(--ink)]">J</span><span>{post.data.author} · diperbarui {dateLong(post.data.updatedDate)}</span></div></div></div></section>
 
-  <div class="bg-[#fbfaf7] text-[#171717]">
-    <article class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8 lg:py-20">
-      <div class="min-w-0">
-        <nav class="mb-10 text-sm text-neutral-500" aria-label="Breadcrumb">
-          <a href="/" class="font-semibold hover:text-neutral-950">Beranda</a>
-          <span class="mx-2">/</span>
-          <a href="/blog/" class="font-semibold hover:text-neutral-950">Blog</a>
-        </nav>
+    <div class="container-custom grid gap-12 py-12 md:py-16 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-20">
+      <article class="min-w-0"><figure class="overflow-hidden border border-[var(--line)] bg-[var(--panel)]"><img src={resolveImage(post.data.image)} alt={post.data.imageAlt} class="aspect-[16/9] w-full object-cover" width="1400" height="800" fetchpriority="high" /></figure><div class="mt-8 border border-[var(--acid)]/30 bg-[rgba(184,255,61,.06)] p-6 md:p-8"><p class="font-mono text-[.62rem] font-bold uppercase tracking-[.14em] text-[var(--acid)]">Ringkasan keputusan</p><ul class="mt-5 grid gap-3 text-sm leading-7 text-[var(--paper)]">{post.data.keyTakeaways.map((item) => <li class="flex gap-3"><span class="text-[var(--acid)]">✓</span><span>{item}</span></li>)}</ul></div><details class="mt-6 border border-[var(--line)] bg-[var(--panel)] p-5 lg:hidden"><summary class="cursor-pointer font-mono text-xs font-bold uppercase tracking-[.12em] text-[var(--acid)]">Daftar isi artikel</summary><ol class="mt-4 space-y-3 text-sm text-[var(--muted)]">{toc.map((heading) => <li class:list={[heading.depth === 3 && 'pl-4']}><a href={`#${heading.slug}`} class="hover:text-[var(--acid)]">{heading.text}</a></li>)}</ol></details><div class="article-prose mt-10"><Content /></div>{post.data.faq.length > 0 && <section class="mt-14 border-t border-[var(--line)] pt-10" data-no-reveal><p class="eyebrow">FAQ / Article</p><h2 class="heading-md mt-4">Pertanyaan yang sering muncul</h2><div class="mt-6 divide-y divide-[var(--line)] border-y border-[var(--line)]">{post.data.faq.map((item) => <details class="group py-5"><summary class="flex cursor-pointer justify-between gap-5 font-heading text-xl font-bold">{item.question}<span class="text-[var(--acid)] transition-transform group-open:rotate-45">＋</span></summary><p class="pt-3 text-sm leading-7">{item.answer}</p></details>)}</div></section>}{post.data.relatedLinks.length > 0 && <section class="mt-14 border-t border-[var(--line)] pt-10" data-no-reveal><p class="eyebrow">Related / Continue</p><h2 class="heading-md mt-4">Lanjutkan eksplorasi</h2><div class="mt-6 grid gap-3">{post.data.relatedLinks.map((link) => <a href={link.href} class="border border-[var(--line)] bg-[var(--panel)] p-4 text-sm font-semibold text-[var(--paper)] transition-colors hover:border-[var(--acid)] hover:text-[var(--acid)]">{link.title} ↗</a>)}</div></section>}</article>
 
-        <header class="border-b border-black/10 pb-8">
-          <div class="mb-5 flex flex-wrap items-center gap-3 text-sm text-neutral-500">
-            <span class={`font-black uppercase tracking-[0.18em] ${accent}`}>{post.data.category}</span>
-            <span>•</span>
-            <time>{new Date(post.data.pubDate).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-            <span>•</span>
-            <span>Diperbarui {new Date(post.data.updatedDate).toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
-            <span>•</span>
-            <span>{post.data.readTime}</span>
-          </div>
-          <h1 class="max-w-4xl text-4xl font-black leading-[1.02] tracking-[-0.055em] text-neutral-950 sm:text-6xl lg:text-7xl">{post.data.title}</h1>
-          <p class="mt-6 max-w-3xl text-lg leading-8 text-neutral-600 sm:text-xl">{post.data.description}</p>
-          <div class="mt-7 flex items-center gap-3">
-            <div class="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-lg font-black text-neutral-900">{siteName.charAt(0)}</div>
-            <div>
-              <p class="text-sm font-bold text-neutral-950">{post.data.author || siteName}</p>
-              <p class="text-xs text-neutral-500">Tim editorial {siteName}</p>
-            </div>
-          </div>
-        </header>
+      <aside class="hidden lg:block"><div class="sticky top-28"><p class="eyebrow">On this page</p><ol class="mt-5 space-y-3 border-l border-[var(--line)] pl-4 text-sm leading-6 text-[var(--muted)]">{toc.map((heading) => <li class:list={[heading.depth === 3 && 'pl-3']}><a href={`#${heading.slug}`} class="transition-colors hover:text-[var(--acid)]">{heading.text}</a></li>)}</ol><div class="mt-10 border border-[var(--line)] bg-[var(--panel)] p-5"><p class="font-mono text-[.62rem] uppercase tracking-[.12em] text-[var(--muted)]">Butuh bantuan membaca brief?</p><a href="/contact/" class="mt-4 inline-flex font-mono text-xs font-bold uppercase tracking-[.12em] text-[var(--acid)]">Konsultasikan ↗</a></div></div></aside>
+    </div>
 
-        <figure class="my-10 overflow-hidden rounded-[2rem] border border-black/10 bg-neutral-100">
-          <img
-            src={resolveImage(post.data.image)}
-            alt={post.data.imageAlt}
-            class="aspect-[16/9] w-full object-cover"
-            loading="eager"
-            
-          />
-        </figure>
-
-        <section class="mb-10 rounded-3xl border border-emerald-900/15 bg-emerald-50 p-6" aria-labelledby="ringkasan-artikel">
-          <h2 id="ringkasan-artikel" class="text-xl font-black text-neutral-950">Ringkasan keputusan</h2>
-          <ul class="mt-4 space-y-3 text-[15px] leading-7 text-neutral-700">
-            {post.data.keyTakeaways.map(item => <li class="flex gap-3"><span aria-hidden="true" class="font-black text-emerald-700">✓</span><span>{item}</span></li>)}
-          </ul>
-        </section>
-
-        {toc.length > 0 && (
-          <details class="mb-10 rounded-3xl border border-black/10 bg-white p-5 lg:hidden">
-            <summary class="cursor-pointer text-sm font-black text-neutral-950">Daftar Isi</summary>
-            <ol class="mt-4 space-y-3 text-sm text-neutral-600">
-              {toc.map((heading) => <li class={heading.depth === 3 ? 'ml-4' : ''}><a href={`#${heading.slug}`} class="hover:text-neutral-950">{heading.text}</a></li>)}
-            </ol>
-          </details>
-        )}
-
-        <div class="article-prose prose prose-lg max-w-none prose-headings:font-black prose-headings:tracking-[-0.035em] prose-headings:text-neutral-950 prose-p:leading-8 prose-p:text-neutral-700 prose-a:font-bold prose-a:text-neutral-950 prose-strong:text-neutral-950 prose-li:text-neutral-700">
-          <Content />
-        </div>
-
-        {post.data.faq.length > 0 && (
-          <section class="mt-12 border-t border-black/10 pt-10" aria-labelledby="faq-artikel">
-            <h2 id="faq-artikel" class="text-3xl font-black tracking-[-0.035em] text-neutral-950">Pertanyaan yang sering diajukan</h2>
-            <div class="mt-6 divide-y divide-black/10 rounded-3xl border border-black/10 bg-white px-6">
-              {post.data.faq.map(item => <details class="group py-5"><summary class="cursor-pointer pr-6 font-black text-neutral-950">{item.question}</summary><p class="mt-3 leading-7 text-neutral-600">{item.answer}</p></details>)}
-            </div>
-          </section>
-        )}
-
-        {post.data.relatedLinks.length > 0 && (
-          <nav class="mt-10 rounded-3xl border border-black/10 bg-white p-6" aria-label="Panduan terkait">
-            <h2 class="text-xl font-black text-neutral-950">Lanjutkan riset Anda</h2>
-            <ul class="mt-4 space-y-3">
-              {post.data.relatedLinks.map(link => <li><a href={link.href} class="font-bold text-emerald-800 underline decoration-emerald-800/30 underline-offset-4 hover:decoration-emerald-800">{link.title} →</a></li>)}
-            </ul>
-          </nav>
-        )}
-      </div>
-
-      <aside class="hidden lg:block">
-        <div class="sticky top-24 space-y-6">
-          {toc.length > 0 && (
-            <div class="rounded-3xl border border-black/10 bg-white/80 p-6 backdrop-blur">
-              <h2 class="mb-4 text-lg font-black text-neutral-950">Daftar Isi</h2>
-              <ol class="space-y-3 text-sm leading-6 text-neutral-600">
-                {toc.map((heading) => <li class={heading.depth === 3 ? 'ml-4' : ''}><a href={`#${heading.slug}`} class="hover:text-neutral-950">{heading.text}</a></li>)}
-              </ol>
-            </div>
-          )}
-          <div class="rounded-3xl border border-black/10 bg-white p-6">
-            <h2 class="text-lg font-black text-neutral-950">Butuh Konsultasi?</h2>
-            <p class="mt-3 text-sm leading-6 text-neutral-600">Diskusikan kebutuhan material, desain, estimasi biaya, dan produksi dengan tim kami.</p>
-            <a href={'https://api.whatsapp.com/send?phone=6285165693179&text=Halo%20Jasalasercutting.com%2C%20saya%20tertarik%20konsultasi%20jasa%20laser%20cutting'} target="_blank" rel="noopener noreferrer" class={`mt-5 inline-flex w-full justify-center rounded-full px-5 py-3 text-sm font-black text-white ${'bg-emerald-700 hover:bg-emerald-800'}`}>Konsultasi Sekarang</a>
-          </div>
-        </div>
-      </aside>
-    </article>
-
-    {relatedPosts.length > 0 && (
-      <section class="border-t border-black/10 py-14">
-        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div class="mb-8 flex items-end justify-between border-b border-black/10 pb-5">
-            <h2 class="text-2xl font-black tracking-[-0.03em] text-neutral-950">Artikel Terkait</h2>
-            <a href="/blog/" class="text-sm font-bold text-neutral-600 hover:text-neutral-950">Lihat semua →</a>
-          </div>
-          <div class="grid gap-7 md:grid-cols-3">
-            {relatedPosts.map(({ post: relatedPost }) => (
-              <article class="group border-b border-black/10 pb-7">
-                <a href={`/blog/${relatedPost.slug}/`} class="block overflow-hidden rounded-3xl border border-black/10 bg-neutral-100">
-                  <img src={resolveImage(relatedPost.data.image)} alt={relatedPost.data.title} class="aspect-[16/10] w-full object-cover transition duration-700 group-hover:scale-[1.04]" loading="lazy"  />
-                </a>
-                <p class={`mt-5 text-xs font-black uppercase tracking-[0.16em] ${accent}`}>{relatedPost.data.category}</p>
-                <h3 class="mt-2 text-lg font-black leading-tight text-neutral-950"><a href={`/blog/${relatedPost.slug}/`} class="group-hover:text-neutral-600">{relatedPost.data.title}</a></h3>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-    )}
+    {relatedPosts.length > 0 && <section class="border-t border-[var(--line)] bg-[var(--ink-soft)]" data-no-reveal><div class="container-custom py-14 md:py-20"><div class="flex items-end justify-between gap-6"><div><p class="eyebrow">Related reading</p><h2 class="heading-md mt-4">Artikel yang masih nyambung</h2></div><a href="/blog/" class="font-mono text-xs uppercase tracking-[.12em] text-[var(--acid)]">Semua artikel ↗</a></div><div class="mt-8 grid gap-4 md:grid-cols-3">{relatedPosts.map(({ post: relatedPost }) => <a href={`/blog/${relatedPost.slug}/`} class="group border border-[var(--line)] bg-[var(--panel)] p-5 transition-colors hover:border-[var(--acid)]"><span class="font-mono text-[.58rem] uppercase tracking-[.12em] text-[var(--acid)]">{relatedPost.data.category}</span><h3 class="mt-4 font-heading text-xl font-bold leading-tight group-hover:text-[var(--acid)]">{relatedPost.data.title}</h3><p class="mt-3 line-clamp-2 text-sm leading-6 text-[var(--muted)]">{relatedPost.data.description}</p></a>)}</div></div></section>}
   </div>
-
   <Footer slot="footer" />
 </BaseLayout>
+
+<style is:global>
+  .article-prose { color: var(--muted); font-size: 1.05rem; line-height: 1.95; }
+  .article-prose > :first-child { margin-top: 0; }
+  .article-prose h2, .article-prose h3, .article-prose h4 { color: var(--paper); margin-top: 2.8rem; margin-bottom: 1rem; }
+  .article-prose h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); }
+  .article-prose h3 { font-size: clamp(1.4rem, 2.4vw, 2rem); }
+  .article-prose h4 { font-size: 1.25rem; }
+  .article-prose p { margin: 1.2rem 0; }
+  .article-prose a { color: var(--acid); font-weight: 700; text-decoration: underline; text-decoration-color: rgba(184,255,61,.35); text-underline-offset: .2em; }
+  .article-prose strong { color: var(--paper); }
+  .article-prose ul, .article-prose ol { margin: 1.2rem 0; padding-left: 1.3rem; }
+  .article-prose li { margin: .55rem 0; }
+  .article-prose li::marker { color: var(--acid); }
+  .article-prose blockquote { margin: 2rem 0; border-left: 2px solid var(--acid); padding: 1rem 1.25rem; background: rgba(184,255,61,.06); color: var(--paper); }
+  .article-prose table { display: block; width: 100%; overflow-x: auto; border-collapse: collapse; margin: 2rem 0; }
+  .article-prose th, .article-prose td { min-width: 10rem; border: 1px solid var(--line); padding: .8rem; text-align: left; }
+  .article-prose th { color: var(--acid); background: var(--panel); }
+  .article-prose code { padding: .15rem .35rem; background: var(--panel); color: var(--acid); }
+</style>

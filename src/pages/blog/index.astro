@@ -6,129 +6,37 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { getCollection } from 'astro:content';
 
-const allPosts = await getCollection('blog');
-const sortedPosts = allPosts
-  .filter(post => !post.data.draft)
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
-
-const siteName = 'Jasa Laser Cutting';
-const accent = 'text-emerald-700';
+const posts = (await getCollection('blog')).filter((post) => !post.data.draft).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const featuredPost = posts[0];
+const otherPosts = posts.slice(1);
 const fallbackImage = '/images/metal.webp';
-function resolveImage(image: string | undefined): string {
+const resolveImage = (image: string | undefined) => {
   if (!image) return fallbackImage;
   if (image.startsWith('http://') || image.startsWith('https://')) return image;
   const normalized = image.startsWith('/') ? image : `/${image}`;
   return existsSync(join(process.cwd(), 'public', normalized.slice(1))) ? normalized : fallbackImage;
-}
-
-const baseUrl = Astro.site ? Astro.site.toString() : 'https://jasalasercutting.com/';
-const blogUrl = `${baseUrl}blog/`;
-const featuredPost = sortedPosts[0];
-const otherPosts = sortedPosts.slice(1);
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  "name": `Blog ${siteName}`,
-  "description": 'Panduan ringkas, studi kasus, dan insight produksi seputar laser cutting, CNC router, material, serta fabrikasi presisi.',
-  "url": blogUrl,
-  "publisher": { "@type": "Organization", "name": siteName }
 };
+const dateLong = (date: Date) => date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+const dateShort = (date: Date) => date.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+const categories = [...new Set(posts.map((post) => post.data.category))].slice(0, 6);
+const jsonLd = { '@context': 'https://schema.org', '@type': 'Blog', name: 'Blog Jasa Laser Cutting', description: 'Insight produksi, material, desain file, dan fabrikasi presisi.', url: 'https://jasalasercutting.com/blog/' };
 ---
 
-<BaseLayout
-  title={`Blog - ${siteName}`}
-  description={'Panduan ringkas, studi kasus, dan insight produksi seputar laser cutting, CNC router, material, serta fabrikasi presisi.'}
-  keywords={'blog laser cutting, jasa laser cutting, cnc router, fabrikasi logam'}
-  jsonLd={[jsonLd]}
->
+<BaseLayout title="Blog Laser Cutting & Fabrikasi Presisi" description="Panduan, studi kasus, dan insight produksi seputar laser cutting, CNC router, material, desain file, dan fabrikasi presisi." keywords="blog laser cutting, panduan cnc router, material laser cutting, fabrikasi presisi" jsonLd={[jsonLd]}>
   <Header slot="header" />
-
-  <div class="bg-[#fbfaf7] text-[#171717]">
-    <section class="border-b border-black/10 bg-[#fbfaf7]">
-      <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-        <div class="max-w-3xl">
-          <a href="/" class="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-neutral-600 transition hover:text-neutral-950">← Kembali ke Beranda</a>
-          <p class={`mb-4 text-xs font-black uppercase tracking-[0.24em] ${accent}`}>Insight & Panduan</p>
-          <h1 class="max-w-4xl text-5xl font-black leading-[0.98] tracking-[-0.055em] text-neutral-950 sm:text-6xl lg:text-7xl">
-            Blog {siteName}
-          </h1>
-          <p class="mt-7 max-w-2xl text-lg leading-8 text-neutral-600 sm:text-xl">
-            {'Panduan ringkas, studi kasus, dan insight produksi seputar laser cutting, CNC router, material, serta fabrikasi presisi.'}
-          </p>
-        </div>
+  <div class="blog-page bg-[var(--ink)] text-[var(--paper)]">
+    <section class="border-b border-[var(--line)] bg-[var(--ink-soft)]" data-no-reveal>
+      <div class="container-custom grid gap-10 py-28 lg:grid-cols-[1fr_.7fr] lg:items-end lg:py-36">
+        <div><p class="eyebrow">JCL / Journal</p><h1 class="heading-xl mt-6 max-w-4xl">Insight yang<br /><span class="text-[var(--acid)]">bisa dipakai.</span></h1><p class="mt-8 max-w-2xl text-lg leading-8 text-[var(--muted)]">Bukan blog tempelan. Di sini kami membedah material, file, proses, biaya, dan keputusan produksi supaya project lebih siap sebelum masuk workshop.</p></div>
+        <div class="border-l border-[var(--line)] pl-6 lg:pb-2"><span class="font-mono text-[.62rem] uppercase tracking-[.15em] text-[var(--muted)]">Archive index</span><strong class="mt-3 block font-heading text-6xl text-[var(--acid)]">{posts.length}</strong><span class="font-mono text-xs uppercase tracking-[.12em] text-[var(--muted)]">artikel terbit</span><div class="mt-7 flex flex-wrap gap-2">{categories.map((category) => <span class="border border-[var(--line)] px-3 py-2 font-mono text-[.58rem] uppercase tracking-[.1em] text-[var(--muted)]">{category}</span>)}</div></div>
       </div>
     </section>
 
-    {featuredPost && (
-      <section class="border-b border-black/10">
-        <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-          <a href={`/blog/${featuredPost.slug}/`} class="group grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div class="overflow-hidden rounded-[2rem] border border-black/10 bg-neutral-100">
-              <img
-                src={resolveImage(featuredPost.data.image)}
-                alt={featuredPost.data.imageAlt}
-                class="aspect-[16/10] h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
-                loading="eager"
-                
-              />
-            </div>
-            <div>
-              <div class="mb-5 flex flex-wrap items-center gap-3 text-sm text-neutral-500">
-                <span class={`font-black uppercase tracking-[0.18em] ${accent}`}>{featuredPost.data.category}</span>
-                <span>•</span>
-                <time>{new Date(featuredPost.data.pubDate).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-                <span>•</span>
-                <span>{featuredPost.data.readTime}</span>
-              </div>
-              <h2 class="text-3xl font-black leading-tight tracking-[-0.035em] text-neutral-950 sm:text-5xl">{featuredPost.data.title}</h2>
-              <p class="mt-5 text-lg leading-8 text-neutral-600">{featuredPost.data.description}</p>
-              <span class="mt-8 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-bold text-neutral-900 transition group-hover:border-neutral-950">Baca artikel utama →</span>
-            </div>
-          </a>
-        </div>
-      </section>
-    )}
+    {featuredPost && <section class="border-b border-[var(--line)]" data-no-reveal><div class="container-custom py-12 md:py-16"><a href={`/blog/${featuredPost.slug}/`} class="group grid overflow-hidden border border-[var(--line)] bg-[var(--panel)] lg:grid-cols-[1.06fr_.94fr]"><div class="relative min-h-[18rem] overflow-hidden lg:min-h-[30rem]"><img src={resolveImage(featuredPost.data.image)} alt={featuredPost.data.imageAlt} class="h-full w-full object-cover transition duration-700 group-hover:scale-105" width="1200" height="800" fetchpriority="high" /><div class="absolute inset-0 bg-gradient-to-t from-[rgba(8,11,10,.72)] via-transparent to-transparent"></div><span class="absolute left-5 top-5 bg-[var(--acid)] px-3 py-2 font-mono text-[.6rem] font-bold uppercase tracking-[.13em] text-[var(--ink)]">Featured dispatch</span></div><div class="flex flex-col justify-center p-7 md:p-12"><div class="flex flex-wrap items-center gap-3 font-mono text-[.62rem] uppercase tracking-[.12em] text-[var(--muted)]"><span class="text-[var(--acid)]">{featuredPost.data.category}</span><span>·</span><time datetime={featuredPost.data.pubDate.toISOString()}>{dateLong(featuredPost.data.pubDate)}</time><span>·</span><span>{featuredPost.data.readTime}</span></div><h2 class="mt-6 font-heading text-4xl font-bold leading-[.95] tracking-[-.06em] md:text-6xl">{featuredPost.data.title}</h2><p class="mt-6 text-base leading-8 text-[var(--muted)]">{featuredPost.data.description}</p><span class="mt-8 inline-flex w-fit items-center gap-3 border border-[var(--line)] px-5 py-3 font-mono text-xs font-bold uppercase tracking-[.12em] text-[var(--paper)] transition-colors group-hover:border-[var(--acid)] group-hover:text-[var(--acid)]">Baca artikel <span>↗</span></span></div></a></div></section>}
 
-    <section class="py-14 lg:py-20">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div class="mb-8 flex items-end justify-between gap-6 border-b border-black/10 pb-5">
-          <div>
-            <p class="text-sm font-semibold text-neutral-500">Semua artikel</p>
-            <h2 class="text-2xl font-black tracking-[-0.03em] text-neutral-950">Terbaru dari blog</h2>
-          </div>
-          <p class="hidden text-sm text-neutral-500 sm:block">{sortedPosts.length} artikel tersedia</p>
-        </div>
-        <div class="grid gap-x-7 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-          {otherPosts.map((post) => (
-            <article class="group border-b border-black/10 pb-8">
-              <a href={`/blog/${post.slug}/`} class="block overflow-hidden rounded-3xl border border-black/10 bg-neutral-100">
-                <img
-                  src={resolveImage(post.data.image)}
-                  alt={post.data.imageAlt}
-                  class="aspect-[16/10] w-full object-cover transition duration-700 group-hover:scale-[1.04]"
-                  loading="lazy"
-                  
-                />
-              </a>
-              <div class="pt-5">
-                <div class="mb-3 flex flex-wrap items-center gap-2 text-xs text-neutral-500">
-                  <span class={`font-black uppercase tracking-[0.16em] ${accent}`}>{post.data.category}</span>
-                  <span>•</span>
-                  <time>{new Date(post.data.pubDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}</time>
-                </div>
-                <h3 class="text-xl font-black leading-tight tracking-[-0.025em] text-neutral-950">
-                  <a href={`/blog/${post.slug}/`} class="transition group-hover:text-neutral-600">{post.data.title}</a>
-                </h3>
-                <p class="mt-3 line-clamp-3 text-[15px] leading-7 text-neutral-600">{post.data.description}</p>
-                <a href={`/blog/${post.slug}/`} class="mt-5 inline-flex text-sm font-bold text-neutral-950 underline decoration-neutral-300 underline-offset-4 transition hover:decoration-neutral-950">Baca selengkapnya</a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+    <section class="border-b border-[var(--line)]" data-no-reveal><div class="container-custom py-16 md:py-24"><div class="mb-10 flex flex-col gap-4 border-b border-[var(--line)] pb-6 md:flex-row md:items-end md:justify-between"><div><p class="eyebrow">Archive / All posts</p><h2 class="heading-lg mt-4">Baca sesuai<br /><span class="text-[var(--acid)]">kebutuhan project.</span></h2></div><p class="max-w-sm text-sm leading-7 text-[var(--muted)]">Klik judul mana pun untuk membuka isi artikel lengkap—termasuk ringkasan, isi utama, FAQ, dan bacaan terkait.</p></div><div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{otherPosts.map((post, index) => <article class="group flex h-full flex-col border border-[var(--line)] bg-[var(--panel)] transition-all duration-500 hover:-translate-y-1 hover:border-[var(--acid)]/45"><a href={`/blog/${post.slug}/`} class="relative block aspect-[1.25] overflow-hidden"><img src={resolveImage(post.data.image)} alt={post.data.imageAlt} class="h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105 group-hover:opacity-100" width="900" height="700" loading="lazy" /><span class="absolute left-4 top-4 border border-white/20 bg-[rgba(8,11,10,.72)] px-2 py-1 font-mono text-[.58rem] text-[var(--acid)]">{String(index + 2).padStart(2, '0')}</span></a><div class="flex flex-1 flex-col p-5"><div class="flex flex-wrap items-center gap-2 font-mono text-[.58rem] uppercase tracking-[.12em] text-[var(--muted)]"><span class="text-[var(--acid)]">{post.data.category}</span><span>·</span><time datetime={post.data.pubDate.toISOString()}>{dateShort(post.data.pubDate)}</time></div><h3 class="mt-4 font-heading text-2xl font-bold leading-tight tracking-[-.04em]">{post.data.title}</h3><p class="mt-3 line-clamp-3 text-sm leading-7 text-[var(--muted)]">{post.data.description}</p><a href={`/blog/${post.slug}/`} class="mt-auto pt-6 font-mono text-[.62rem] font-bold uppercase tracking-[.13em] text-[var(--acid)]">Baca artikel ↗</a></div></article>)}</div></div></section>
+
+    <section class="bg-[var(--acid)] py-14 text-[var(--ink)]" data-no-reveal><div class="container-custom flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><h2 class="heading-lg max-w-2xl !text-[var(--ink)]">Punya project yang butuh keputusan teknis?</h2><a href="/contact/" class="btn-secondary border-[var(--ink)] !text-[var(--ink)] hover:bg-[var(--ink)] hover:!text-[var(--acid)]">Konsultasikan brief ↗</a></div></section>
   </div>
-
   <Footer slot="footer" />
 </BaseLayout>
