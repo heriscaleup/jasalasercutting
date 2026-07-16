@@ -13,6 +13,14 @@ export default {
         'text-secondary': '#A7ADA8',
         accent: '#10B981',
         paper: '#E8E4D9',
+        // Legacy colors to maintain compatibility and prevent unreadable/transparent text issues
+        'silver-light': '#FAFAFA',
+        'silver-mid':   '#F0F1F3',
+        'silver-dark':  '#D4D6D9',
+        'charcoal':     '#0A0B0D',
+        'graphite':     '#3A3C40',
+        'laser-green':  '#10B981',
+        'laser-green-hover': '#059669',
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
