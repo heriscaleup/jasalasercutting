@@ -10,7 +10,7 @@
 
   html {
     scroll-behavior: smooth;
-    background-color: var(--color-background, #0B0D0C);
+    background-color: theme("colors.background");
     -webkit-text-size-adjust: 100%;
   }
   
@@ -18,7 +18,7 @@
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.7;
     color: var(--color-text-main, #F3F0E8);        /* charcoal */
-    background-color: var(--color-background, #0B0D0C); /* silver-light */
+    background-color: theme("colors.background"); /* silver-light */
     overflow-x: hidden;
   }
   
@@ -86,7 +86,7 @@
 @layer components {
   /* Dynamic micro-interaction buttons */
   .btn-primary {
-    @apply bg-accent hover:bg-accent/80 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 shadow-premium hover:shadow-premium-hover flex items-center justify-center gap-2;
+    @apply bg-accent hover:bg-accent/80 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2    flex items-center justify-center gap-2;
   }
   
   .btn-secondary {
@@ -94,7 +94,7 @@
   }
 
   .btn-accent {
-    @apply bg-white border border-silver-dark/40 text-text-main hover:bg-silver-mid font-semibold py-3 px-6 rounded-full transition-all duration-300 flex items-center justify-center gap-2;
+    @apply bg-white border border-[var(--line)]/40 text-text-main hover:bg-silver-mid font-semibold py-3 px-6 rounded-full transition-all duration-300 flex items-center justify-center gap-2;
   }
   
   /* Typography Hierarchy for High-End aesthetic */
@@ -130,27 +130,27 @@
   
   /* Micro-interactions */
   .hover-lift {
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), ;
   }
   
   .hover-lift:hover {
     transform: translateY(-6px);
-    @apply shadow-premium-hover;
+     
   }
 }
 
 /* Glassmorphism custom components */
 .glass-header {
-  background: rgba(250, 250, 250, 0.7);
+  background: rgba(11, 13, 12, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--line);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-header-scrolled {
-  background: rgba(250, 250, 250, 0.9);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+  background: rgba(11, 13, 12, 0.85);
+  
 }
 
 /* Unique geometric mask for workshop/machinery vibe */
@@ -165,7 +165,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(#10B981 1px, transparent 1px);
+  background-image: none;
   background-size: 24px 24px;
   opacity: 0.04;
   pointer-events: none;

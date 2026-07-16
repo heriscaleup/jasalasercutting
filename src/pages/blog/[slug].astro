@@ -106,7 +106,7 @@ if (post.data.faq.length > 0) structuredData.push(generateFAQSchema(post.data.fa
             alt={post.data.imageAlt}
             class="aspect-[16/9] w-full object-cover"
             loading="eager"
-            onerror={`this.onerror=null;this.src='${fallbackImage}';`}
+            
           />
         </figure>
 
@@ -179,7 +179,7 @@ if (post.data.faq.length > 0) structuredData.push(generateFAQSchema(post.data.fa
             {relatedPosts.map(({ post: relatedPost }) => (
               <article class="group border-b border-black/10 pb-7">
                 <a href={`/blog/${relatedPost.slug}/`} class="block overflow-hidden rounded-3xl border border-black/10 bg-neutral-100">
-                  <img src={resolveImage(relatedPost.data.image)} alt={relatedPost.data.title} class="aspect-[16/10] w-full object-cover transition duration-700 group-hover:scale-[1.04]" loading="lazy" onerror={`this.onerror=null;this.src='${fallbackImage}';`} />
+                  <img src={resolveImage(relatedPost.data.image)} alt={relatedPost.data.title} class="aspect-[16/10] w-full object-cover transition duration-700 group-hover:scale-[1.04]" loading="lazy"  />
                 </a>
                 <p class={`mt-5 text-xs font-black uppercase tracking-[0.16em] ${accent}`}>{relatedPost.data.category}</p>
                 <h3 class="mt-2 text-lg font-black leading-tight text-neutral-950"><a href={`/blog/${relatedPost.slug}/`} class="group-hover:text-neutral-600">{relatedPost.data.title}</a></h3>

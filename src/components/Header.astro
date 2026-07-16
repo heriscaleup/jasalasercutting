@@ -16,7 +16,7 @@ const filteredNavigation = NAVIGATION.filter(item => item.name !== "Kontak").map
         <img
           src="/images/logo.webp"
           alt={SITE_CONFIG.title}
-          class="w-10 h-10 object-contain rounded-xl shadow-laser-glow group-hover:scale-105 transition-transform duration-300"
+          class="w-11 h-11 object-contain rounded-xl  group-hover:scale-105 transition-transform duration-300"
           width="40"
           height="40"
         />
@@ -45,7 +45,7 @@ const filteredNavigation = NAVIGATION.filter(item => item.name !== "Kontak").map
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </button>
-                <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-surface/95 backdrop-blur-md rounded-2xl shadow-premium border border-[var(--line)] opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 transform translate-y-2 group-hover/nav:translate-y-0 z-50" data-desktop-menu={index}>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-surface/95 backdrop-blur-md rounded-2xl  border border-[var(--line)] opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 transform translate-y-2 group-hover/nav:translate-y-0 z-50" data-desktop-menu={index}>
                   <div class="p-3 space-y-1">
                     {item.submenu.map((subitem) => (
                       <a
@@ -78,7 +78,7 @@ const filteredNavigation = NAVIGATION.filter(item => item.name !== "Kontak").map
       <div class="hidden lg:flex items-center space-x-4">
         <a
           href="/contact/"
-          class="btn-primary text-sm px-7 py-3 shadow-premium hover:shadow-premium-hover hover:scale-[1.03] transition-all"
+          class="btn-primary text-sm px-7 py-3  hover:-hover hover:scale-[1.03] transition-all"
         >
           Kontak Kita
           <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,21 +89,21 @@ const filteredNavigation = NAVIGATION.filter(item => item.name !== "Kontak").map
 
       <!-- Mobile Menu Button -->
       <button
-        class="lg:hidden flex flex-col items-center justify-center w-12 h-12 rounded-full border border-silver-dark/30 bg-white shadow-premium hover:bg-silver-light active:scale-95 transition-all z-50"
+        class="lg:hidden flex flex-col items-center justify-center w-[44px] h-[44px] rounded-full border border-[var(--line)]/30 bg-surface hover:bg-background active:scale-95 transition-all z-50"
         id="mobile-menu-button"
         aria-label="Toggle mobile menu"
         aria-expanded="false"
       >
-        <span class="w-5 h-[2px] bg-charcoal rounded-full transition-transform duration-300 mb-1" id="bar1"></span>
-        <span class="w-5 h-[2px] bg-charcoal rounded-full transition-opacity duration-300 mb-1" id="bar2"></span>
-        <span class="w-5 h-[2px] bg-charcoal rounded-full transition-transform duration-300" id="bar3"></span>
+        <span class="w-5 h-[2px] bg-text-main rounded-full transition-transform duration-300 mb-1" id="bar1"></span>
+        <span class="w-5 h-[2px] bg-text-main rounded-full transition-opacity duration-300 mb-1" id="bar2"></span>
+        <span class="w-5 h-[2px] bg-text-main rounded-full transition-transform duration-300" id="bar3"></span>
       </button>
     </div>
   </div>
 
   <!-- Fullscreen Interactive Overlay Mobile Menu -->
   <div
-    class="lg:hidden fixed inset-0 bg-background/98 backdrop-blur-lg z-40 transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-y-auto flex flex-col pt-32 pb-10"
+    class="lg:hidden fixed inset-0 bg-background/98 backdrop-blur-md z-40 transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-y-auto flex flex-col pt-32 pb-10"
     id="mobile-menu"
   >
     <div class="container-custom flex-1 flex flex-col justify-between">
@@ -162,7 +162,7 @@ const filteredNavigation = NAVIGATION.filter(item => item.name !== "Kontak").map
       <div class="mt-12 space-y-4">
         <a
           href="/contact/"
-          class="btn-primary w-full text-center py-4 text-base shadow-laser-glow flex items-center justify-center"
+          class="btn-primary w-full text-center py-4 text-base  flex items-center justify-center"
         >
           <span>Hubungi Kami</span>
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -174,13 +174,13 @@ const filteredNavigation = NAVIGATION.filter(item => item.name !== "Kontak").map
             href={`https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=${encodeURIComponent("Halo Jasa Cutting Laser, saya tertarik ingin berkonsultasi mengenai project.")}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-[#25D366] hover:bg-[#20BA5A] text-white text-center py-3.5 px-4 rounded-full text-sm font-bold flex items-center justify-center space-x-2 transition-all hover:scale-[1.02] shadow-premium"
+            class="bg-[#25D366] hover:bg-[#20BA5A] text-white text-center py-3.5 px-4 rounded-full text-sm font-bold flex items-center justify-center space-x-2 transition-all hover:scale-[1.02] "
           >
             <span>WhatsApp</span>
           </a>
           <a
             href={`tel:${SITE_CONFIG.phone}`}
-            class="bg-charcoal text-white text-center py-3.5 px-4 rounded-full text-sm font-bold flex items-center justify-center space-x-2 transition-all hover:scale-[1.02] shadow-premium"
+            class="bg-charcoal text-white text-center py-3.5 px-4 rounded-full text-sm font-bold flex items-center justify-center space-x-2 transition-all hover:scale-[1.02] "
           >
             <span>Hubungi Telepon</span>
           </a>
