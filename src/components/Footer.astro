@@ -8,7 +8,19 @@ const whatsapp = `https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&te
   <div class="container-custom section-padding !pb-12">
     <div class="grid gap-12 lg:grid-cols-[1.4fr_.8fr_.8fr_1.2fr]">
       <div>
-        <a href="/" class="group inline-flex items-center gap-3"><span class="grid h-10 w-10 place-items-center rounded-xl bg-[var(--acid)] font-heading text-xl font-bold tracking-[-.12em] text-[var(--ink)]">/\</span><span><strong class="block font-heading text-lg tracking-[-.04em]">Jasa Cutting Laser</strong><small class="font-mono text-[.6rem] uppercase tracking-[.16em] text-[var(--muted)]">Precision fabrication</small></span></a>
+        <a href="/" class="group inline-flex items-center gap-3">
+          <img
+            src="/images/logo.webp"
+            alt={SITE_CONFIG.title}
+            class="h-10 w-10 shrink-0 object-contain rounded-xl transition-transform duration-300 group-hover:scale-105"
+            width="40"
+            height="40"
+          />
+          <span>
+            <strong class="block font-heading text-lg tracking-[-.04em]">Jasa Cutting Laser</strong>
+            <small class="font-mono text-[.6rem] uppercase tracking-[.16em] text-[var(--muted)]">Precision fabrication</small>
+          </span>
+        </a>
         <p class="mt-6 max-w-sm text-sm leading-7">Kami membantu ide arsitektur, interior, signage, dan manufaktur berubah menjadi komponen nyata yang presisi, rapi, dan siap dipasang.</p>
         <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="mt-7 inline-flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[.15em] text-[var(--acid)]" data-wa-label="Footer consultation">Mulai dari file Anda <span class="text-lg">↗</span></a>
       </div>
