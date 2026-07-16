@@ -10,6 +10,7 @@ export interface Props {
   secondaryCTA?: string;
   secondaryCTALink?: string;
   backgroundImage?: string;
+  whatsappMessage?: string;
 }
 
 const {
@@ -20,11 +21,13 @@ const {
   primaryCTALink = `https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=${encodeURIComponent(WHATSAPP_MESSAGES.default)}`,
   secondaryCTA = "Eksplorasi Proyek Kami",
   secondaryCTALink = "/portfolio/",
-  backgroundImage = "/images/logo.webp"
+  backgroundImage = "/images/logo.webp",
+  whatsappMessage = WHATSAPP_MESSAGES.default
 } = Astro.props;
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#FAFAFA] pt-24 pb-16 geometric-bg">
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#FAFAFA] pt-24 pb-16 geometric-bg" data-whatsapp-message={whatsappMessage}>
+  <img src={backgroundImage} alt="" aria-hidden="true" class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[.08]" width="1600" height="1000" loading="lazy" />
   
   <!-- Subtle Abstract Ambient Radial Glow -->
   <div class="absolute top-1/4 left-10 w-96 h-96 bg-laser-green/5 rounded-full blur-3xl pointer-events-none"></div>

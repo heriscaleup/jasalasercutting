@@ -1,223 +1,95 @@
 ---
 import '../styles/global.css';
 
-interface MetaTags {
-  title: string;
-  description: string;
-  keywords: string;
-  canonical: string;
-  url: string;
-  type: string;
-  openGraph: {
-    title: string;
-    description: string;
-    url: string;
-    image: string;
-    type: string;
-    siteName: string;
-    locale: string;
-    publishedTime?: string;
-    modifiedTime?: string;
-    author?: string;
-  };
-  twitter: {
-    card: string;
-    title: string;
-    description: string;
-    image: string;
-  };
-}
-
 export interface Props {
   title?: string;
   description?: string;
   keywords?: string;
   image?: string;
   url?: string;
-  type?: "article" | "website" | "blog" | "service" | "CollectionPage";
+  type?: string;
   noindex?: boolean;
   jsonLd?: any[];
   canonical?: string;
-  metaTags?: MetaTags;
+  metaTags?: any;
   publishedTime?: string;
   modifiedTime?: string;
   author?: string;
 }
 
-const {
-  metaTags,
-  title,
-  description,
-  keywords,
-  image,
-  url,
-  type = "website",
-  canonical,
-  noindex = false,
-  jsonLd,
-  publishedTime,
-  modifiedTime,
-  author
-} = Astro.props;
-
-if (!Astro.site) {
-  throw new Error('SITE_URL environment variable is not set. Please update your astro.config.mjs');
-}
-
-const siteUrl = new URL(Astro.site);
-const currentUrl = typeof Astro.url === 'string' ? Astro.url : Astro.url.href;
-const pageUrl = url ? new URL(url, siteUrl).href : currentUrl;
-const canonicalUrl = canonical ? new URL(canonical, siteUrl).href : pageUrl;
-const defaultTitle = "Jasa Laser Cutting Profesional di Banten & Tangerang | Jasa Cutting Laser";
-const defaultDescription = "Jasa laser cutting, CNC router, laser fiber, laser CO2, dan galvo engraving untuk kebutuhan akrilik, kayu, MDF, ACP, PVC, metal, dan signage.";
-const defaultKeywords = "jasa laser cutting, laser cutting banten, laser cutting tangerang, cnc router, laser fiber, laser co2, galvo engraving";
-const pageTitle = title || defaultTitle;
-const pageDescription = description || defaultDescription;
-const pageImage = image || "/images/logo.webp";
-
-const generatedMetaTags = {
-  title: pageTitle,
-  description: pageDescription,
-  keywords: keywords || defaultKeywords,
-  canonical: canonicalUrl,
-  url: pageUrl,
-  type,
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: pageUrl,
-    image: pageImage,
-    type,
-    siteName: "Jasa Cutting Laser",
-    locale: "id_ID",
-    ...(publishedTime && { publishedTime }),
-    ...(modifiedTime && { modifiedTime }),
-    ...(author && { author })
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: pageTitle,
-    description: pageDescription,
-    image: pageImage
-  }
-};
-
-const meta = metaTags || generatedMetaTags;
+const props = Astro.props;
+const siteUrl = new URL(Astro.site || 'https://jasalasercutting.com');
+const generated = props.metaTags || {};
+const pageTitle = props.title || generated.title || 'Jasa Laser Cutting Profesional | Presisi untuk Project Nyata';
+const pageDescription = props.description || generated.description || 'Laser cutting, CNC router, fiber laser, CO2, dan galvo engraving untuk arsitektur, interior, signage, manufaktur, dan kebutuhan custom.';
+const pageKeywords = props.keywords || generated.keywords || 'jasa laser cutting, laser cutting tangerang, laser cutting banten, cnc router, laser fiber, laser CO2';
+const pageUrl = new URL(props.url || generated.url || Astro.url.pathname, siteUrl).href;
+const canonicalUrl = new URL(props.canonical || generated.canonical || pageUrl, siteUrl).href;
+const imageUrl = new URL(props.image || generated.openGraph?.image || '/images/logo.webp', siteUrl).href;
+const ogTitle = generated.openGraph?.title || pageTitle;
+const ogDescription = generated.openGraph?.description || pageDescription;
+const jsonLd = props.jsonLd || [];
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-Equiv="X-UA-Compatible" content="IE=edge" />
-
-    <title>{meta.title}</title>
-    <meta name="description" content={meta.description} />
-    <meta name="keywords" content={meta.keywords} />
-    <meta name="author" content="Jasa Cutting Laser Team" />
-    <link rel="canonical" href={meta.canonical} />
-    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
-
-    <meta property="og:type" content={meta.openGraph.type} />
-    <meta property="og:title" content={meta.openGraph.title} />
-    <meta property="og:description" content={meta.openGraph.description} />
-    <meta property="og:url" content={meta.openGraph.url} />
-    <meta property="og:image" content={new URL(meta.openGraph.image, siteUrl).href} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content={meta.openGraph.siteName} />
-    <meta property="og:locale" content={meta.openGraph.locale} />
-    {meta.openGraph.publishedTime && <meta property="article:published_time" content={meta.openGraph.publishedTime} />}
-    {meta.openGraph.modifiedTime && <meta property="article:modified_time" content={meta.openGraph.modifiedTime} />}
-    {meta.openGraph.author && <meta property="article:author" content={meta.openGraph.author} />}
-
-    <meta name="twitter:card" content={meta.twitter.card} />
-    <meta name="twitter:title" content={meta.twitter.title} />
-    <meta name="twitter:description" content={meta.twitter.description} />
-    <meta name="twitter:image" content={new URL(meta.twitter.image, siteUrl).href} />
-
-    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
-    <link rel="icon" type="image/webp" href="/images/logo.webp?v=2" />
-    <link rel="apple-touch-icon" href="/images/logo.webp?v=2" />
-
-    <link rel="preload" href="/images/logo.webp" as="image" type="image/webp" />
-    <!-- Prefetch and Preload modern fonts for absolute Lighthouse perfection -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/spacegrotesk/v16/V8mDoQDjQSkFsp0Rwf55-m8t9C-8G9-Vymc.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="https://fonts.gstatic.com/s/plusjakartasans/v8/L0xYDFIqko679QPmH8086gY7bPr2-004.woff2" as="font" type="font/woff2" crossorigin />
-
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-    <link rel="dns-prefetch" href="//api.whatsapp.com" />
-    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-
-    <!-- Google Analytics 4 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080b0a" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="keywords" content={pageKeywords} />
+    <meta name="author" content={props.author || generated.author || 'Jasa Cutting Laser Team'} />
+    <meta name="robots" content={props.noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.ico?v=3" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <meta property="og:type" content={generated.openGraph?.type || props.type || 'website'} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:site_name" content="Jasa Cutting Laser" />
+    <meta property="og:locale" content="id_ID" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={imageUrl} />
+    {props.publishedTime && <meta property="article:published_time" content={props.publishedTime} />}
+    {props.modifiedTime && <meta property="article:modified_time" content={props.modifiedTime} />}
+    {jsonLd.map((schema) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)}
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-LWLLCS1PG4"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-LWLLCS1PG4');
+      function gtag(){window.dataLayer.push(arguments)}
+      gtag('js', new Date()); gtag('config', 'G-LWLLCS1PG4');
     </script>
-
-    {jsonLd && jsonLd.length > 0 && jsonLd.map(json => (
-      <script type="application/ld+json" set:html={JSON.stringify(json)} />
-    ))}
-
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      name: "Jasa Cutting Laser",
-      url: siteUrl.href,
-      logo: new URL("/images/logo.webp", siteUrl).href,
-      description: "Solusi laser cutting profesional untuk kebutuhan material akrilik, kayu, MDF, ACP, PVC, metal, dan signage.",
-      telephone: "+62 851 6569 3179",
-      email: "info@jasalasercutting.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "Jl. BSD Bintaro No.1",
-        addressLocality: "Parigi, Pondok Aren",
-        addressRegion: "Banten",
-        postalCode: "15228",
-        addressCountry: "ID"
-      },
-      openingHours: "Mo-Sa 08:00-17:00",
-      areaServed: ["Tangerang Selatan", "BSD", "Bintaro", "Pondok Aren", "Parigi", "Tangerang", "Jakarta Selatan"],
-      serviceType: ["Laser Cutting", "CNC Router", "Laser Fiber", "Laser CO2", "Galvo Engraving"]
-    })} />
-
-    <meta name="theme-color" content="#10B981" />
   </head>
-  <body class="antialiased bg-background text-text-main">
-    <a href="#main-content" class="skip-link">
-      Skip to main content
-    </a>
-
+  <body class="antialiased">
+    <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
+    <div class="pointer-events-none fixed inset-x-0 top-0 z-[80] h-px origin-left scale-x-0 bg-[var(--acid)]" id="scroll-progress"></div>
+    <div class="cursor-dot" id="cursor-dot"></div><div class="cursor-ring" id="cursor-ring"></div>
     <slot name="header" />
-
-    <main id="main-content" class="min-h-screen">
-      <slot />
-    </main>
-
+    <main id="main-content" class="site-shell min-h-screen"><slot /></main>
     <slot name="footer" />
-
-    <!-- WhatsApp Click Tracking -->
     <script is:inline>
-      document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('a[href*="api.whatsapp.com"], a[href*="wa.me"]').forEach(function (link) {
-          link.addEventListener('click', function () {
-            var label = link.dataset.waLabel || link.innerText.trim() || 'WhatsApp Button';
-            var page = window.location.pathname;
-
-            if (typeof gtag === 'function') {
-              gtag('event', 'whatsapp_click', {
-                event_category: 'engagement',
-                event_label: label,
-                page_location: window.location.href,
-                page_path: page
-              });
-            }
-          });
-        });
+      document.addEventListener('DOMContentLoaded', () => {
+        const progress = document.querySelector('#scroll-progress');
+        const updateProgress = () => { const max = document.documentElement.scrollHeight - window.innerHeight; if (progress) progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`; };
+        window.addEventListener('scroll', updateProgress, { passive: true }); updateProgress();
+        document.querySelectorAll('#main-content section').forEach((section) => { if (!section.closest('.home-page') && !section.hasAttribute('data-no-reveal')) section.classList.add('reveal'); });
+        const reveal = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && (entry.target.classList.add('is-visible'), reveal.unobserve(entry.target))), { threshold: .12 });
+        document.querySelectorAll('.reveal, [data-reveal]').forEach((element) => reveal.observe(element));
+        const dot = document.querySelector('#cursor-dot'); const ring = document.querySelector('#cursor-ring');
+        if (window.matchMedia('(pointer:fine)').matches && dot && ring) {
+          document.body.classList.add('has-pointer');
+          window.addEventListener('pointermove', (event) => { dot.style.left = `${event.clientX}px`; dot.style.top = `${event.clientY}px`; ring.style.left = `${event.clientX}px`; ring.style.top = `${event.clientY}px`; }, { passive: true });
+          document.querySelectorAll('a, button, input, select, textarea, summary').forEach((el) => { el.addEventListener('pointerenter', () => document.body.classList.add('cursor-hover')); el.addEventListener('pointerleave', () => document.body.classList.remove('cursor-hover')); });
+        }
+        document.querySelectorAll('a[href*="api.whatsapp.com"], a[href*="wa.me"]').forEach((link) => link.addEventListener('click', () => { if (typeof window.gtag === 'function') window.gtag('event', 'whatsapp_click', { event_category: 'engagement', event_label: link.dataset.waLabel || link.textContent?.trim() || 'WhatsApp Button', page_path: window.location.pathname }); }));
       });
     </script>
   </body>

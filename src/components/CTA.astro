@@ -9,6 +9,8 @@ export interface Props {
   primaryLink?: string;
   secondaryText?: string;
   secondaryLink?: string;
+  variant?: string;
+  size?: string;
 }
 
 const {
@@ -17,11 +19,13 @@ const {
   primaryText = "Konsultasi Teknis Gratis",
   primaryLink = `https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=${encodeURIComponent(WHATSAPP_MESSAGES.default)}`,
   secondaryText = "Form Estimasi Penawaran",
-  secondaryLink = "#interactive-quote"
+  secondaryLink = "#interactive-quote",
+  variant = "default",
+  size = "default"
 } = Astro.props;
 ---
 
-<section class="py-24 bg-charcoal text-white relative overflow-hidden">
+<section class="py-24 bg-charcoal text-white relative overflow-hidden" data-variant={variant} data-size={size}>
 
   <!-- Subtle geometric grid background -->
   <div class="absolute inset-0 opacity-10 pointer-events-none">

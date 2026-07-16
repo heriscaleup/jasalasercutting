@@ -1,297 +1,87 @@
 ---
-// Header.astro - Modern Glassmorphic Awwwards Header Redesign
 import { NAVIGATION, SITE_CONFIG } from '../utils/constants.js';
 
-const currentPath = new URL(Astro.request.url).pathname;
-const filteredNavigation = NAVIGATION.filter(item => item.name !== "Kontak").map(item => ({
+const currentPath = new URL(Astro.request.url).pathname.replace(/\/$/, '') || '/';
+const navigation = NAVIGATION.filter((item) => item.name !== 'Kontak').map((item) => ({
   ...item,
-  active: currentPath === `${item.href}` || (item.submenu && item.submenu.some(subitem => currentPath === `${subitem.href}`))
+  active: item.href === '/' ? currentPath === '/' : item.href.startsWith('#') ? false : currentPath.startsWith(item.href.replace(/\/$/, ''))
 }));
+const whatsapp = `https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=${encodeURIComponent('Halo Jasa Cutting Laser, saya ingin konsultasi project.')}`;
 ---
-<header class="fixed top-0 left-0 right-0 z-50 glass-header w-full" id="main-header">
+
+<header class="fixed inset-x-0 top-0 z-50 glass-header" id="main-header">
   <div class="container-custom">
-    <div class="flex items-center justify-between h-20 md:h-24 transition-all duration-300" id="header-inner">
-      <!-- Logo Section -->
-      <a href="/" class="flex items-center space-x-3 group z-50">
-        <img
-          src="/images/logo.webp"
-          alt={SITE_CONFIG.title}
-          class="w-11 h-11 object-contain rounded-xl  group-hover:scale-105 transition-transform duration-300"
-          width="40"
-          height="40"
-        />
-        <div class="flex flex-col">
-          <span class="text-lg font-bold text-charcoal tracking-tight font-heading group-hover:text-laser-green transition-colors duration-300">
-            Jasa Cutting Laser
-          </span>
-          <span class="text-[10px] text-graphite/70 font-semibold tracking-wider uppercase">Laser Cutting & CNC</span>
-        </div>
+    <div class="flex h-[4.75rem] items-center justify-between gap-6 md:h-20" id="header-inner">
+      <a href="/" class="group flex min-w-0 items-center gap-3" aria-label="Jasa Cutting Laser — beranda">
+        <span class="relative grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-xl bg-[var(--acid)] text-[var(--ink)] shadow-[0_0_2rem_rgba(184,255,61,.18)]">
+          <span class="font-heading text-xl font-bold tracking-[-.12em]">/\</span>
+          <span class="absolute bottom-1 right-1 h-1.5 w-1.5 rounded-full bg-[var(--ink)]"></span>
+        </span>
+        <span class="hidden min-w-0 sm:block">
+          <span class="block truncate font-heading text-base font-bold tracking-[-.04em] text-[var(--paper)]">Jasa Cutting Laser</span>
+          <span class="block font-mono text-[.57rem] uppercase tracking-[.18em] text-[var(--muted)]">Precision fabrication</span>
+        </span>
       </a>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden lg:flex items-center space-x-10" aria-label="Main navigation">
-        {filteredNavigation.map((item, index) => (
-          <div class="relative group/nav">
-            {item.submenu ? (
-              <div class="relative">
-                <button
-                  class="flex items-center space-x-1 text-charcoal/80 hover:text-laser-green font-semibold py-2 transition-colors duration-300 text-sm tracking-wide"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  data-desktop-dropdown={index}
-                >
-                  <span>{item.name}</span>
-                  <svg class="w-4 h-4 transition-transform duration-300 group-hover/nav:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
-                  </svg>
-                </button>
-                <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-surface/95 backdrop-blur-md rounded-2xl  border border-[var(--line)] opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 transform translate-y-2 group-hover/nav:translate-y-0 z-50" data-desktop-menu={index}>
-                  <div class="p-3 space-y-1">
-                    {item.submenu.map((subitem) => (
-                      <a
-                        href={subitem.href}
-                        class="flex items-center justify-between px-4 py-3 rounded-xl text-text-main hover:text-laser-green hover:bg-background text-sm font-semibold transition-all duration-200"
-                      >
-                        <span>{subitem.name}</span>
-                        <svg class="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-laser-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <a
-                href={item.href}
-                class="text-text-main hover:text-laser-green font-semibold py-2 transition-colors duration-300 text-sm tracking-wide active-link-underline"
-                class:list={[item.active && 'text-laser-green active']}
-              >
-                {item.name}
-              </a>
-            )}
+      <nav class="hidden items-center gap-7 lg:flex" aria-label="Navigasi utama">
+        {navigation.map((item, index) => item.submenu ? (
+          <div class="group/nav relative">
+            <button class="flex items-center gap-1 py-3 text-xs font-bold uppercase tracking-[.12em] text-[var(--muted)] transition-colors hover:text-[var(--acid)]" aria-haspopup="true">
+              {item.name}
+              <svg class="h-3.5 w-3.5 transition-transform group-hover/nav:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="invisible absolute left-1/2 top-full w-64 -translate-x-1/2 translate-y-2 border border-[var(--line)] bg-[rgba(15,21,18,.96)] p-2 opacity-0 shadow-2xl backdrop-blur-xl transition-all duration-300 group-hover/nav:visible group-hover/nav:translate-y-0 group-hover/nav:opacity-100">
+              {item.submenu.map((subitem) => <a href={subitem.href} class="block border border-transparent px-4 py-3 text-sm font-semibold text-[var(--muted)] transition-colors hover:border-[var(--line)] hover:bg-[var(--panel-2)] hover:text-[var(--acid)]">{subitem.name}</a>)}
+            </div>
           </div>
+        ) : (
+          <a href={item.href} class:list={["relative py-3 text-xs font-bold uppercase tracking-[.12em] text-[var(--muted)] transition-colors hover:text-[var(--acid)]", item.active && "text-[var(--acid)]"]}>
+            {item.name}
+            {item.active && <span class="absolute -bottom-0.5 left-0 h-px w-full bg-[var(--acid)]"></span>}
+          </a>
         ))}
       </nav>
 
-      <!-- Desktop Action Button -->
-      <div class="hidden lg:flex items-center space-x-4">
-        <a
-          href="/contact/"
-          class="btn-primary text-sm px-7 py-3  hover:-hover hover:scale-[1.03] transition-all"
-        >
-          Kontak Kita
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
-        </a>
+      <div class="hidden items-center gap-3 lg:flex">
+        <span class="mr-2 hidden items-center gap-2 font-mono text-[.62rem] uppercase tracking-[.12em] text-[var(--muted)] xl:flex"><span class="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--acid)]"></span>Online untuk project baru</span>
+        <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary min-h-10 px-5 py-2 text-xs" data-wa-label="Header consultation">Mulai konsultasi <span aria-hidden="true">↗</span></a>
       </div>
 
-      <!-- Mobile Menu Button -->
-      <button
-        class="lg:hidden flex flex-col items-center justify-center w-[44px] h-[44px] rounded-full border border-[var(--line)]/30 bg-surface hover:bg-background active:scale-95 transition-all z-50"
-        id="mobile-menu-button"
-        aria-label="Toggle mobile menu"
-        aria-expanded="false"
-      >
-        <span class="w-5 h-[2px] bg-text-main rounded-full transition-transform duration-300 mb-1" id="bar1"></span>
-        <span class="w-5 h-[2px] bg-text-main rounded-full transition-opacity duration-300 mb-1" id="bar2"></span>
-        <span class="w-5 h-[2px] bg-text-main rounded-full transition-transform duration-300" id="bar3"></span>
+      <button id="mobile-menu-button" class="grid h-11 w-11 place-items-center border border-[var(--line)] bg-[var(--panel)] text-[var(--paper)] lg:hidden" aria-label="Buka menu" aria-expanded="false">
+        <span class="relative block h-4 w-5"><span id="bar1" class="absolute left-0 top-0 h-px w-full bg-current transition-transform"></span><span id="bar2" class="absolute left-0 top-2 h-px w-3/4 bg-current transition-opacity"></span><span id="bar3" class="absolute bottom-0 left-0 h-px w-full bg-current transition-transform"></span></span>
       </button>
     </div>
   </div>
 
-  <!-- Fullscreen Interactive Overlay Mobile Menu -->
-  <div
-    class="lg:hidden fixed inset-0 bg-background/98 backdrop-blur-md z-40 transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-y-auto flex flex-col pt-32 pb-10"
-    id="mobile-menu"
-  >
-    <div class="container-custom flex-1 flex flex-col justify-between">
-      <!-- Mobile Navigation Links -->
-      <nav class="flex flex-col space-y-4" aria-label="Mobile navigation">
-        {filteredNavigation.map((item, index) => (
-          <div class="border-b border-[var(--line)] pb-3">
-            {item.submenu ? (
-              <div>
-                <button
-                  class="flex items-center justify-between w-full text-left text-2xl font-heading font-bold text-text-main py-2 hover:text-laser-green transition-colors"
-                  data-submenu-index={index}
-                  aria-expanded="false"
-                >
-                  <span>{item.name}</span>
-                  <svg 
-                    class="w-6 h-6 transition-transform duration-300 text-text-secondary"
-                    id={`submenu-icon-${index}`}
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
-                  </svg>
-                </button>
-                <div 
-                  class="hidden bg-surface rounded-2xl mt-2 overflow-hidden transition-all duration-300 border border-[var(--line)]"
-                  id={`submenu-${index}`}
-                >
-                  <div class="p-3 space-y-1">
-                    {item.submenu.map((subitem) => (
-                      <a
-                        href={subitem.href}
-                        class="block text-text-main hover:text-laser-green py-3 px-4 rounded-xl hover:bg-background text-base font-semibold transition-all duration-200"
-                      >
-                        {subitem.name}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <a
-                href={item.href}
-                class="block text-2xl font-heading font-bold text-text-main py-2 hover:text-laser-green transition-colors"
-                class:list={[item.active && 'text-laser-green']}
-              >
-                {item.name}
-              </a>
-            )}
+  <div id="mobile-menu" class="invisible fixed inset-0 top-[4.75rem] z-40 translate-x-full overflow-y-auto bg-[rgba(8,11,10,.98)] px-6 pb-10 pt-8 opacity-0 transition-all duration-500 lg:hidden" aria-hidden="true">
+    <nav class="flex flex-col" aria-label="Navigasi mobile">
+      {navigation.map((item, index) => item.submenu ? (
+        <div class="border-b border-[var(--line)] py-2">
+          <button class="flex w-full items-center justify-between py-4 text-left font-heading text-2xl font-bold text-[var(--paper)]" data-submenu-index={index} aria-expanded="false">{item.name}<span id={`submenu-icon-${index}`} class="text-[var(--acid)] transition-transform">＋</span></button>
+          <div id={`submenu-${index}`} class="hidden grid grid-cols-2 gap-2 pb-3">
+            {item.submenu.map((subitem) => <a href={subitem.href} class="border border-[var(--line)] px-3 py-3 text-sm text-[var(--muted)] hover:text-[var(--acid)]">{subitem.name}</a>)}
           </div>
-        ))}
-      </nav>
-
-      <!-- Mobile CTA Area -->
-      <div class="mt-12 space-y-4">
-        <a
-          href="/contact/"
-          class="btn-primary w-full text-center py-4 text-base  flex items-center justify-center"
-        >
-          <span>Hubungi Kami</span>
-          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
-        </a>
-        <div class="grid grid-cols-2 gap-4">
-          <a
-            href={`https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=${encodeURIComponent("Halo Jasa Cutting Laser, saya tertarik ingin berkonsultasi mengenai project.")}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="bg-[#25D366] hover:bg-[#20BA5A] text-white text-center py-3.5 px-4 rounded-full text-sm font-bold flex items-center justify-center space-x-2 transition-all hover:scale-[1.02] "
-          >
-            <span>WhatsApp</span>
-          </a>
-          <a
-            href={`tel:${SITE_CONFIG.phone}`}
-            class="bg-charcoal text-white text-center py-3.5 px-4 rounded-full text-sm font-bold flex items-center justify-center space-x-2 transition-all hover:scale-[1.02] "
-          >
-            <span>Hubungi Telepon</span>
-          </a>
         </div>
-      </div>
-    </div>
+      ) : (
+        <a href={item.href} class:list={["border-b border-[var(--line)] py-5 font-heading text-3xl font-bold text-[var(--paper)]", item.active && "text-[var(--acid)]"]}>{item.name}</a>
+      ))}
+    </nav>
+    <div class="mt-8 grid gap-3 sm:grid-cols-2"><a href={whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary py-4" data-wa-label="Mobile consultation">Kirim detail project <span aria-hidden="true">↗</span></a><a href={`tel:${SITE_CONFIG.phone}`} class="btn-secondary py-4">{SITE_CONFIG.phone}</a></div>
   </div>
 </header>
 
-<script type="module">
+<script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
-    const header = document.getElementById('main-header');
-    const headerInner = document.getElementById('header-inner');
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const bar1 = document.getElementById('bar1');
-    const bar2 = document.getElementById('bar2');
-    const bar3 = document.getElementById('bar3');
-
-    // Sticky Scroll Effect with glass-morphic accent
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header?.classList.add('glass-header-scrolled');
-        headerInner?.classList.remove('h-20', 'md:h-24');
-        headerInner?.classList.add('h-16', 'md:h-20');
-      } else {
-        header?.classList.remove('glass-header-scrolled');
-        headerInner?.classList.remove('h-16', 'md:h-20');
-        headerInner?.classList.add('h-20', 'md:h-24');
-      }
-    });
-
-    // Mobile Menu Toggle Function with Animated Hamburger icon
-    let isMenuOpen = false;
-
-    function toggleMobileMenu() {
-      isMenuOpen = !isMenuOpen;
-      if (isMenuOpen) {
-        mobileMenu?.classList.remove('translate-x-full');
-        mobileMenuButton?.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-
-        // Animate hamburger to X
-        bar1.style.transform = 'translateY(6px) rotate(45deg)';
-        bar2.style.opacity = '0';
-        bar3.style.transform = 'translateY(-6px) rotate(-45deg)';
-      } else {
-        mobileMenu?.classList.add('translate-x-full');
-        mobileMenuButton?.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-
-        // Animate X back to hamburger
-        bar1.style.transform = '';
-        bar2.style.opacity = '';
-        bar3.style.transform = '';
-
-        // Reset submenus
-        document.querySelectorAll('[id^="submenu-"]').forEach((submenu) => {
-          submenu.classList.add('hidden');
-        });
-        document.querySelectorAll('[id^="submenu-icon-"]').forEach((icon) => {
-          icon.style.transform = 'rotate(0deg)';
-        });
-        document.querySelectorAll('[data-submenu-index]').forEach((button) => {
-          button.setAttribute('aria-expanded', 'false');
-        });
-      }
-    }
-
-    mobileMenuButton?.addEventListener('click', (e) => {
-      e.preventDefault();
-      toggleMobileMenu();
-    });
-
-    // Mobile submenu toggle
-    document.querySelectorAll('[data-submenu-index]').forEach((button) => {
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        const index = button.getAttribute('data-submenu-index');
-        const submenu = document.getElementById(`submenu-${index}`);
-        const icon = document.getElementById(`submenu-icon-${index}`);
-
-        if (submenu && icon) {
-          const isOpen = !submenu.classList.contains('hidden');
-          if (isOpen) {
-            submenu.classList.add('hidden');
-            icon.style.transform = 'rotate(0deg)';
-            button.setAttribute('aria-expanded', 'false');
-          } else {
-            submenu.classList.remove('hidden');
-            icon.style.transform = 'rotate(180deg)';
-            button.setAttribute('aria-expanded', 'true');
-          }
-        }
-      });
-    });
-
-    // Close mobile menu on clicking nav link
-    document.querySelectorAll('#mobile-menu a[href]').forEach((link) => {
-      link.addEventListener('click', () => {
-        setTimeout(() => {
-          if (isMenuOpen) toggleMobileMenu();
-        }, 150);
-      });
-    });
-
-    // Handle escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && isMenuOpen) {
-        toggleMobileMenu();
-      }
-    });
+    const header = document.querySelector('#main-header');
+    const inner = document.querySelector('#header-inner');
+    const button = document.querySelector('#mobile-menu-button');
+    const menu = document.querySelector('#mobile-menu');
+    const bars = [document.querySelector('#bar1'), document.querySelector('#bar2'), document.querySelector('#bar3')];
+    let open = false;
+    const close = () => { open = false; menu?.classList.add('invisible', 'translate-x-full', 'opacity-0'); menu?.setAttribute('aria-hidden', 'true'); button?.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; bars[0]?.classList.remove('translate-y-2', 'rotate-45'); bars[1]?.classList.remove('opacity-0'); bars[2]?.classList.remove('-translate-y-2', '-rotate-45'); };
+    button?.addEventListener('click', () => { open ? close() : (open = true, menu?.classList.remove('invisible', 'translate-x-full', 'opacity-0'), menu?.setAttribute('aria-hidden', 'false'), button?.setAttribute('aria-expanded', 'true'), document.body.style.overflow = 'hidden', bars[0]?.classList.add('translate-y-2', 'rotate-45'), bars[1]?.classList.add('opacity-0'), bars[2]?.classList.add('-translate-y-2', '-rotate-45')); });
+    menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
+    menu?.querySelectorAll('[data-submenu-index]').forEach((toggle) => toggle.addEventListener('click', () => { const index = toggle.getAttribute('data-submenu-index'); const submenu = document.querySelector(`#submenu-${index}`); const icon = document.querySelector(`#submenu-icon-${index}`); submenu?.classList.toggle('hidden'); icon?.classList.toggle('rotate-45'); }));
+    window.addEventListener('scroll', () => { const scrolled = window.scrollY > 24; header?.classList.toggle('glass-header-scrolled', scrolled); inner?.classList.toggle('md:h-16', scrolled); inner?.classList.toggle('md:h-20', !scrolled); }, { passive: true });
   });
 </script>

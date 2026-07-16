@@ -1,505 +1,68 @@
 ---
-// src/pages/index.astro
 import BaseLayout from '../components/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { Image } from 'astro:assets';
-
-import { MATERIALS, PORTFOLIO_PROJECTS, FAQ, TESTIMONIALS, SITE_CONFIG } from '../utils/constants.js';
+import { SERVICES, MATERIALS, PORTFOLIO_PROJECTS, TESTIMONIALS, FAQ, SITE_CONFIG } from '../utils/constants.js';
 import { generateMetaTags, generateFAQSchema, generateReviewSchema } from '../utils/seo.ts';
 
 const metaTags = generateMetaTags({
-  title: "Jasa Laser Cutting & Layanan Laser Cutting Profesional",
-  description: "Jasa laser cutting & layanan laser cutting presisi tinggi. Melayani Banten & Jabodetabek.",
-  keywords: "jasa laser cutting, layanan laser cutting",
-  url: "/",
-  type: "website",
-  image: "/images/logo.webp",
-  publishedTime: "2025-01-01T00:00:00Z",
-  modifiedTime: "2026-05-22T10:00:00Z",
-  author: SITE_CONFIG.author
+  title: 'Jasa Laser Cutting Presisi untuk Arsitektur, Interior & Manufaktur',
+  description: 'Laser cutting, CNC router, fiber laser, CO2, dan galvo engraving untuk project nyata. Kirim file, dapatkan analisis teknis dan estimasi yang jelas.',
+  keywords: 'jasa laser cutting, laser cutting tangerang, laser cutting banten, jasa cnc router, laser fiber, laser co2, galvo engraving',
+  url: '/', type: 'website', image: '/images/home/hero-workshop.webp', modifiedTime: '2026-07-16T00:00:00Z', author: SITE_CONFIG.author
 });
 
+const whatsapp = `https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=${encodeURIComponent('Halo Jasa Cutting Laser, saya ingin konsultasi project.')}`;
 const faqSchema = generateFAQSchema(FAQ);
 const reviewSchema = generateReviewSchema(TESTIMONIALS);
-
-const portfolioSubset = PORTFOLIO_PROJECTS.slice(0, 6);
+const featuredServices = SERVICES.slice(0, 4);
+const featuredMaterials = MATERIALS.slice(0, 6);
+const featuredProjects = PORTFOLIO_PROJECTS.slice(0, 6);
 ---
 
 <BaseLayout metaTags={metaTags} jsonLd={[faqSchema, reviewSchema]}>
   <Header slot="header" />
 
-  <style>
-    :root {
-      --color-background: #0B0D0C;
-      --color-surface: #121514;
-      --line: #303531;
-    }
-    body {
-      background-color: var(--color-background);
-      color: #F3F0E8;
-    }
-    .bg-background { background-color: var(--color-background); }
-    .bg-surface { background-color: var(--color-surface); }
-    .border-\[var\(--line\)\] { border-color: var(--line); }
-    .text-text-main { color: #F3F0E8; }
-    .text-text-secondary { color: #A7ADA8; }
-    .text-accent { color: #10B981; }
-    .bg-paper { background-color: #E8E4D9; }
-    .text-dark-ink { color: #111311; }
-
-    .eyebrow {
-      font-family: "IBM Plex Mono", monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-size: 0.68rem;
-    }
-
-    @keyframes marquee-track {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-50%); }
-    }
-    .marquee-track {
-      display: inline-flex;
-      animation: marquee-track 30s linear infinite;
-    }
-  </style>
-
-  <main class="space-y-0 bg-background text-text-main font-sans">
-    
-    <!-- A. HERO SECTION -->
-    <section class="relative overflow-hidden min-h-[860px] border-b border-[var(--line)]">
-      <div class="absolute inset-0 z-0">
-        <img 
-          src="/images/home/hero-workshop.webp" 
-          alt="Workshop Fabrication" 
-          width={1920} 
-          height={1080}
-          widths={[320, 640, 1024, 1920]}
-          sizes="(max-width: 1024px) 100vw, 1024px"
-          class="w-full h-full object-cover"
-        />
-        <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(7,9,8,0.98) 0%, rgba(7,9,8,0.8) 38%, rgba(7,9,8,0.18) 72%, rgba(7,9,8,0.38) 100%);"></div>
-      </div>
-      
-      <div class="container-custom relative z-10 pt-40 pb-20 flex flex-col justify-between min-h-[860px]">
-        <div class="max-w-4xl">
-          <p class="eyebrow text-text-secondary mb-6">STUDIO FABRIKASI CUSTOM · TANGERANG & BANTEN</p>
-          <h1 class="font-heading font-bold text-text-main text-[clamp(3.5rem,8.4vw,8.6rem)] leading-[0.84] tracking-[-0.065em] mb-8">
-            Presisi laser cutting untuk ruang nyata.
-          </h1>
-          <p class="text-text-secondary text-xl max-w-2xl font-sans mb-12">
-            Dari panel fasad and pagar hingga signage, partisi, serta display. Kami menerjemahkan referensi CAD menjadi material, modul, dan detail yang siap dipasang di lapangan.
-          </p>
-          
-          <div class="flex flex-wrap gap-4">
-            <a href="https://api.whatsapp.com/send?phone=6285165693179" class="button-primary bg-accent text-background font-mono px-6 py-4 flex items-center gap-2 hover:bg-white transition-colors " aria-label="Mulai Konsultasi Proyek">
-              Mulai Konsultasi Proyek
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-5-5 5 5-5 5"></path>
-              </svg>
-            </a>
-            <a href="/portfolio/" class="px-6 py-4 border border-[var(--line)] text-text-main font-mono hover:bg-surface transition-colors " aria-label="Galeri Hasil Potong">
-              Galeri Hasil Potong
-            </a>
-          </div>
+  <div class="home-page overflow-hidden">
+    <section class="relative flex min-h-[min(900px,100svh)] items-end border-b border-[var(--line)] pt-28" data-reveal>
+      <div class="absolute inset-0 -z-10"><img src="/images/home/hero-workshop.webp" alt="Workshop laser cutting dan fabrikasi" class="h-full w-full object-cover opacity-40" width="1920" height="1080" fetchpriority="high" /><div class="absolute inset-0 bg-[linear-gradient(90deg,var(--ink)_0%,rgba(8,11,10,.86)_38%,rgba(8,11,10,.24)_100%)]"></div><div class="absolute inset-0 bg-[radial-gradient(circle_at_78%_35%,rgba(184,255,61,.14),transparent_28rem)]"></div></div>
+      <div class="container-custom grid w-full gap-14 pb-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,.7fr)] lg:items-end lg:pb-14">
+        <div>
+          <div class="mb-7 flex items-center gap-3 font-mono text-[.66rem] uppercase tracking-[.18em] text-[var(--muted)]"><span class="h-2 w-2 animate-pulse rounded-full bg-[var(--acid)]"></span>Precision fabrication · Tangerang Selatan</div>
+          <h1 class="heading-xl max-w-5xl text-[var(--paper)]">Bikin bentuk.<br /><span class="text-[var(--acid)]">Bukan sekadar potong.</span></h1>
+          <p class="mt-8 max-w-2xl text-base leading-8 text-[var(--muted)] md:text-xl">Kami menerjemahkan file CAD, sketsa, dan ide mentah menjadi komponen presisi untuk arsitektur, interior, signage, display, hingga manufaktur.</p>
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row"><a href={whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary" data-wa-label="Hero consultation">Kirim detail project <span aria-hidden="true">↗</span></a><a href="/portfolio/" class="btn-secondary">Lihat hasil kerja <span aria-hidden="true">↓</span></a></div>
         </div>
-
-        <div class="mt-auto pt-16 border-t border-[var(--line)]">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="border-r border-[var(--line)] pr-8">
-              <p class="font-mono text-text-secondary text-sm mb-2">01 / KAPABILITAS</p>
-              <p class="font-mono text-text-main">Fiber Laser · CO2 · CNC Router · Galvo</p>
-            </div>
-            <div class="border-r border-[var(--line)] pr-8">
-              <p class="font-mono text-text-secondary text-sm mb-2">02 / CAKUPAN</p>
-              <p class="font-mono text-text-main">Arsitektur, Interior, Hunian & Komersial</p>
-            </div>
-            <div>
-              <p class="font-mono text-text-secondary text-sm mb-2">03 / TOLERANSI</p>
-              <p class="font-mono text-text-main">Presisi tinggi hingga 0.1mm</p>
-            </div>
-          </div>
-        </div>
+        <div class="relative lg:pb-2"><div class="scanline line-panel p-5 backdrop-blur-md"><div class="flex items-center justify-between border-b border-[var(--line)] pb-4 font-mono text-[.62rem] uppercase tracking-[.12em] text-[var(--muted)]"><span>Live capability index</span><span class="text-[var(--acid)]">JCL / 2026</span></div><div class="grid grid-cols-2 gap-4 pt-5"><div><strong class="block font-heading text-4xl text-[var(--paper)]">±0.1</strong><span class="font-mono text-[.62rem] uppercase tracking-[.12em] text-[var(--muted)]">mm tolerance</span></div><div><strong class="block font-heading text-4xl text-[var(--paper)]">4×</strong><span class="font-mono text-[.62rem] uppercase tracking-[.12em] text-[var(--muted)]">production tech</span></div><div class="col-span-2 border-t border-[var(--line)] pt-4"><span class="font-mono text-[.62rem] uppercase tracking-[.12em] text-[var(--muted)]">Scope</span><p class="mt-2 text-sm leading-6 text-[var(--paper)]">Fiber · CO2 · CNC · Galvo / small batch sampai industrial run</p></div></div></div><div class="float-slow absolute -right-4 -top-7 hidden border border-[var(--acid)] bg-[var(--acid)] px-3 py-2 font-mono text-[.6rem] font-bold uppercase tracking-[.13em] text-[var(--ink)] sm:block">Design → Material → Reality</div></div>
       </div>
+      <a href="#services" class="absolute bottom-7 left-1/2 hidden -translate-x-1/2 items-center gap-3 font-mono text-[.62rem] uppercase tracking-[.18em] text-[var(--muted)] md:flex"><span class="h-10 w-px bg-[var(--acid)]"></span>Scroll to explore</a>
     </section>
 
-    <!-- B. THE MARQUEE BANNER -->
-    <section class="bg-paper text-dark-ink overflow-hidden py-4 border-b border-[var(--line)]">
-      <div class="whitespace-nowrap flex marquee-track font-mono text-sm tracking-widest font-bold">
-        <span class="px-4">FABRIKASI PRESISI ✳ BAHAN METAL & NON-METAL ✳ GARANSI RETUR ✳ KAPASITAS BULK INDUSTRI ✳ MADE IN TANGERANG ✳ </span>
-        <span class="px-4">FABRIKASI PRESISI ✳ BAHAN METAL & NON-METAL ✳ GARANSI RETUR ✳ KAPASITAS BULK INDUSTRI ✳ MADE IN TANGERANG ✳ </span>
-        <span class="px-4">FABRIKASI PRESISI ✳ BAHAN METAL & NON-METAL ✳ GARANSI RETUR ✳ KAPASITAS BULK INDUSTRI ✳ MADE IN TANGERANG ✳ </span>
-        <span class="px-4">FABRIKASI PRESISI ✳ BAHAN METAL & NON-METAL ✳ GARANSI RETUR ✳ KAPASITAS BULK INDUSTRI ✳ MADE IN TANGERANG ✳ </span>
-      </div>
-    </section>
+    <section class="overflow-hidden border-b border-[var(--line)] bg-[var(--acid)] py-3 text-[var(--ink)]"><div class="flex w-max animate-[marquee-track_30s_linear_infinite] font-mono text-xs font-bold uppercase tracking-[.16em]"><span class="px-5">Laser cutting ✳ CNC router ✳ Fiber metal ✳ CO2 non-metal ✳ Galvo engraving ✳ </span><span class="px-5">Laser cutting ✳ CNC router ✳ Fiber metal ✳ CO2 non-metal ✳ Galvo engraving ✳ </span><span class="px-5">Laser cutting ✳ CNC router ✳ Fiber metal ✳ CO2 non-metal ✳ Galvo engraving ✳ </span></div></section>
 
-    <!-- C. THE PRODUCT EXHIBIT -->
-    <section id="products" class="py-24 border-b border-[var(--line)]">
-      <div class="container-custom">
-        <div class="mb-16">
-          <p class="eyebrow text-text-secondary mb-4">01 / KATALOG PRODUK</p>
-          <h2 class="font-heading font-bold text-text-main text-[clamp(2.35rem,4.8vw,5rem)] leading-[0.96] tracking-[-0.045em] mb-6">
-            Spesialisasi Fabrikasi
-          </h2>
-          <p class="text-text-secondary text-lg max-w-2xl font-sans">
-            Kami memproduksi komponen custom arsitektur, elemen dekoratif, dan kebutuhan signage komersial.
-          </p>
-        </div>
+    <section id="services" class="section-padding border-b border-[var(--line)]" data-reveal><div class="container-custom"><div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-end"><div><p class="eyebrow">01 / Capabilities</p><h2 class="heading-lg mt-5">Satu workshop.<br /><span class="text-[var(--acid)]">Empat cara presisi.</span></h2></div><p class="max-w-xl text-base leading-8 text-[var(--muted)]">Pilih teknologi berdasarkan material, detail, ketebalan, dan target produksi. Tim teknis kami membantu menghindari keputusan mahal sebelum mesin menyala.</p></div><div class="mt-14 grid gap-px overflow-hidden border border-[var(--line)] bg-[var(--line)] md:grid-cols-2">{featuredServices.map((service, index) => <a href={`/${service.slug}/`} class="group relative min-h-[18rem] overflow-hidden bg-[var(--panel)] p-6 transition-colors hover:bg-[var(--panel-2)] md:p-8"><div class="absolute right-6 top-6 font-mono text-xs text-[var(--muted)]">0{index + 1}</div><div class="mb-12 flex items-center justify-between"><span class="grid h-11 w-11 place-items-center border border-[var(--acid)]/40 font-mono text-sm text-[var(--acid)]">{String(index + 1).padStart(2, '0')}</span><span class="translate-x-2 text-2xl text-[var(--acid)] opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100">↗</span></div><h3 class="font-heading text-3xl font-bold text-[var(--paper)]">{service.name}</h3><p class="mt-4 max-w-md text-sm leading-7">{service.description}</p><div class="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-[var(--acid)] transition-transform duration-500 group-hover:scale-x-100"></div></a>)}</div></div></section>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {MATERIALS.map((material) => (
-            <div class="group bg-surface border border-[var(--line)] hover:border-accent/40 transition-all duration-300 hover:-translate-y-3 relative overflow-hidden flex flex-col aspect-square">
-              <div class="absolute top-4 left-4 z-20">
-                <span class="bg-background/80 backdrop-blur-md px-3 py-1 font-mono text-xs text-text-main border border-[var(--line)]">
-                  {material.name}
-                </span>
-              </div>
-              <div class="flex-1 relative bg-background/50">
-                <img 
-                  src={material.image || '/images/placeholder.webp'} 
-                  alt={material.name} 
-                  width={600} 
-                  height={600}
-                  widths={[320, 600]}
-                  sizes="(max-width: 600px) 100vw, 600px"
-                  class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
-                />
-              </div>
-              <div class="p-6 border-t border-[var(--line)] bg-surface z-10">
-                <div class="grid grid-cols-1 gap-2 text-xs">
-                  <div class="flex justify-between border-b border-[var(--line)] pb-2">
-                    <span class="font-mono text-text-secondary">MATERIAL</span>
-                    <span class="font-mono text-text-main text-right">{material.name}</span>
-                  </div>
-                  <div class="flex justify-between border-b border-[var(--line)] pb-2">
-                    <span class="font-mono text-text-secondary">TOLERANSI</span>
-                    <span class="font-mono text-text-main text-right">± 0.1mm</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="font-mono text-text-secondary">APLIKASI</span>
-                    <span class="font-mono text-text-main text-right">{material.applications?.[0] || 'Custom Fabrication'}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <section id="materials" class="section-padding border-b border-[var(--line)] bg-[var(--ink-soft)]" data-reveal><div class="container-custom"><div class="flex flex-col justify-between gap-7 md:flex-row md:items-end"><div><p class="eyebrow">02 / Material library</p><h2 class="heading-lg mt-5">Material punya<br /><span class="text-[var(--acid)]">karakternya sendiri.</span></h2></div><a href="/portfolio/" class="font-mono text-xs font-bold uppercase tracking-[.14em] text-[var(--acid)]">Buka arsip project ↗</a></div><div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{featuredMaterials.map((material, index) => <a href={`/${material.slug}/`} class="group hover-lift relative aspect-[1.15] overflow-hidden border border-[var(--line)] bg-[var(--panel)]"><img src={material.image || '/images/placeholder.webp'} alt={material.name} loading="lazy" class="h-full w-full object-cover opacity-50 grayscale transition-all duration-700 group-hover:scale-105 group-hover:opacity-75 group-hover:grayscale-0" width="800" height="700" /><div class="absolute inset-0 bg-gradient-to-t from-[var(--ink)] via-transparent to-transparent"></div><div class="absolute inset-x-5 bottom-5 flex items-end justify-between gap-4"><div><span class="font-mono text-[.6rem] uppercase tracking-[.14em] text-[var(--acid)]">0{index + 1} / material</span><h3 class="mt-2 font-heading text-2xl font-bold">{material.name}</h3></div><span class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-white/20 text-xl transition-colors group-hover:border-[var(--acid)] group-hover:text-[var(--acid)]">↗</span></div></a>)}</div></div></section>
 
-    <!-- D. PORTFOLIO SHOWCASE -->
-    <section class="py-24 border-b border-[var(--line)]">
-      <div class="container-custom">
-        <div class="mb-16">
-          <p class="eyebrow text-text-secondary mb-4">02 / ARSIP PROYEK</p>
-          <h2 class="font-heading font-bold text-text-main text-[clamp(2.35rem,4.8vw,5rem)] leading-[0.96] tracking-[-0.045em] mb-6">
-            Galeri Fabrikasi
-          </h2>
-        </div>
+    <section class="section-padding border-b border-[var(--line)]" data-reveal><div class="container-custom"><div class="grid gap-12 lg:grid-cols-[.7fr_1.3fr] lg:items-start"><div><p class="eyebrow">03 / Production logic</p><h2 class="heading-lg mt-5">Proses yang<br /><span class="text-[var(--acid)]">terbaca.</span></h2><p class="mt-6 max-w-sm text-sm leading-7">Tidak ada black box. Setiap project melewati alur yang sama: jelas di awal, terkendali di tengah, siap dipasang di akhir.</p></div><div class="grid border-y border-[var(--line)]">{[['01','Baca file','Kami cek geometri, skala, toleransi, dan risiko material.'],['02','Pilih jalur produksi','Teknologi dipilih berdasarkan hasil yang dibutuhkan, bukan sekadar mesin yang tersedia.'],['03','Potong & kontrol','Operator menjalankan proses dengan QC visual dan dimensional sebelum packing.'],['04','Serah terima','Produk dikirim atau diambil dengan detail finishing yang sudah disepakati.']].map((item) => <div class="group grid gap-4 border-b border-[var(--line)] py-6 last:border-0 md:grid-cols-[5rem_1fr_1fr] md:items-center"><span class="font-mono text-xs text-[var(--acid)]">{item[0]}</span><h3 class="font-heading text-2xl font-bold">{item[1]}</h3><p class="text-sm leading-6">{item[2]}</p></div>)}</div></div></div></section>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {portfolioSubset.map((project) => (
-            <div class="group bg-surface border border-[var(--line)] flex flex-col aspect-[4/3] relative">
-              <img 
-                src={project.image || '/images/placeholder.webp'} 
-                alt={project.title} 
-                width={800} 
-                height={600}
-                widths={[320, 640, 800]}
-                sizes="(max-width: 800px) 100vw, 800px"
-                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-              />
-              <div class="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 border border-accent/40 backdrop-blur-sm">
-                <h3 class="font-heading text-2xl font-bold text-text-main mb-2">{project.title}</h3>
-                <p class="font-mono text-xs text-text-secondary mb-4">{project.client}</p>
-                <button 
-                  class="view-detail-btn font-mono text-sm border border-[var(--line)] bg-background text-text-main py-2 px-4 hover:bg-accent hover:text-background transition-colors w-fit " aria-label="View Detail"
-                  data-project-id={project.id}
-                >
-                  [ VIEW DETAIL ]
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <section class="section-padding border-b border-[var(--line)] bg-[var(--paper)] text-[var(--ink)]" data-reveal><div class="container-custom"><div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-end"><div><p class="eyebrow !text-[var(--acid-deep)]">04 / Project archive</p><h2 class="heading-lg mt-5 !text-[var(--ink)]">Bukti kerja,<br /><span class="!text-[var(--acid-deep)]">bukan janji.</span></h2></div><p class="max-w-xl text-base leading-8 !text-[#53615a]">Dari panel dekoratif hingga komponen metal, setiap hasil lahir dari kombinasi file yang benar, material yang tepat, dan kontrol proses.</p></div><div class="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{featuredProjects.map((project, index) => <a href="/portfolio/" class="group overflow-hidden border border-black/10 bg-white"><div class="relative aspect-[4/3] overflow-hidden"><img src={project.image || '/images/placeholder.webp'} alt={project.title} loading="lazy" class="h-full w-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" width="800" height="600" /><span class="absolute left-4 top-4 border border-white/30 bg-black/45 px-2 py-1 font-mono text-[.58rem] uppercase tracking-[.12em] text-white">0{index + 1}</span></div><div class="flex items-start justify-between gap-3 p-5"><div><h3 class="font-heading text-xl font-bold !text-[var(--ink)]">{project.title}</h3><p class="mt-1 text-xs !text-[#53615a]">{project.client || 'Custom fabrication project'}</p></div><span class="text-xl !text-[var(--acid-deep)]">↗</span></div></a>)}</div></div></section>
 
-  </main>
+    <section id="interactive-quote" class="section-padding border-b border-[var(--line)]" data-reveal><div class="container-custom grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-start"><div><p class="eyebrow">05 / Start a project</p><h2 class="heading-lg mt-5">Berangkat dari<br /><span class="text-[var(--acid)]">file Anda.</span></h2><p class="mt-6 max-w-md text-base leading-8">Isi data minimum di bawah. Form ini akan menyusun pesan WhatsApp agar tim kami bisa membaca kebutuhan Anda lebih cepat.</p><div class="mt-9 flex flex-wrap gap-3 font-mono text-[.62rem] uppercase tracking-[.12em] text-[var(--muted)]"><span class="border border-[var(--line)] px-3 py-2">CAD / AI / PDF</span><span class="border border-[var(--line)] px-3 py-2">Konsultasi gratis</span><span class="border border-[var(--line)] px-3 py-2">Respon cepat</span></div></div><form id="quote-builder-form" class="line-panel grid gap-5 p-5 md:p-8"><div class="grid gap-5 md:grid-cols-2"><label class="grid gap-2 text-xs font-bold uppercase tracking-[.12em] text-[var(--muted)]">Nama<input name="name" required class="border border-[var(--line)] bg-[var(--ink)] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[var(--paper)] outline-none transition-colors focus:border-[var(--acid)]" placeholder="Nama Anda" /></label><label class="grid gap-2 text-xs font-bold uppercase tracking-[.12em] text-[var(--muted)]">Material<select name="material" class="border border-[var(--line)] bg-[var(--ink)] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[var(--paper)] outline-none focus:border-[var(--acid)]">{MATERIALS.slice(0, 7).map((material) => <option>{material.name}</option>)}</select></label></div><div class="grid gap-5 md:grid-cols-2"><label class="grid gap-2 text-xs font-bold uppercase tracking-[.12em] text-[var(--muted)]">Dimensi / jumlah<input name="scope" required class="border border-[var(--line)] bg-[var(--ink)] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[var(--paper)] outline-none focus:border-[var(--acid)]" placeholder="Contoh: 10 pcs, 60 × 120 cm" /></label><label class="grid gap-2 text-xs font-bold uppercase tracking-[.12em] text-[var(--muted)]">Layanan<select name="service" class="border border-[var(--line)] bg-[var(--ink)] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[var(--paper)] outline-none focus:border-[var(--acid)]">{featuredServices.map((service) => <option>{service.name}</option>)}</select></label></div><label class="grid gap-2 text-xs font-bold uppercase tracking-[.12em] text-[var(--muted)]">Catatan project<textarea name="notes" rows="4" class="resize-none border border-[var(--line)] bg-[var(--ink)] px-4 py-3 text-sm font-normal normal-case tracking-normal text-[var(--paper)] outline-none focus:border-[var(--acid)]" placeholder="Material, finishing, deadline, atau link referensi…"></textarea></label><button class="btn-primary w-full" type="submit">Susun pesan konsultasi <span aria-hidden="true">↗</span></button><p id="quote-status" class="hidden text-center font-mono text-xs text-[var(--acid)]">Pesan siap dikirim. WhatsApp akan terbuka di tab baru.</p></form></div></section>
 
+    <section class="section-padding border-b border-[var(--line)] bg-[var(--ink-soft)]" data-reveal><div class="container-custom"><div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr]"><div><p class="eyebrow">06 / Client signal</p><h2 class="heading-lg mt-5">Yang penting<br /><span class="text-[var(--acid)]">hasilnya nyambung.</span></h2></div><div class="grid gap-4 md:grid-cols-2">{TESTIMONIALS.slice(0, 4).map((testi) => <figure class="line-panel p-6"><div class="font-mono text-sm tracking-[.2em] text-[var(--acid)]">★★★★★</div><blockquote class="mt-5 text-base leading-7 text-[var(--paper)]">“{testi.content}”</blockquote><figcaption class="mt-6 border-t border-[var(--line)] pt-4 font-mono text-[.65rem] uppercase tracking-[.12em] text-[var(--muted)]">{testi.name} · {testi.company}</figcaption></figure>)}</div></div></div></section>
 
-    <!-- E. WORKFLOW SECTION -->
-    <section class="py-20 bg-background border-t border-[var(--line)]">
-      <div class="container-custom">
-        <div class="mb-12 text-center md:text-left">
-          <h2 class="font-heading font-bold text-text-main text-3xl md:text-4xl mb-4">Proses Kerja Kami</h2>
-          <p class="font-sans text-text-secondary text-lg">Langkah mudah untuk hasil yang sempurna</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
-          <div class="border border-[var(--line)] p-6 bg-surface">
-            <div class="text-accent font-mono font-bold text-lg mb-2">01 / DESAIN & FILE CAD</div>
-            <h3 class="font-heading font-bold text-text-main text-xl mb-4">CAD File & Design Review</h3>
-            <p class="font-sans text-text-secondary text-sm leading-relaxed">Pemeriksaan detail gambar CAD Anda oleh tim teknis</p>
-          </div>
-          <div class="border border-[var(--line)] p-6 bg-surface">
-            <div class="text-accent font-mono font-bold text-lg mb-2">02 / QUOTE & INVOICE</div>
-            <h3 class="font-heading font-bold text-text-main text-xl mb-4">Quotation & Invoice</h3>
-            <p class="font-sans text-text-secondary text-sm leading-relaxed">Penerbitan estimasi biaya presisi secara tertulis</p>
-          </div>
-          <div class="border border-[var(--line)] p-6 bg-surface">
-            <div class="text-accent font-mono font-bold text-lg mb-2">03 / FABRIKASI</div>
-            <h3 class="font-heading font-bold text-text-main text-xl mb-4">Laser/CNC Fabrication</h3>
-            <p class="font-sans text-text-secondary text-sm leading-relaxed">Proses pemotongan menggunakan mesin fiber laser/CNC Router toleransi 0.1mm</p>
-          </div>
-          <div class="border border-[var(--line)] p-6 bg-surface">
-            <div class="text-accent font-mono font-bold text-lg mb-2">04 / PENGIRIMAN</div>
-            <h3 class="font-heading font-bold text-text-main text-xl mb-4">Quality Control & Delivery</h3>
-            <p class="font-sans text-text-secondary text-sm leading-relaxed">Pemeriksaan cacat potong 100% dan pengiriman ke alamat tujuan</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="section-padding" data-reveal><div class="container-custom max-w-4xl"><div class="mb-12"><p class="eyebrow">07 / FAQ</p><h2 class="heading-lg mt-5">Pertanyaan sebelum<br /><span class="text-[var(--acid)]">mesin menyala.</span></h2></div><div class="border-t border-[var(--line)]">{FAQ.slice(0, 6).map((faq) => <details class="group border-b border-[var(--line)] py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-xl font-bold text-[var(--paper)]">{faq.question}<span class="text-2xl font-normal text-[var(--acid)] transition-transform group-open:rotate-45">＋</span></summary><p class="max-w-2xl pt-4 text-sm leading-7">{faq.answer}</p></details>)}</div></div></section>
 
-
-    <!-- F. QUOTE BUILDER SECTION -->
-    <section class="py-20 bg-background border-t border-[var(--line)]">
-      <div class="container-custom">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div class="space-y-6">
-            <div class="text-accent font-mono font-bold text-lg mb-2">03 / ESTIMASI BIAYA</div>
-            <h2 class="font-heading font-bold text-text-main text-3xl md:text-4xl">Kalkulator Quote</h2>
-            <p class="font-sans text-text-secondary text-lg leading-relaxed">
-              Dapatkan estimasi biaya pengerjaan laser cutting dan CNC router Anda. Pilih jenis material, ketebalan, dan jumlah untuk mengetahui estimasi harga awal. Tim kami akan menghubungi Anda untuk detail lebih lanjut.
-            </p>
-          </div>
-          <div>
-            <form id="quote-builder-form" class="border border-[var(--line)] p-8 bg-surface space-y-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label for="quote-material" class="block font-mono text-text-secondary text-sm mb-2">Material</label>
-                  <select id="quote-material" toolparamtitle="materialType" class="w-full bg-surface border text-base border-[var(--line)] text-text-main p-3 rounded-none focus:border-accent focus:ring-1 focus:ring-accent outline-none font-sans">
-                    <option value="Akrilik">Akrilik</option>
-                    <option value="ACP">ACP</option>
-                    <option value="GRC">GRC</option>
-                    <option value="MDF">MDF</option>
-                    <option value="PVC">PVC</option>
-                    <option value="Metal">Metal</option>
-                    <option value="Plywood">Plywood</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="quote-thickness" class="block font-mono text-text-secondary text-sm mb-2">Ketebalan</label>
-                  <input type="text" id="quote-thickness" toolparamtitle="materialThickness" placeholder="Contoh: 3mm, 5mm" class="w-full bg-surface border text-base border-[var(--line)] text-text-main p-3 rounded-none focus:border-accent focus:ring-1 focus:ring-accent outline-none font-sans" />
-                </div>
-              </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label for="quote-qty" class="block font-mono text-text-secondary text-sm mb-2">Jumlah (Pcs)</label>
-                  <input type="number" id="quote-qty" min="1" toolparamtitle="quantityPcs" class="w-full bg-surface border text-base border-[var(--line)] text-text-main p-3 rounded-none focus:border-accent focus:ring-1 focus:ring-accent outline-none font-sans" />
-                </div>
-                <div>
-                  <label for="quote-service" class="block font-mono text-text-secondary text-sm mb-2">Jenis Layanan</label>
-                  <select id="quote-service" toolparamtitle="serviceType" class="w-full bg-surface border text-base border-[var(--line)] text-text-main p-3 rounded-none focus:border-accent focus:ring-1 focus:ring-accent outline-none font-sans">
-                    <option value="Jasa Laser Fiber">Jasa Laser Fiber</option>
-                    <option value="Jasa Laser CO2">Jasa Laser CO2</option>
-                    <option value="Jasa CNC Router">Jasa CNC Router</option>
-                    <option value="Jasa Galvo Engraving">Jasa Galvo Engraving</option>
-                  </select>
-                </div>
-              </div>
-              <div>
-                <label for="quote-notes" class="block font-mono text-text-secondary text-sm mb-2">Catatan Tambahan</label>
-                <textarea id="quote-notes" toolparamtitle="additionalNotes" placeholder="Dimensi P x L dalam cm..." rows="4" class="w-full bg-surface border text-base border-[var(--line)] text-text-main p-3 rounded-none focus:border-accent focus:ring-1 focus:ring-accent outline-none font-sans resize-none"></textarea>
-              </div>
-              <button type="submit" class="btn-primary w-full py-4 text-base bg-accent text-background font-mono flex items-center justify-center gap-2 hover:bg-white hover:text-black transition-colors border-none rounded-none">
-                Selesaikan & Ajukan Quote via WhatsApp
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- G. TESTIMONIALS SECTION -->
-    <section class="py-20 bg-background border-t border-[var(--line)]">
-      <div class="container-custom">
-        <div class="mb-12 text-center">
-          <h2 class="font-heading font-bold text-text-main text-3xl md:text-4xl mb-4">Testimoni Klien</h2>
-          <p class="font-sans text-text-secondary text-lg">Kepercayaan yang telah kami bangun</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {TESTIMONIALS.map((testi) => (
-            <div class="bg-surface border border-[var(--line)] p-8">
-              <div class="flex text-accent mb-4">
-                {Array.from({ length: testi.rating }).map(() => (
-                  <span>★</span>
-                ))}
-              </div>
-              <p class="font-sans italic text-text-secondary text-sm mb-6 leading-relaxed">"{testi.text}"</p>
-              <div class="flex items-center gap-4">
-                <img src={testi.image} alt={testi.name} width={48} height={48} class="w-12 h-12 rounded-full object-cover border border-[var(--line)]" />
-                <div>
-                  <h4 class="font-heading font-bold text-text-main text-sm">{testi.name}</h4>
-                  <p class="font-sans text-text-secondary text-xs">{testi.role}, {testi.company}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-
-    <!-- H. FAQ SECTION -->
-    <section class="py-20 bg-background border-t border-[var(--line)]">
-      <div class="container-custom max-w-4xl">
-        <div class="mb-12 text-center">
-          <h2 class="font-heading font-bold text-text-main text-3xl md:text-4xl mb-4">Pertanyaan Umum</h2>
-          <p class="font-sans text-text-secondary text-lg">Informasi yang sering ditanyakan</p>
-        </div>
-        <div class="border-t border-[var(--line)] w-full">
-          {FAQ.map((faq) => (
-            <details class="group border-b border-[var(--line)]">
-              <summary class="font-heading font-bold text-text-main text-lg py-6 flex justify-between items-center cursor-pointer list-none">
-                {faq.question}
-                <span class="text-accent group-open:rotate-45 transition-transform duration-300">+</span>
-              </summary>
-              <div class="py-6 font-sans text-text-secondary text-sm leading-relaxed pt-0">
-                {faq.answer}
-              </div>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-
-
-    <!-- I. CTA SECTION -->
-    <section class="py-24 bg-accent">
-      <div class="container-custom text-center">
-        <h2 class="font-heading font-bold text-[#111311] text-4xl md:text-5xl mb-6">Siap mewujudkan proyek Anda?</h2>
-        <p class="font-sans text-[#111311]/80 text-xl mb-10 max-w-2xl mx-auto">Konsultasikan kebutuhan desain dan fabrikasi Anda dengan tim teknis kami hari ini.</p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <a href={`https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}`} class="inline-flex items-center justify-center bg-[#111311] text-text-main font-mono px-8 py-4 hover:bg-white hover:text-black transition-colors" data-wa-label="CTA Footer Primary">
-            Hubungi via WhatsApp
-          </a>
-          <a href="/contact/" class="inline-flex items-center justify-center border-2 border-[#111311] text-[#111311] font-mono px-8 py-4 hover:bg-[#111311] hover:text-white transition-colors">
-            Hubungi Kami
-          </a>
-        </div>
-      </div>
-    </section>
-
-  <!-- MODAL ELEMENT -->
-  <div id="portfolio-modal" class="fixed inset-0 hidden z-50 bg-background/95 backdrop-blur-md overflow-y-auto flex items-center justify-center p-4">
-    <div class="bg-surface border border-[var(--line)] w-full max-w-4xl flex flex-col md:flex-row relative">
-      <button id="close-modal" class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-background border border-[var(--line)] text-text-secondary hover:text-text-main transition-colors " aria-label="Close Modal">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-      
-      <div class="w-full md:w-1/2 aspect-square md:aspect-auto border-b md:border-b-0 md:border-r border-[var(--line)] relative bg-background">
-        <img id="modal-main-image" src="" alt="Project Image" class="absolute inset-0 w-full h-full object-cover" />
-      </div>
-      
-      <div class="w-full md:w-1/2 p-8 flex flex-col justify-center">
-        <p class="eyebrow text-accent mb-4" id="modal-client">KLIENT</p>
-        <h2 id="modal-title" class="font-heading font-bold text-text-main text-3xl mb-8 leading-tight">NAMA PROYEK</h2>
-        
-        <div class="space-y-6">
-          <div>
-            <p class="font-mono text-xs text-text-secondary mb-1">MATERIAL & TEKNIK</p>
-            <p id="modal-material" class="font-sans text-text-main">MATERIAL</p>
-          </div>
-          <div>
-            <p class="font-mono text-xs text-text-secondary mb-1">DESKRIPSI PROSES</p>
-            <p id="modal-description" class="font-sans text-text-main text-sm leading-relaxed">DESKRIPSI</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <section class="relative overflow-hidden border-t border-[var(--line)] bg-[var(--acid)] py-16 text-[var(--ink)] md:py-24"><div class="container-custom relative"><div class="grid gap-8 md:grid-cols-[1fr_auto] md:items-end"><h2 class="heading-lg max-w-3xl !text-[var(--ink)]">Ide besar layak dibuat dengan presisi.</h2><a href={whatsapp} target="_blank" rel="noopener noreferrer" class="btn-secondary border-[var(--ink)] !text-[var(--ink)] hover:bg-[var(--ink)] hover:!text-[var(--acid)]" data-wa-label="Bottom CTA">Konsultasi sekarang ↗</a></div></div></section>
   </div>
-
   <Footer slot="footer" />
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const quoteForm = document.getElementById('quote-builder-form');
-      if (quoteForm) {
-        quoteForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const material = document.getElementById('quote-material').value;
-          const thickness = document.getElementById('quote-thickness').value;
-          const qty = document.getElementById('quote-qty').value;
-          const service = document.getElementById('quote-service').value;
-          const notes = document.getElementById('quote-notes').value;
-          
-          const text = `Halo, saya ingin meminta estimasi biaya.
-Layanan: ${service}
-Material: ${material}
-Ketebalan: ${thickness}
-Jumlah: ${qty} pcs
-Catatan: ${notes}`;
-
-          window.location.href = `https://api.whatsapp.com/send?phone=6285165693179&text=${encodeURIComponent(text)}`;
-        });
-      }
-    });
-  </script>
-
 </BaseLayout>
 
-<script is:inline define:vars={{ PORTFOLIO_PROJECTS }}>
-  document.addEventListener('DOMContentLoaded', () => {
-    const detailBtns = document.querySelectorAll('.view-detail-btn');
-    const modal = document.getElementById('portfolio-modal');
-    const closeBtn = document.getElementById('close-modal');
-    
-    const modalImg = document.getElementById('modal-main-image');
-    const modalTitle = document.getElementById('modal-title');
-    const modalClient = document.getElementById('modal-client');
-    const modalMaterial = document.getElementById('modal-material');
-    const modalDesc = document.getElementById('modal-description');
-
-    const closeModal = () => {
-      modal.classList.add('hidden');
-      document.body.style.overflow = '';
-    };
-
-    detailBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = parseInt(btn.getAttribute('data-project-id'));
-        const project = PORTFOLIO_PROJECTS.find(p => p.id === id);
-        
-        if (project) {
-          modalImg.src = project.image || '/images/placeholder.webp';
-          modalImg.alt = project.title;
-          modalTitle.textContent = project.title;
-          modalClient.textContent = project.client;
-          modalMaterial.textContent = project.material + ' / ' + project.technique;
-          modalDesc.textContent = project.description;
-          
-          modal.classList.remove('hidden');
-          document.body.style.overflow = 'hidden'; // Prevent scrolling
-        }
-      });
-    });
-
-    closeBtn.addEventListener('click', closeModal);
-    
-    // Close on background click
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
-
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-        closeModal();
-      }
-    });
-  });
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => { const form = document.querySelector('#quote-builder-form'); const status = document.querySelector('#quote-status'); form?.addEventListener('submit', (event) => { event.preventDefault(); const data = new FormData(form); const message = ['Halo Jasa Cutting Laser, saya ingin konsultasi project.', `Nama: ${data.get('name')}`, `Material: ${data.get('material')}`, `Dimensi/jumlah: ${data.get('scope')}`, `Layanan: ${data.get('service')}`, `Catatan: ${data.get('notes') || '-'}`].join('\n'); if (status) status.classList.remove('hidden'); window.open(`https://api.whatsapp.com/send?phone=6285165693179&text=${encodeURIComponent(message)}`, '_blank', 'noopener'); }); });
 </script>
+
+<style is:global>
+  @keyframes marquee-track { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
+</style>
