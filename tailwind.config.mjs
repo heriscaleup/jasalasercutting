@@ -7,19 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        // High-end minimalist color palette
-        'silver-light': '#FAFAFA', // Pure premium white/light grey
-        'silver-mid':   '#F0F1F3', // Soft contrast lines/backgrounds
-        'silver-dark':  '#D4D6D9', // Muted borders/icons
-        'charcoal':     '#0A0B0D', // Rich, pure high-end black
-        'graphite':     '#3A3C40', // Refined, highly legible body color
-        'laser-green':  '#10B981', // Vibrant emerald/laser-green
-        'laser-green-hover': '#059669', // Deep emerald hover state
+        background: '#0B0D0C',
+        surface: '#121514',
+        'text-main': '#F3F0E8',
+        'text-secondary': '#A7ADA8',
+        accent: '#10B981',
+        paper: '#E8E4D9',
       },
       fontFamily: {
-        // Space Grotesk / Plus Jakarta Sans are the gold standards for Awwwards sites
-        sans:    ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
         heading: ['"Space Grotesk"', 'Poppins', 'system-ui', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'monospace'],
       },
       spacing: {
         '18':  '4.5rem',

@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../components/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -52,7 +53,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
     <div class="relative container-custom">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <h1 class="text-4xl lg:text-5xl font-bold font-heading mb-6">
+          <h1 class="text-text-main lg:text-5xl font-bold font-heading mb-6">
             Jasa Laser Cutting {material.name}
           </h1>
           <p class="text-xl mb-8 text-white/80">
@@ -69,65 +70,60 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
             </a>
             <a 
               href="/contact/" 
-              class="border-2 border-white text-white hover:bg-white hover:text-laser-green px-8 py-3 rounded-lg font-bold font-sans transition-colors"
+              class="border-2 border-white text-white hover:bg-surface border border-[var(--line)] hover:text-accent px-8 py-3 rounded-lg font-bold font-sans transition-colors"
             >
               Request Quote
             </a>
           </div>
         </div>
         <div class="relative">
-          <img 
-            src={material.image} 
-            alt={`Sample ${material.name}`}
-            class="w-full h-96 object-cover rounded-lg shadow-2xl"
-            loading="eager"
-          />
+          <img src={material.image} alt={`Sample ${material.name}`} class="w-full h-96 object-cover rounded-lg" loading="eager" />
         </div>
       </div>
     </div>
   </section>
 
   <!-- Material Characteristics -->
-  <section class="py-16 bg-[#FAFAFA]">
+  <section class="py-16 bg-background">
     <div class="container-custom">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold font-heading text-charcoal mb-4">
+        <h2 class="text-text-main font-bold font-heading  mb-4">
           Karakteristik {material.name}
         </h2>
-        <p class="text-xl text-graphite/80 max-w-3xl mx-auto">
+        <p class="text-xl text-text-secondary max-w-3xl mx-auto">
           Material transparan premium dengan kejernihan tinggi dan kemudahan pengolahan
         </p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="bg-surface border border-[var(--line)] p-6 rounded-lg ">
           <div class="w-12 h-12 bg-laser-green/10 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-laser-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold font-sans mb-2">Transparansi Tinggi</h3>
-          <p class="text-graphite/80">Kejernihan optik superior hingga 92% untuk aplikasi display premium</p>
+          <h3 class="text-text-main font-bold font-sans mb-2 font-heading">Transparansi Tinggi</h3>
+          <p class="text-text-secondary">Kejernihan optik superior hingga 92% untuk aplikasi display premium</p>
         </div>
 
-        <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="bg-surface border border-[var(--line)] p-6 rounded-lg ">
           <div class="w-12 h-12 bg-laser-green/10 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-laser-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold font-sans mb-2">Mudah Dibentuk</h3>
-          <p class="text-graphite/80">Fleksibilitas tinggi untuk berbagai bentuk dan desain kompleks</p>
+          <h3 class="text-text-main font-bold font-sans mb-2 font-heading">Mudah Dibentuk</h3>
+          <p class="text-text-secondary">Fleksibilitas tinggi untuk berbagai bentuk dan desain kompleks</p>
         </div>
 
-        <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="bg-surface border border-[var(--line)] p-6 rounded-lg ">
           <div class="w-12 h-12 bg-laser-green/10 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-laser-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold font-sans mb-2">Tahan Lama</h3>
-          <p class="text-graphite/80">Ketahanan UV dan tidak mudah menguning untuk penggunaan jangka panjang</p>
+          <h3 class="text-text-main font-bold font-sans mb-2 font-heading">Tahan Lama</h3>
+          <p class="text-text-secondary">Ketahanan UV dan tidak mudah menguning untuk penggunaan jangka panjang</p>
         </div>
       </div>
     </div>
@@ -138,39 +134,39 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
     <div class="container-custom">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 class="text-3xl font-bold font-heading text-charcoal mb-6">
+          <h2 class="text-text-main font-bold font-heading  mb-6">
             Spesifikasi Teknis
           </h2>
           <div class="space-y-4">
-            <div class="flex justify-between py-3 border-b border-silver-mid/50">
-              <span class="font-medium text-charcoal">Ketebalan</span>
-              <span class="text-graphite/80">{material.thickness}</span>
+            <div class="flex justify-between py-3 border-b border-[var(--line)] font-mono">
+              <span class="font-medium text-text-main">Ketebalan</span>
+              <span class="text-text-secondary">{material.thickness}</span>
             </div>
-            <div class="flex justify-between py-3 border-b border-silver-mid/50">
-              <span class="font-medium text-charcoal">Ukuran Standard</span>
-              <span class="text-graphite/80">1220 x 2440 mm</span>
+            <div class="flex justify-between py-3 border-b border-[var(--line)] font-mono">
+              <span class="font-medium text-text-main">Ukuran Standard</span>
+              <span class="text-text-secondary">1220 x 2440 mm</span>
             </div>
-            <div class="flex justify-between py-3 border-b border-silver-mid/50">
-              <span class="font-medium text-charcoal">Toleransi Cutting</span>
-              <span class="text-graphite/80">±0.02 mm</span>
+            <div class="flex justify-between py-3 border-b border-[var(--line)] font-mono">
+              <span class="font-medium text-text-main">Toleransi Cutting</span>
+              <span class="text-text-secondary">±0.02 mm</span>
             </div>
-            <div class="flex justify-between py-3 border-b border-silver-mid/50">
-              <span class="font-medium text-charcoal">Finishing</span>
-              <span class="text-graphite/80">Polished Edge</span>
+            <div class="flex justify-between py-3 border-b border-[var(--line)] font-mono">
+              <span class="font-medium text-text-main">Finishing</span>
+              <span class="text-text-secondary">Polished Edge</span>
             </div>
-            <div class="flex justify-between py-3 border-b border-silver-mid/50">
-              <span class="font-medium text-charcoal">Warna Tersedia</span>
-              <span class="text-graphite/80">Clear, Opal, Warna Custom</span>
+            <div class="flex justify-between py-3 border-b border-[var(--line)] font-mono">
+              <span class="font-medium text-text-main">Warna Tersedia</span>
+              <span class="text-text-secondary">Clear, Opal, Warna Custom</span>
             </div>
           </div>
         </div>
-        <div class="bg-[#FAFAFA] p-8 rounded-lg">
-          <h3 class="text-2xl font-bold font-heading text-charcoal mb-6">Contoh Aplikasi</h3>
+        <div class="bg-background p-8 rounded-lg">
+          <h3 class="text-text-main font-bold font-heading  mb-6">Contoh Aplikasi</h3>
           <div class="grid grid-cols-2 gap-4">
-            <img src="/images/akrilik (1).webp" alt="Contoh Aplikasi 1" class="w-full h-40 object-cover rounded-lg shadow-md">
-            <img src="/images/akrilik (2).webp" alt="Contoh Aplikasi 2" class="w-full h-40 object-cover rounded-lg shadow-md">
-            <img src="/images/akrilik (3).webp" alt="Contoh Aplikasi 3" class="w-full h-40 object-cover rounded-lg shadow-md">
-            <img src="/images/akrilik (4).webp" alt="Contoh Aplikasi 4" class="w-full h-40 object-cover rounded-lg shadow-md">
+            <Image src={"/images/akrilik (1).webp"} alt="Contoh Aplikasi 1" class="w-full h-40 object-cover rounded-lg " widths={[320, 640, 1024, 1920]} sizes="(max-width: 1024px) 100vw, 1024px" width={800} height={500}  />
+            <Image src={"/images/akrilik (2).webp"} alt="Contoh Aplikasi 2" class="w-full h-40 object-cover rounded-lg " widths={[320, 640, 1024, 1920]} sizes="(max-width: 1024px) 100vw, 1024px" width={800} height={500}  />
+            <Image src={"/images/akrilik (3).webp"} alt="Contoh Aplikasi 3" class="w-full h-40 object-cover rounded-lg " widths={[320, 640, 1024, 1920]} sizes="(max-width: 1024px) 100vw, 1024px" width={800} height={500}  />
+            <Image src={"/images/akrilik (4).webp"} alt="Contoh Aplikasi 4" class="w-full h-40 object-cover rounded-lg " widths={[320, 640, 1024, 1920]} sizes="(max-width: 1024px) 100vw, 1024px" width={800} height={500}  />
           </div>
         </div>
       </div>
@@ -178,24 +174,24 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
   </section>
 
   <!-- Recommended Service -->
-  <section class="py-16 bg-[#FAFAFA]">
+  <section class="py-16 bg-background">
     <div class="container-custom">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold font-heading text-charcoal mb-4">
+        <h2 class="text-text-main font-bold font-heading  mb-4">
           Mesin Rekomendasi untuk {material.name}
         </h2>
-        <p class="text-xl text-graphite/80">
+        <p class="text-xl text-text-secondary">
           Teknologi laser CO2 untuk cutting dan engraving acrylic berkualitas tinggi
         </p>
       </div>
 
-      <div class="bg-white rounded-lg shadow-lg p-8">
+      <div class="bg-surface border border-[var(--line)] rounded-lg  p-8">
         <div class="grid lg:grid-cols-2 gap-8 items-center">
           <div>
-            <h3 class="text-2xl font-bold font-heading text-charcoal mb-4">
+            <h3 class="text-text-main font-bold font-heading  mb-4">
               {recommendedService.name}
             </h3>
-            <p class="text-graphite/80 mb-6">
+            <p class="text-text-secondary mb-6">
               {recommendedService.description}
             </p>
             <div class="space-y-3">
@@ -204,21 +200,16 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
                   <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
-                  <span class="text-graphite">{feature}</span>
+                  <span class="text-text-secondary">{feature}</span>
                 </div>
               ))}
             </div>
             <div class="mt-6">
-              <span class="text-2xl font-bold font-heading text-laser-green">Hubungi Kami</span>
+              <span class="text-2xl font-bold font-heading text-accent">Hubungi Kami</span>
             </div>
           </div>
           <div>
-            <img 
-              src={recommendedService.image} 
-              alt={recommendedService.name}
-              class="w-full h-64 object-cover rounded-lg"
-              loading="lazy"
-            />
+            <img src={recommendedService.image} alt={recommendedService.name} class="w-full h-64 object-cover rounded-lg" loading="lazy" />
           </div>
         </div>
       </div>
@@ -228,7 +219,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
   <!-- CTA Section -->
   <section class="py-16 bg-laser-green text-white">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold font-heading mb-4">
+      <h2 class="text-text-main font-bold font-heading mb-4">
         Siap Memulai Project {material.name} Anda?
       </h2>
       <p class="text-xl mb-8 text-white/80">
@@ -248,7 +239,7 @@ const jsonLd = [serviceSchema, breadcrumbSchema].filter(Boolean);
         </a>
         <a 
           href="/contact/" 
-          class="border-2 border-white text-white hover:bg-white hover:text-laser-green px-8 py-3 rounded-lg font-bold font-sans transition-colors"
+          class="border-2 border-white text-white hover:bg-surface border border-[var(--line)] hover:text-accent px-8 py-3 rounded-lg font-bold font-sans transition-colors"
         >
           Request Quote Detail
         </a>
