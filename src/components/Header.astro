@@ -45,12 +45,12 @@ const filteredNavigation = NAVIGATION.filter(item => item.name !== "Kontak").map
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </button>
-                <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-white/95 backdrop-blur-md rounded-2xl shadow-premium border border-silver-mid/40 opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 transform translate-y-2 group-hover/nav:translate-y-0 z-50" data-desktop-menu={index}>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-surface/95 backdrop-blur-md rounded-2xl shadow-premium border border-[var(--line)] opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 transform translate-y-2 group-hover/nav:translate-y-0 z-50" data-desktop-menu={index}>
                   <div class="p-3 space-y-1">
                     {item.submenu.map((subitem) => (
                       <a
                         href={subitem.href}
-                        class="flex items-center justify-between px-4 py-3 rounded-xl text-charcoal/80 hover:text-laser-green hover:bg-silver-light text-sm font-semibold transition-all duration-200"
+                        class="flex items-center justify-between px-4 py-3 rounded-xl text-text-main hover:text-laser-green hover:bg-background text-sm font-semibold transition-all duration-200"
                       >
                         <span>{subitem.name}</span>
                         <svg class="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-laser-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,7 +64,7 @@ const filteredNavigation = NAVIGATION.filter(item => item.name !== "Kontak").map
             ) : (
               <a
                 href={item.href}
-                class="text-charcoal/80 hover:text-laser-green font-semibold py-2 transition-colors duration-300 text-sm tracking-wide active-link-underline"
+                class="text-text-main hover:text-laser-green font-semibold py-2 transition-colors duration-300 text-sm tracking-wide active-link-underline"
                 class:list={[item.active && 'text-laser-green active']}
               >
                 {item.name}
@@ -103,24 +103,24 @@ const filteredNavigation = NAVIGATION.filter(item => item.name !== "Kontak").map
 
   <!-- Fullscreen Interactive Overlay Mobile Menu -->
   <div
-    class="lg:hidden fixed inset-0 bg-white/98 backdrop-blur-lg z-40 transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-y-auto flex flex-col pt-32 pb-10"
+    class="lg:hidden fixed inset-0 bg-background/98 backdrop-blur-lg z-40 transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-y-auto flex flex-col pt-32 pb-10"
     id="mobile-menu"
   >
     <div class="container-custom flex-1 flex flex-col justify-between">
       <!-- Mobile Navigation Links -->
       <nav class="flex flex-col space-y-4" aria-label="Mobile navigation">
         {filteredNavigation.map((item, index) => (
-          <div class="border-b border-silver-mid/40 pb-3">
+          <div class="border-b border-[var(--line)] pb-3">
             {item.submenu ? (
               <div>
                 <button
-                  class="flex items-center justify-between w-full text-left text-2xl font-heading font-bold text-charcoal py-2 hover:text-laser-green transition-colors"
+                  class="flex items-center justify-between w-full text-left text-2xl font-heading font-bold text-text-main py-2 hover:text-laser-green transition-colors"
                   data-submenu-index={index}
                   aria-expanded="false"
                 >
                   <span>{item.name}</span>
                   <svg 
-                    class="w-6 h-6 transition-transform duration-300"
+                    class="w-6 h-6 transition-transform duration-300 text-text-secondary"
                     id={`submenu-icon-${index}`}
                     fill="none" 
                     stroke="currentColor" 
@@ -130,14 +130,14 @@ const filteredNavigation = NAVIGATION.filter(item => item.name !== "Kontak").map
                   </svg>
                 </button>
                 <div 
-                  class="hidden bg-silver-mid/20 rounded-2xl mt-2 overflow-hidden transition-all duration-300"
+                  class="hidden bg-surface rounded-2xl mt-2 overflow-hidden transition-all duration-300 border border-[var(--line)]"
                   id={`submenu-${index}`}
                 >
                   <div class="p-3 space-y-1">
                     {item.submenu.map((subitem) => (
                       <a
                         href={subitem.href}
-                        class="block text-charcoal/80 hover:text-laser-green py-3 px-4 rounded-xl hover:bg-white text-base font-semibold transition-all duration-200"
+                        class="block text-text-main hover:text-laser-green py-3 px-4 rounded-xl hover:bg-background text-base font-semibold transition-all duration-200"
                       >
                         {subitem.name}
                       </a>
@@ -148,7 +148,7 @@ const filteredNavigation = NAVIGATION.filter(item => item.name !== "Kontak").map
             ) : (
               <a
                 href={item.href}
-                class="block text-2xl font-heading font-bold text-charcoal py-2 hover:text-laser-green transition-colors"
+                class="block text-2xl font-heading font-bold text-text-main py-2 hover:text-laser-green transition-colors"
                 class:list={[item.active && 'text-laser-green']}
               >
                 {item.name}
