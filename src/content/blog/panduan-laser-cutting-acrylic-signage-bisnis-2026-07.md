@@ -2,11 +2,15 @@
 title: "Panduan Laser Cutting Acrylic untuk Signage Bisnis"
 description: "Panduan lengkap laser cutting acrylic untuk signage bisnis: material, desain, proses, dan tips memilih jasa yang tepat agar hasil maksimal."
 pubDate: 2026-07-15T07:00:00.000Z
+updatedDate: 2026-07-15T07:00:00.000Z
 category: "Acrylic"
 tags: ["laser cutting acrylic", "signage bisnis", "jasa laser cutting"]
 image: "/images/blog/panduan-laser-cutting-acrylic-signage-bisnis-2026-07.jpg"
+imageAlt: "Panduan lengkap dan proses produksi untuk laser cutting acrylic signage bisnis"
 readTime: "7 min read"
 author: "Tim Jasalasercutting"
+primaryKeyword: "laser cutting acrylic"
+keyTakeaways: ["Laser cutting acrylic untuk signage bisnis memberikan hasil presisi, rapi, dan premium", "Memilih ketebalan acrylic yang sesuai sangat penting", "Pahami jenis laser cutting CO2 dan keunggulannya"]
 draft: false
 ---
 
