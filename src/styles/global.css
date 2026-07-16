@@ -45,6 +45,8 @@
   button, input, select, textarea { font: inherit; }
   button, a { -webkit-tap-highlight-color: transparent; }
   img { display: block; max-width: 100%; }
+  picture { display: block; max-width: 100%; }
+  :where(h1, h2, h3, h4, h5, h6, p, a, button, label, span) { overflow-wrap: anywhere; }
 
   h1, h2, h3, h4, h5, h6 {
     margin: 0;
@@ -138,6 +140,9 @@
 
   .skip-link { position: fixed; top: -5rem; left: 1rem; z-index: 100; padding: .75rem 1rem; background: var(--acid); color: var(--ink); }
   .skip-link:focus { top: 1rem; }
+
+  .mobile-safe { min-width: 0; max-width: 100%; }
+  .mobile-scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; -webkit-overflow-scrolling: touch; }
 }
 
 /* Compatibility layer for the existing page templates. */
@@ -168,7 +173,28 @@ body.cursor-hover .cursor-ring { width: 4rem; height: 4rem; background: rgba(184
 @media (max-width: 640px) {
   .container-custom { width: min(100% - 1.5rem, 80rem); }
   .cursor-dot, .cursor-ring { display: none; }
-  .section-padding { padding-block: 4rem; }
+  .section-padding { padding-block: clamp(3.25rem, 12vw, 4rem); }
+  .heading-xl { font-size: clamp(2.75rem, 14vw, 4.5rem); line-height: .9; letter-spacing: -.07em; }
+  .heading-lg { font-size: clamp(2.15rem, 11vw, 3.75rem); line-height: .94; letter-spacing: -.065em; }
+  .heading-md { font-size: clamp(1.6rem, 8vw, 2.35rem); line-height: 1; }
+  .eyebrow { font-size: .6rem; letter-spacing: .13em; }
+  .btn-primary, .btn-secondary, .btn-accent { width: 100%; min-height: 3.5rem; padding-inline: 1rem; text-align: center; }
+  main .text-xl { font-size: 1rem; line-height: 1.65; }
+  main .h-96 { height: clamp(14rem, 60vw, 20rem); }
+  main .p-8 { padding: 1.25rem; }
+  main .px-8 { padding-inline: 1.25rem; }
+  main .py-20 { padding-block: 4rem; }
+  main .gap-12 { gap: 2rem; }
+  main input, main select, main textarea { min-width: 0; max-width: 100%; }
+  main pre, main code { max-width: 100%; overflow-x: auto; }
+  main table { display: block; max-width: 100%; overflow-x: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  #mobile-menu { padding-inline: .75rem; }
+  #mobile-menu nav a, #mobile-menu nav button { min-height: 3.25rem; }
+  .material-page .container-custom { width: min(100% - 1.5rem, 80rem); }
+  .material-page .section-padding { padding-block: 3.75rem; }
+  .material-page .min-h-56 { min-height: 12rem; }
+  .material-page .grid-cols-\[minmax\(8rem\,\.75fr\)_1\.25fr\] { grid-template-columns: minmax(6.5rem, .8fr) minmax(0, 1.2fr); }
 }
 
 @media (prefers-reduced-motion: reduce) {

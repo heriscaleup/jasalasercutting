@@ -2,7 +2,7 @@
 import { NAVIGATION, SITE_CONFIG } from '../utils/constants.js';
 
 const currentPath = new URL(Astro.request.url).pathname.replace(/\/$/, '') || '/';
-const navigation = NAVIGATION.filter((item) => item.name !== 'Kontak').map((item) => ({
+const navigation = NAVIGATION.map((item) => ({
   ...item,
   active: item.href === '/' ? currentPath === '/' : item.href.startsWith('#') ? false : currentPath.startsWith(item.href.replace(/\/$/, ''))
 }));
@@ -21,7 +21,7 @@ const whatsapp = `https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&te
       </a>
 
       <nav class="hidden items-center gap-7 lg:flex" aria-label="Navigasi utama">
-        {navigation.map((item, index) => item.submenu ? (
+        {navigation.map((item) => item.submenu ? (
           <div class="group/nav relative">
             <button class="flex items-center gap-1 py-3 text-xs font-bold uppercase tracking-[.12em] text-[var(--muted)] transition-colors hover:text-[var(--acid)]" aria-haspopup="true">
               {item.name}
