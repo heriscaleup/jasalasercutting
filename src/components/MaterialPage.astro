@@ -1,0 +1,219 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import { MATERIALS, SERVICES, SITE_CONFIG } from '../utils/constants.js';
+import { generateMetaTags, generateServiceSchema, generateBreadcrumbSchema } from '../utils/seo.ts';
+
+export interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const material = MATERIALS.find((item) => item.id === id);
+
+if (!material) throw new Error(`Material ${id} not found`);
+
+const materialCopy: Record<string, any> = {
+  acrylic: {
+    eyebrow: 'Material / Optical surface',
+    heroTitle: 'Cahaya, warna, dan bentuk yang',
+    heroAccent: 'terlihat bersih.',
+    heroLead: 'Acrylic memberi ruang untuk membuat display, signage, partisi, dan prototype yang terasa ringan tetapi tetap punya presence. Kami bantu menerjemahkan bentuk visual menjadi file yang siap dipotong dan dirakit.',
+    positioning: 'Untuk project yang harus menarik perhatian dari jarak dekat.',
+    intro: 'Pilih acrylic ketika kejernihan, pantulan cahaya, dan edge yang rapi adalah bagian dari desain—bukan detail belakangan.',
+    characteristics: [
+      ['01', 'Optical clarity', 'Clear acrylic dapat meneruskan cahaya dengan tampilan yang bersih; opal dan warna memberi kontrol lebih terhadap cahaya, privasi, dan mood.'],
+      ['02', 'Cut edge', 'Laser CO2 dapat menghasilkan edge yang terlihat polished pada banyak grade acrylic. Detail kecil tetap perlu diuji pada ketebalan dan warna yang dipilih.'],
+      ['03', 'Built for the brief', 'Untuk outdoor, pilih grade dan finishing yang memang ditujukan untuk paparan UV. Jangan menyamakan semua lembar acrylic.']
+    ],
+    bestFor: ['Signage premium dan logo 3D', 'Display retail dan showcase', 'Partisi dekoratif dan privacy screen', 'Prototype casing dan komponen visual'],
+    watchouts: ['Film pelindung sebaiknya tetap terpasang sampai proses finishing selesai.', 'Clear, opal, mirror, dan warna solid punya karakter cutting yang berbeda.', 'Untuk outdoor, validasi grade UV, metode mounting, dan ekspansi material.'],
+    processNote: 'Laser CO2',
+    processDescription: 'Cocok untuk cutting dan engraving acrylic dengan edge yang bersih serta detail visual yang tajam.',
+    specs: [['Range konsultasi', '1–50 mm'], ['Ukuran lembar umum', '1220 × 2440 mm'], ['Finishing', 'Clear edge / bonding / polish'], ['Pilihan visual', 'Clear, opal, warna, mirror'], ['Catatan outdoor', 'Gunakan grade UV yang sesuai']],
+    gallery: ['/images/akrilik (1).webp', '/images/akrilik (2).webp', '/images/akrilik (3).webp', '/images/akrilik (4).webp']
+  },
+  metal: {
+    eyebrow: 'Material / Structural metal',
+    heroTitle: 'Komponen metal yang',
+    heroAccent: 'siap bekerja.',
+    heroLead: 'Metal bukan hanya soal memotong plat. Grade, ketebalan, arah grain, toleransi, dan proses setelah cutting menentukan apakah komponen akan pas, kuat, dan enak dilihat.',
+    positioning: 'Untuk project yang menuntut kekuatan dan pengulangan yang konsisten.',
+    intro: 'Pilih metal ketika fungsi, ketahanan, dan presisi sambungan lebih penting daripada sekadar bentuk akhir.',
+    characteristics: [
+      ['01', 'Grade matters', 'Stainless, carbon steel, aluminium, dan brass punya respons panas, kekakuan, serta finishing yang berbeda.'],
+      ['02', 'Clean separation', 'Laser fiber menjaga jalur potong tetap terkontrol untuk komponen, bracket, panel, dan part presisi.'],
+      ['03', 'Ready for next step', 'Cutting adalah awal: deburr, bending, welding, coating, dan marking perlu dipikirkan sejak file dibuat.']
+    ],
+    bestFor: ['Bracket, plate, dan komponen mesin', 'Panel arsitektur dan interior', 'Signage metal dan huruf custom', 'Part otomotif dan enclosure elektronik'],
+    watchouts: ['Cantumkan grade dan ketebalan di brief, bukan hanya nama warna atau finish.', 'Sisakan allowance untuk bending, welding, coating, dan toleransi assembly.', 'Sisi terlihat perlu disepakati agar arah grain dan kualitas edge konsisten.'],
+    processNote: 'Laser Fiber',
+    processDescription: 'Jalur produksi untuk stainless, carbon steel, aluminium, dan metal lain dengan detail tajam serta heat affected zone yang terkontrol.',
+    specs: [['Range konsultasi', '0.5–20 mm'], ['Grade umum', 'SS304 / SS316 / SS201 / mild steel / aluminium'], ['Toleransi kerja', 'hingga ±0.05 mm*'], ['Finishing lanjutan', 'Deburr / bending / welding / coating'], ['Catatan', '*Tergantung geometri, material, dan proses']],
+    gallery: ['/images/stainlesssteel (1).webp', '/images/stainlesssteel (2).webp', '/images/stainlesssteel (3).webp', '/images/stainlesssteel (4).webp']
+  },
+  mdf: {
+    eyebrow: 'Material / Interior board',
+    heroTitle: 'Permukaan halus untuk',
+    heroAccent: 'ide yang detail.',
+    heroLead: 'MDF bekerja baik untuk pola dekoratif, furniture, panel, dan prototype yang membutuhkan permukaan seragam. Dengan file yang tepat, bentuk kecil dan repetisi dapat diproduksi lebih konsisten.',
+    positioning: 'Untuk interior, furniture, dan prototype yang mengutamakan finishing.',
+    intro: 'Pilih MDF ketika kamu butuh board yang stabil, mudah dicat, dan mampu membawa pola detail tanpa serat kayu yang mengganggu.',
+    characteristics: [
+      ['01', 'Uniform surface', 'Serat yang homogen membuat permukaan mudah diprimer, dicat, dilaminasi, atau diberi veneer.'],
+      ['02', 'Detail-friendly', 'Laser CO2 cocok untuk pola dekoratif; CNC router memberi opsi edge dan kedalaman yang lebih beragam.'],
+      ['03', 'Interior first', 'MDF bukan material outdoor tanpa perlindungan. Kelembapan dan detail edge harus masuk dalam keputusan finishing.']
+    ],
+    bestFor: ['Panel dekoratif dan wall feature', 'Furniture custom dan kitchen set', 'Speaker box dan enclosure', 'Mockup, prototype, dan pola produksi'],
+    watchouts: ['Tepi laser dapat menggelap; siapkan sanding, sealer, atau cat sesuai hasil yang diinginkan.', 'Ketebalan aktual dan kerataan lembar perlu dicek sebelum nesting.', 'Untuk area lembap, pilih material yang sesuai atau gunakan sistem perlindungan yang benar.'],
+    processNote: 'Laser CO2 + CNC',
+    processDescription: 'Laser CO2 untuk pola dan detail; CNC router untuk potongan lebih tebal, pocket, atau edge yang membutuhkan karakter berbeda.',
+    specs: [['Range konsultasi', '3–30 mm'], ['Ukuran lembar umum', '1220 × 2440 mm'], ['Finishing', 'Natural / laminated / painted'], ['Toleransi kerja', 'hingga ±0.1 mm*'], ['Catatan outdoor', 'Perlu proteksi dan detailing khusus']],
+    gallery: ['/images/mdf (1).webp', '/images/mdf (2).webp', '/images/mdf (3).webp', '/images/mdf (4).webp']
+  },
+  plywood: {
+    eyebrow: 'Material / Layered wood',
+    heroTitle: 'Struktur berlapis yang',
+    heroAccent: 'tetap punya karakter.',
+    heroLead: 'Plywood dan multiplex memberi kombinasi strength, bobot, dan tampilan serat yang menarik. Kami bantu memilih jalur cutting sesuai ketebalan, jumlah, dan kualitas edge yang dibutuhkan.',
+    positioning: 'Untuk furniture, konstruksi ringan, dan project yang ingin menampilkan material apa adanya.',
+    intro: 'Pilih plywood ketika struktur ringan dan karakter veneer perlu hidup bersama bentuk yang presisi.',
+    characteristics: [
+      ['01', 'Layered strength', 'Susunan lapisan membuat plywood lebih stabil daripada papan kayu solid pada banyak aplikasi, tetapi grade tetap menentukan hasil.'],
+      ['02', 'Every sheet is different', 'Void, arah veneer, dan kualitas permukaan dapat memengaruhi edge serta tampilan akhir.'],
+      ['03', 'Router-ready', 'CNC router memberi kontrol lebih pada ketebalan besar, pocket, joinery, dan detail konstruksi.']
+    ],
+    bestFor: ['Furniture dan shelving custom', 'Packaging dan peti display', 'Dekorasi interior dan panel', 'Mockup konstruksi ringan'],
+    watchouts: ['Tentukan sisi muka, arah veneer, dan toleransi joinery sebelum file final.', 'Minta sample bila edge terlihat atau sambungan harus sangat presisi.', 'Marine atau exterior grade tidak otomatis menyelesaikan semua kebutuhan outdoor.'],
+    processNote: 'CNC Router',
+    processDescription: 'CNC router memberi ruang untuk cutting tebal, pocket, drilling, dan detail sambungan pada plywood dan multiplex.',
+    specs: [['Range konsultasi', '4–40 mm'], ['Ukuran lembar umum', '1220 × 2440 mm'], ['Finishing', 'Natural / veneer / laminate / paint'], ['Toleransi kerja', 'hingga ±0.1 mm*'], ['Faktor kunci', 'Grade, veneer, void, dan arah serat']],
+    gallery: ['/images/plywood (1).webp', '/images/plywood (2).webp', '/images/plywood (3).webp', '/images/plywood (4).webp']
+  },
+  pvc: {
+    eyebrow: 'Material / Lightweight polymer',
+    heroTitle: 'Ringan, cepat dibentuk,',
+    heroAccent: 'mudah dipasang.',
+    heroLead: 'PVC board sering dipilih untuk signage, display, dan partisi ringan karena bobotnya efisien dan permukaannya mudah diberi visual. Jalur proses harus mengikuti grade sheet dan kebutuhan lokasi.',
+    positioning: 'Untuk display dan signage yang butuh handling ringan serta instalasi cepat.',
+    intro: 'Pilih PVC untuk solusi ringan dan ekonomis—dengan catatan grade, ketahanan cuaca, dan metode cutting harus jelas dari awal.',
+    characteristics: [
+      ['01', 'Lightweight', 'Mudah dipindah, dipasang, dan dikombinasikan dengan acrylic, aluminium, atau sistem rangka.'],
+      ['02', 'Clean fabrication', 'CNC router membantu menghasilkan bentuk, slot, dan edge yang rapi tanpa mengasumsikan semua PVC aman untuk laser.'],
+      ['03', 'Grade-specific', 'Rigid PVC, foam board, dan sheet dekoratif punya komposisi dan perilaku yang berbeda.']
+    ],
+    bestFor: ['Signage indoor dan outdoor berbasis grade', 'Display portable dan POP material', 'Partisi ringan dan mockup', 'Kemasan atau komponen non-struktural'],
+    watchouts: ['Kirim nama grade atau datasheet bila tersedia; jangan mengandalkan label PVC saja.', 'Kami prioritaskan CNC untuk PVC dan akan cek kecocokan proses sebelum produksi.', 'Untuk outdoor, validasi UV, temperatur, mounting, dan ekspansi panel.'],
+    processNote: 'CNC Router',
+    processDescription: 'CNC router memberi kontrol mekanis untuk PVC board dan membantu menjaga hasil tetap aman terhadap komposisi material.',
+    specs: [['Range konsultasi', '1–20 mm'], ['Ukuran lembar umum', '1220 × 2440 mm'], ['Finishing', 'Trimmed edge / print / paint'], ['Pilihan aplikasi', 'Signage / display / partisi'], ['Catatan proses', 'Grade dan datasheet wajib divalidasi']],
+    gallery: ['/images/pcvboard (1).webp', '/images/pcvboard (2).webp', '/images/pcvboard (3).webp', '/images/pcvboard (4).webp']
+  },
+  acp: {
+    eyebrow: 'Material / Architectural panel',
+    heroTitle: 'Panel fasad yang ringan,',
+    heroAccent: 'flat, dan terukur.',
+    heroLead: 'ACP menggabungkan skin aluminium dan core untuk membuat panel yang relatif ringan dengan permukaan rapi. Detail groove, lipatan, sambungan, dan grade core menentukan performa akhirnya.',
+    positioning: 'Untuk signage, cladding, dan detail arsitektur yang perlu tampil presisi di bidang besar.',
+    intro: 'Pilih ACP ketika kamu membutuhkan bidang yang flat dan ringan, lalu pastikan sistem panelnya dipikirkan bersama cara pasangnya.',
+    characteristics: [
+      ['01', 'Flat surface', 'Bidang yang rata cocok untuk branding, signage, dan cladding dengan visual yang bersih.'],
+      ['02', 'Light but rigid', 'Kombinasi aluminium skin dan core memberi efisiensi bobot, tetapi panel tetap perlu detailing struktur dan sambungan.'],
+      ['03', 'Coating is a decision', 'PE, PVDF, FR, warna, dan tekstur punya konteks penggunaan yang berbeda—terutama untuk exterior.']
+    ],
+    bestFor: ['Signage dan pylon ringan', 'Cladding dan fasad interior', 'Panel dekoratif dan canopy', 'Huruf, logo, dan pola cut-through'],
+    watchouts: ['Untuk outdoor, minta grade coating dan core yang sesuai spesifikasi lokasi.', 'Sediakan allowance untuk thermal movement dan metode mounting.', 'CNC routing, grooving, dan folding perlu dipertimbangkan sebagai satu sistem.'],
+    processNote: 'CNC Router + Groove',
+    processDescription: 'CNC router membantu memotong pola, membuat groove, dan menyiapkan panel untuk proses tekuk atau pemasangan.',
+    specs: [['Range konsultasi', '3–6 mm'], ['Ukuran lembar umum', '1220 × 2440 mm'], ['Core', 'PE / FR sesuai grade'], ['Finishing', 'Matte / gloss / metallic / woodgrain'], ['Exterior', 'Prefer grade PVDF / FR sesuai brief']],
+    gallery: ['/images/acppro (1).webp', '/images/acppro (2).webp', '/images/acppro (3).webp', '/images/acppro (4).webp']
+  },
+  grc: {
+    eyebrow: 'Material / Reinforced cement',
+    heroTitle: 'Tekstur arsitektur yang',
+    heroAccent: 'dibuat untuk bertahan.',
+    heroLead: 'GRC memberi bahasa bentuk yang lebih solid untuk ornamen, relief, dan elemen facade. Karena materialnya bersifat mineral dan diperkuat serat, proses harus mempertimbangkan ketebalan, reinforcement, debu, dan cara pemasangan.',
+    positioning: 'Untuk elemen arsitektur yang membutuhkan volume, ketahanan, dan karakter permukaan.',
+    intro: 'Pilih GRC ketika desain perlu terasa permanen dan punya kualitas arsitektural—bukan sekadar panel dekoratif tipis.',
+    characteristics: [
+      ['01', 'Reinforced mineral', 'GRC adalah komposit berbasis semen yang diperkuat serat kaca tahan alkali; karakter ini membuatnya kuat tetapi menuntut handling yang tepat.'],
+      ['02', 'Form follows method', 'Bentuk, radius, edge, dan detail relief perlu disesuaikan dengan metode fabrikasi serta struktur pendukungnya.'],
+      ['03', 'Install is part of design', 'Berat, anchor, joint, dan toleransi lokasi sebaiknya diputuskan sebelum file produksi dilepas.']
+    ],
+    bestFor: ['Ornamen facade dan entrance', 'Relief dinding dan feature wall', 'Kolom, cornice, dan elemen dekoratif', 'Panel arsitektur custom'],
+    watchouts: ['Tentukan titik angkat, anchor, dan modul sambungan sejak tahap shop drawing.', 'Edge dan permukaan perlu inspeksi karena karakter mineral tidak sama dengan plastik atau metal.', 'Untuk detail tipis atau kompleks, prototype dan approval sample sangat disarankan.'],
+    processNote: 'CNC Router / Fabrication',
+    processDescription: 'CNC router dan fabrikasi pendukung dipilih berdasarkan density, reinforcement, bentuk, dan kebutuhan edge yang diminta.',
+    specs: [['Range konsultasi', '10–50 mm'], ['Komposisi', 'Cement + alkali-resistant glass fibre'], ['Finishing', 'Natural / textured / coated'], ['Aplikasi', 'Facade / ornament / relief'], ['Faktor kunci', 'Structure, anchor, joint, dan handling']],
+    gallery: ['/images/grcpro (1).webp', '/images/grcpro (2).webp', '/images/grcpro (3).webp', '/images/grcpro (4).webp']
+  }
+};
+
+const copy = materialCopy[material.id] || materialCopy.acrylic;
+const recommendedServiceId = material.id === 'metal' ? 'laser-fiber' : material.id === 'acrylic' || material.id === 'mdf' ? 'laser-co2' : 'cnc-router';
+const recommendedService = SERVICES.find((service) => service.id === recommendedServiceId) || SERVICES[0];
+const relatedMaterials = MATERIALS.filter((item) => item.id !== material.id).slice(0, 4);
+const metaTags = generateMetaTags({
+  title: `${material.name} untuk Laser Cutting & Fabrikasi`,
+  description: copy.heroLead,
+  keywords: material.keywords,
+  image: material.image,
+  url: `/${material.slug}/`,
+  type: 'article',
+  author: SITE_CONFIG.author
+});
+const jsonLd = [
+  generateServiceSchema({ name: `Fabrikasi ${material.name}`, description: copy.heroLead, image: material.image }),
+  generateBreadcrumbSchema([
+    { name: 'Beranda', url: '' },
+    { name: 'Material', url: '/#materials' },
+    { name: material.name, url: `/${material.slug}/` }
+  ])
+];
+const whatsappHref = `https://api.whatsapp.com/send?phone=${SITE_CONFIG.whatsapp}&text=${encodeURIComponent(`Halo Jasa Cutting Laser, saya ingin konsultasi material ${material.name}.` )}`;
+---
+
+<BaseLayout metaTags={metaTags} jsonLd={jsonLd}>
+  <Header slot="header" />
+
+  <div class="material-page bg-[var(--ink)] text-[var(--paper)]">
+    <section class="relative isolate overflow-hidden border-b border-[var(--line)] pt-28" data-no-reveal>
+      <img src={material.image} alt={`Material ${material.name}`} class="absolute inset-0 -z-20 h-full w-full object-cover opacity-40" width="1800" height="1100" fetchpriority="high" />
+      <div class="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,11,10,.99)_0%,rgba(8,11,10,.9)_44%,rgba(8,11,10,.5)_100%)]"></div>
+      <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_76%_28%,rgba(184,255,61,.2),transparent_26rem)]"></div>
+      <div class="container-custom grid min-h-[min(760px,calc(100svh-5rem))] items-end gap-12 pb-12 md:pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,.48fr)] lg:gap-20">
+        <div class="max-w-4xl">
+          <div class="mb-7 flex flex-wrap items-center gap-3 font-mono text-[.62rem] font-bold uppercase tracking-[.16em] text-[var(--acid)]"><span class="h-2 w-2 rounded-full bg-[var(--acid)]"></span>{copy.eyebrow}<span class="text-[var(--muted)]">/ 0{MATERIALS.findIndex((item) => item.id === material.id) + 1}</span></div>
+          <h1 class="heading-xl max-w-5xl">{copy.heroTitle}<br /><span class="text-[var(--acid)]">{copy.heroAccent}</span></h1>
+          <p class="mt-7 max-w-3xl font-heading text-xl font-bold leading-tight text-[var(--acid)] md:text-3xl">{copy.positioning}</p>
+          <p class="mt-6 max-w-2xl text-base leading-8 text-[rgba(237,240,232,.72)] md:text-lg">{copy.heroLead}</p>
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row"><a href={whatsappHref} target="_blank" rel="noopener noreferrer" class="btn-primary" data-wa-label={`Material ${material.name} consultation`}><span class="text-lg">↗</span>Konsultasi {material.name}</a><a href="#specs" class="btn-secondary">Lihat spesifikasi <span aria-hidden="true">↓</span></a></div>
+        </div>
+        <div class="hidden lg:block"><div class="scanline border border-white/15 bg-[rgba(8,11,10,.64)] p-5 backdrop-blur-md"><div class="flex items-center justify-between border-b border-white/10 pb-4 font-mono text-[.6rem] uppercase tracking-[.14em] text-[rgba(237,240,232,.55)]"><span>Material index</span><span class="text-[var(--acid)]">READY</span></div><div class="space-y-5 pt-5"><div><span class="font-mono text-[.6rem] uppercase tracking-[.14em] text-[rgba(237,240,232,.55)]">Selected material</span><strong class="mt-2 block font-heading text-2xl text-[var(--paper)]">{material.name}</strong></div><div class="grid grid-cols-2 gap-4 border-t border-white/10 pt-4"><div><strong class="block font-heading text-3xl text-[var(--acid)]">{material.thickness}</strong><span class="font-mono text-[.58rem] uppercase tracking-[.1em] text-[rgba(237,240,232,.55)]">range konsultasi</span></div><div><strong class="block font-heading text-3xl text-[var(--acid)]">{copy.processNote.split(' ')[0]}</strong><span class="font-mono text-[.58rem] uppercase tracking-[.1em] text-[rgba(237,240,232,.55)]">recommended route</span></div></div></div></div><p class="mt-4 font-mono text-[.6rem] uppercase tracking-[.12em] text-[rgba(237,240,232,.55)]">Material guide / JCL workshop</p></div>
+      </div>
+    </section>
+
+    <section class="border-b border-[var(--line)] bg-[var(--paper)] text-[var(--ink)]" data-no-reveal><div class="container-custom grid gap-8 py-8 sm:grid-cols-2 lg:grid-cols-4">{[['01', 'Range', material.thickness], ['02', 'Route', copy.processNote], ['03', 'Use case', `${material.applications.length} aplikasi utama`], ['04', 'Decision', 'File + grade + finish']].map((stat) => <div class="border-l border-black/15 pl-4"><span class="font-mono text-[.6rem] font-bold uppercase tracking-[.14em] text-[var(--acid-deep)]">{stat[0]} / {stat[1]}</span><strong class="mt-3 block font-heading text-xl font-bold">{stat[2]}</strong></div>)}</div></section>
+
+    <section class="section-padding border-b border-[var(--line)]" data-no-reveal><div class="container-custom grid gap-12 lg:grid-cols-[.72fr_1.28fr] lg:items-end"><div><p class="eyebrow">01 / Make the right call</p><h2 class="heading-lg mt-5">Material bukan<br /><span class="text-[var(--acid)]">sekadar nama.</span></h2></div><p class="max-w-3xl text-lg leading-9 text-[var(--muted)]">{copy.intro} Setiap lembar membawa konsekuensi pada detail file, jalur mesin, waktu produksi, finishing, dan cara produk itu bertahan setelah keluar dari workshop.</p></div></section>
+
+    <section class="section-padding border-b border-[var(--line)] bg-[var(--ink-soft)]" data-no-reveal><div class="container-custom"><div class="mb-12 max-w-2xl"><p class="eyebrow">02 / Material behavior</p><h2 class="heading-lg mt-5">Yang perlu diketahui<br /><span class="text-[var(--acid)]">sebelum cutting.</span></h2></div><div class="grid gap-px overflow-hidden border border-[var(--line)] bg-[var(--line)] lg:grid-cols-3">{copy.characteristics.map((item: string[]) => <article class="bg-[var(--panel)] p-7 md:p-9"><span class="font-mono text-xs text-[var(--acid)]">{item[0]}</span><h3 class="mt-16 font-heading text-2xl font-bold leading-tight">{item[1]}</h3><p class="mt-5 text-sm leading-7 text-[var(--muted)]">{item[2]}</p></article>)}</div></div></section>
+
+    <section class="section-padding border-b border-[var(--line)]" data-no-reveal><div class="container-custom grid gap-12 lg:grid-cols-2"><div><p class="eyebrow">03 / Best fit</p><h2 class="heading-lg mt-5">Dipakai untuk<br /><span class="text-[var(--acid)]">apa?</span></h2><p class="mt-6 max-w-md text-sm leading-7 text-[var(--muted)]">Kalau kebutuhanmu masuk ke salah satu konteks berikut, material ini layak masuk shortlist.</p><ul class="mt-8 space-y-3 border-y border-[var(--line)] py-5">{copy.bestFor.map((item: string) => <li class="flex gap-3 text-sm leading-7"><span class="text-[var(--acid)]">↗</span><span>{item}</span></li>)}</ul></div><div class="border border-[var(--acid)]/30 bg-[rgba(184,255,61,.06)] p-7 md:p-9"><p class="eyebrow !text-[var(--acid)]">Watch the details</p><h3 class="mt-5 font-heading text-3xl font-bold">Hal kecil yang<br />mencegah revisi besar.</h3><ul class="mt-8 space-y-4 text-sm leading-7 text-[var(--muted)]">{copy.watchouts.map((item: string) => <li class="flex gap-3"><span class="mt-1 text-[var(--acid)]">●</span><span>{item}</span></li>)}</ul></div></div></section>
+
+    <section class="section-padding border-b border-[var(--line)] bg-[var(--ink-soft)]" data-no-reveal><div class="container-custom"><div class="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between"><div><p class="eyebrow">04 / In the workshop</p><h2 class="heading-lg mt-5">Detail yang<br /><span class="text-[var(--acid)]">bisa dilihat.</span></h2></div><p class="max-w-sm text-sm leading-7 text-[var(--muted)]">Asset project yang tersedia kami pakai untuk menunjukkan karakter permukaan, edge, dan kemungkinan aplikasi—bukan sekadar pemanis halaman.</p></div><div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{copy.gallery.map((image: string, index: number) => <figure class:list={["group relative overflow-hidden border border-[var(--line)] bg-[var(--panel)]", index === 0 && 'sm:col-span-2 lg:row-span-2']}><img src={image} alt={`${material.name} sample ${index + 1}`} class="h-full min-h-56 w-full object-cover opacity-75 grayscale transition duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0" width="900" height="700" loading="lazy" /><figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[rgba(8,11,10,.9)] to-transparent p-5 pt-16 font-mono text-[.6rem] uppercase tracking-[.12em] text-[var(--acid)]">{material.name} / 0{index + 1}</figcaption></figure>)}</div></div></section>
+
+    <section id="specs" class="section-padding border-b border-[var(--line)]" data-no-reveal><div class="container-custom grid gap-12 lg:grid-cols-[1.05fr_.95fr] lg:items-start"><div><p class="eyebrow">05 / Specification</p><h2 class="heading-lg mt-5">Bawa data yang<br /><span class="text-[var(--acid)]">bisa diproduksi.</span></h2><p class="mt-6 max-w-xl text-sm leading-7 text-[var(--muted)]">Angka di bawah adalah titik awal diskusi. Grade sheet, ukuran final, jumlah, toleransi, dan proses lanjutan akan menentukan rekomendasi produksi.</p><div class="mt-8 border-y border-[var(--line)]">{copy.specs.map((spec: string[]) => <div class="grid grid-cols-[minmax(8rem,.75fr)_1.25fr] gap-4 border-b border-[var(--line)] py-4 text-sm last:border-0"><span class="font-mono text-[.62rem] uppercase tracking-[.1em] text-[var(--muted)]">{spec[0]}</span><strong class="font-heading text-[var(--paper)]">{spec[1]}</strong></div>)}</div></div><div class="border border-[var(--line)] bg-[var(--panel)] p-7 md:p-9"><p class="eyebrow">Application map</p><h3 class="mt-5 font-heading text-3xl font-bold">Kemungkinan pemakaian.</h3><div class="mt-8 flex flex-wrap gap-2">{material.applications.map((application: string) => <span class="border border-[var(--line)] px-3 py-2 font-mono text-[.62rem] uppercase tracking-[.08em] text-[var(--muted)]">{application}</span>)}</div><div class="mt-10 border-t border-[var(--line)] pt-6"><p class="font-mono text-[.62rem] uppercase tracking-[.12em] text-[var(--acid)]">Brief minimum</p><p class="mt-3 text-sm leading-7 text-[var(--muted)]">Kirim ukuran, jumlah, file, sisi yang terlihat, dan konteks penggunaan. Kalau belum punya semua, kirim foto referensi dan target hasilnya.</p></div></div></div></section>
+
+    <section class="section-padding border-b border-[var(--line)] bg-[var(--paper)] text-[var(--ink)]" data-no-reveal><div class="container-custom grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-center"><div><p class="eyebrow !text-[var(--acid-deep)]">06 / Recommended route</p><h2 class="heading-lg mt-5 !text-[var(--ink)]">Mesin yang tepat<br /><span class="!text-[var(--acid-deep)]">menghemat trial.</span></h2><p class="mt-6 max-w-md text-sm leading-7 !text-[#53615a]">Kami tidak mengunci satu teknologi untuk semua bahan. Jalur di bawah adalah rekomendasi awal berdasarkan karakter material dan kebutuhan umum.</p></div><div class="border border-black/15 bg-white p-7 md:p-9"><div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between"><div><span class="font-mono text-[.62rem] uppercase tracking-[.14em] text-[var(--acid-deep)]">{copy.processNote}</span><h3 class="mt-4 font-heading text-3xl font-bold">{recommendedService.name}</h3><p class="mt-4 max-w-xl text-sm leading-7 !text-[#53615a]">{copy.processDescription}</p></div><img src={recommendedService.image} alt={recommendedService.name} class="h-28 w-36 object-cover md:h-32 md:w-44" width="500" height="360" loading="lazy" /></div><div class="mt-8 grid gap-3 border-t border-black/10 pt-6 sm:grid-cols-2">{recommendedService.features.slice(0, 4).map((feature: string) => <div class="flex gap-3 text-sm font-semibold"><span class="text-[var(--acid-deep)]">✓</span><span>{feature}</span></div>)}</div></div></div></section>
+
+    <section class="section-padding border-b border-[var(--line)]" data-no-reveal><div class="container-custom"><div class="mb-12 max-w-2xl"><p class="eyebrow">07 / Production handoff</p><h2 class="heading-lg mt-5">Dari material<br /><span class="text-[var(--acid)]">menjadi hasil.</span></h2></div><div class="grid gap-px overflow-hidden border border-[var(--line)] bg-[var(--line)] md:grid-cols-4">{[['01', 'Brief', 'Kirim ukuran, jumlah, file, dan konteks pemakaian.'], ['02', 'Preflight', 'Kami cek geometri, material, jalur mesin, dan asumsi finishing.'], ['03', 'Produce', 'File masuk ke nesting dan proses yang sudah disepakati.'], ['04', 'QC + handoff', 'Hasil diperiksa sebelum pickup, kirim, atau proses lanjut.']].map((step) => <div class="bg-[var(--panel)] p-6 md:p-7"><span class="font-mono text-xs text-[var(--acid)]">{step[0]}</span><h3 class="mt-12 font-heading text-2xl font-bold">{step[1]}</h3><p class="mt-4 text-sm leading-7 text-[var(--muted)]">{step[2]}</p></div>)}</div></div></section>
+
+    <section class="section-padding border-b border-[var(--line)] bg-[var(--ink-soft)]" data-no-reveal><div class="container-custom"><div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between"><div><p class="eyebrow">08 / Continue exploring</p><h2 class="heading-lg mt-5">Material lain yang<br /><span class="text-[var(--acid)]">mungkin cocok.</span></h2></div><a href="/#materials" class="font-mono text-xs uppercase tracking-[.12em] text-[var(--acid)]">Kembali ke library ↗</a></div><div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{relatedMaterials.map((item) => <a href={`/${item.slug}/`} class="group border border-[var(--line)] bg-[var(--panel)] p-5 transition-all hover:-translate-y-1 hover:border-[var(--acid)]"><img src={item.image} alt={item.name} class="aspect-[1.4] w-full object-cover opacity-75 grayscale transition duration-500 group-hover:opacity-100 group-hover:grayscale-0" width="700" height="500" loading="lazy" /><span class="mt-5 block font-mono text-[.6rem] uppercase tracking-[.12em] text-[var(--acid)]">Material library</span><h3 class="mt-3 font-heading text-xl font-bold leading-tight group-hover:text-[var(--acid)]">{item.name}</h3><span class="mt-4 block font-mono text-[.62rem] uppercase tracking-[.1em] text-[var(--muted)]">Buka material ↗</span></a>)}</div></div></section>
+
+    <section class="bg-[var(--acid)] py-16 text-[var(--ink)]" data-no-reveal><div class="container-custom grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end"><div><p class="font-mono text-[.62rem] font-bold uppercase tracking-[.14em] text-[var(--acid-deep)]">Ready when the brief is clear</p><h2 class="heading-lg mt-5 !text-[var(--ink)]">Sudah tahu materialnya?<br />Sekarang kita kunci detailnya.</h2><p class="mt-5 max-w-2xl text-base leading-8 !text-[#344238]">Kirim file atau foto referensi. Kami bantu cek apakah bahan, ketebalan, dan jalur cutting-nya sudah masuk akal untuk hasil yang kamu inginkan.</p></div><a href={whatsappHref} target="_blank" rel="noopener noreferrer" class="btn-secondary border-[var(--ink)] !text-[var(--ink)] hover:bg-[var(--ink)] hover:!text-[var(--acid)]" data-wa-label={`Material ${material.name} final CTA`}>Mulai konsultasi ↗</a></div></section>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

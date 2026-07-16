@@ -1,15 +1,17 @@
-# Jasa Cutting Laser — Patch v2
+# Jasa Cutting Laser — Patch v3 / Material system
 
-Overlay patch for the repository `heriscaleup/jasalasercutting` on branch `main`.
+Overlay patch for `heriscaleup/jasalasercutting` on branch `main`.
 
-This patch fixes the feedback from the visual review:
+This ZIP includes the previous visual fixes plus the expanded material system:
 
-- Restores the real brand logo from `/images/logo.webp` in the shared header and footer.
-- Replaces the floating chat bubble with a clearly recognizable WhatsApp button and keeps it responsive.
-- Reworks the shared service hero so its source image is darkened, legible, and consistent across the laser/CNC service pages.
-- Rebuilds the blog index with actual posts from the existing `blog` content collection instead of a blank archive state.
-- Rebuilds individual blog routes to render the existing Markdown body, table of contents, takeaways, FAQ, and related reading.
-- Expands the About page into a complete company story, operating principles, capabilities, materials, workshop gallery, and handoff process.
+- Restores the actual `/images/logo.webp` in the shared header and footer.
+- Keeps the recognizable floating WhatsApp action.
+- Keeps the high-contrast service hero treatment.
+- Keeps the rebuilt blog index and full Markdown article routes.
+- Keeps the expanded About page.
+- Replaces seven inconsistent material templates with one responsive `MaterialPage.astro` system.
+- Adds material-specific positioning, copywriting, behavior notes, applications, production warnings, specifications, image galleries, recommended machine routes, handoff workflow, related materials, and CTAs for Acrylic, Metal/Stainless Steel, MDF, Plywood/Multiplex, PVC, ACP, and GRC.
+- Uses the existing local material imagery; no blog content is modified.
 
 ## Apply
 
@@ -19,4 +21,4 @@ Copy the files in this ZIP into the repository root, preserving the directory st
 
 - `npx astro check`: 0 errors, 0 warnings.
 - `npm run build`: 100 static pages built successfully.
-- Preview smoke checks: home, service, About, portfolio, contact, blog index, and an individual blog article returned HTTP 200.
+- All seven material routes returned HTTP 200 in preview smoke tests.
