@@ -1,110 +1,97 @@
 ---
 title: "Tips Desain File CorelDRAW & Illustrator untuk Laser Cutting"
-description: "Panduan lengkap cara membuat file desain CorelDRAW dan Illustrator yang siap laser cutting. Hindari error, hemat biaya, dan hasilkan cutting sempurna."
-pubDate: 2026-07-24T07:00:00.000Z
+description: "Desain file yang salah bikin hasil laser cutting tidak sempurna. Pelajari tips CorelDRAW dan Illustrator agar hasil cutting presisi dan efisien."
+pubDate: 2026-07-31T07:00:00.000Z
 category: "Tips"
-tags: ["laser cutting", "CorelDRAW", "desain file"]
+tags: ["laser cutting", "CorelDRAW", "Illustrator", "desain file", "acrylic"]
 image: "/images/blog/tips-desain-file-coreldraw-illustrator-laser-cutting-2026-07.jpg"
-readTime: "7 min read"
+readTime: "6 min read"
 author: "Tim Jasalasercutting"
 draft: false
 ---
 
-File desain yang salah adalah penyebab nomor satu hasil laser cutting yang tidak sesuai harapan. Bukan mesinnya, bukan operatornya — tapi file yang dikirim. Banyak klien akhirnya harus bayar revisi atau mengulang proses karena masalah yang sebenarnya bisa dicegah sejak awal di tahap desain.
+Sudah pesan jasa laser cutting, tapi hasilnya tidak seperti yang diharapkan? Sering kali masalahnya bukan di mesin atau operator — tapi di file desain yang dikirim. File yang tidak disiapkan dengan benar bisa menyebabkan cutting tidak presisi, garis putus-putus, bahkan material terbuang sia-sia.
 
-Panduan ini khusus untuk kamu yang menggunakan CorelDRAW atau Adobe Illustrator — dua software paling umum digunakan untuk menyiapkan file laser cutting.
+Artikel ini membahas tips lengkap menyiapkan file di CorelDRAW maupun Adobe Illustrator agar hasil laser cutting kamu sempurna.
 
-## Pahami Dulu: Laser Cutting Butuh Vektor, Bukan Piksel
+## Pahami Dulu: Mesin Laser Membaca Garis, Bukan Fill
 
-Ini dasar yang wajib dipahami. Laser cutting bekerja dengan mengikuti jalur (path) yang kamu gambar di software vektor. Bukan gambar raster (JPEG, PNG) yang tersusun dari piksel.
+Perbedaan mendasar antara mencetak biasa dan laser cutting: printer membaca warna fill, mesin laser membaca jalur garis (*path*). Karena itu, semua elemen yang ingin dipotong harus berupa **vektor path** — bukan bitmap atau gambar raster.
 
-**Aturan pertama:** Semua bentuk yang akan dipotong harus berupa vektor murni — garis, kurva, dan path yang bisa di-scale tanpa kehilangan kualitas.
+Jika kamu mengirim file JPG atau PNG, operator harus melakukan tracing manual yang memakan waktu dan berpotensi tidak presisi. Selalu gunakan format vektor: **.CDR** (CorelDRAW), **.AI** atau **.EPS** (Illustrator), atau **.SVG**.
 
-Jika kamu punya logo dalam format PNG dan ingin di-laser cutting, langkah pertama adalah **trace** logo tersebut menjadi vektor terlebih dahulu. CorelDRAW punya fitur "Trace Bitmap", Illustrator punya "Image Trace". Pastikan hasilnya bersih sebelum dikirim.
+## Tips Desain di CorelDRAW
 
-## Setting Warna yang Benar
+### 1. Gunakan "Outline/Hairline" untuk Garis Potong
 
-Di sinilah banyak orang bingung. Mesin laser cutting memiliki sistem warna khusus untuk membedakan fungsi setiap garis:
+Di CorelDRAW, set ketebalan garis (*line thickness*) untuk area yang dipotong menjadi **Hairline** (0.001 pt). Garis hairline adalah sinyal standar bagi mesin laser bahwa ini adalah jalur cutting.
 
-- **Merah (Red) — mode potong (cut):** Laser akan memotong penuh mengikuti jalur ini
-- **Biru (Blue) — mode ukir (engrave/raster):** Laser akan mengukir permukaan, bukan memotong
-- **Hitam (Black) — biasanya engrave juga**
+Untuk area ukiran (*engraving*), gunakan fill warna dengan hairline atau warna berbeda sesuai instruksi jasa yang kamu gunakan.
 
-Konfirmasi dengan operator mesin sebelum mengirim file, karena setiap workshop bisa punya konvensi warna yang sedikit berbeda. Tapi secara umum, **merah = cut, biru/hitam = engrave** adalah standar yang paling umum.
+### 2. Bedakan Warna untuk Cutting vs Engraving
 
-**Jangan gunakan fill/isian warna pada objek yang akan dipotong.** Hanya garis outline (stroke) yang relevan untuk cutting. Fill bisa membingungkan software mesin.
+Banyak jasa laser cutting (termasuk kami) menggunakan sistem kode warna:
+- **Merah (RGB 255,0,0)** → garis potong (cutting)
+- **Biru (RGB 0,0,255)** → garis ukiran (engraving)
+- **Hitam** → fill/raster engraving
 
-## Atur Ketebalan Stroke dengan Benar
+Tanyakan ke jasa yang kamu gunakan mengenai standar warna mereka agar tidak ada kebingungan.
 
-Ini penting: **stroke/ketebalan garis untuk cutting harus di-set ke 0.001 mm (hairline)** atau nilai paling tipis yang tersedia di software.
+### 3. Periksa Node yang Tidak Sempurna
 
-Kenapa? Karena laser cutting membaca garis sebagai jalur pemotongan, bukan sebagai objek dengan lebar. Garis yang terlalu tebal bisa diinterpretasikan berbeda oleh software mesin, atau malah diabaikan sama sekali.
+Gunakan fitur **Shape Tool (F10)** untuk memeriksa setiap node pada path. Node yang terputus (*open path*) atau bertumpuk akan menyebabkan mesin laser bingung menentukan awal dan akhir potongan.
 
-Di CorelDRAW: pilih semua objek cutting → Format Object (F12) → Outline → set ke "Hairline"
-Di Illustrator: pilih objek → di panel Stroke, set ke 0.001 pt atau Hairline
+Cara cek: pilih semua objek → **Arrange → Close Path** untuk menutup path yang terbuka. Atau gunakan **Object Properties** dan pastikan path berstatus "closed".
 
-## Pastikan Path Tertutup (Closed Path)
+### 4. Atur Ukuran Sesuai Dimensi Aktual
 
-Untuk bentuk yang ingin dipotong secara utuh, pathnya harus tertutup (closed) — artinya titik awal dan titik akhir terhubung.
+Satu hal yang sering terlewat: desain harus dalam **skala 1:1**. Jika produk akhir berukuran 20x30 cm, desain kamu juga harus 20x30 cm di canvas CorelDRAW. Jangan menyerahkan file skala 1:10 lalu berharap operator tahu perlu di-scale berapa persen.
 
-Path yang terbuka akan menyebabkan laser berhenti di tengah jalan dan meninggalkan potongan yang tidak sempurna. Bayangkan memotong lingkaran tapi ada celah kecil — hasilnya bukan lingkaran yang bisa diangkat, tapi lingkaran yang masih menempel di material.
+### 5. Flatten dan Ungroup Semua Objek
 
-Di CorelDRAW: pilih object → Object > Close Path
-Di Illustrator: pilih anchor point terakhir → gunakan Direct Selection Tool → pastikan tidak ada gap
+Sebelum menyimpan file, pastikan semua objek sudah di-**ungroup** dan tidak ada layer tersembunyi. Object group yang tidak dipisah terkadang menyebabkan mesin salah membaca urutan cutting.
 
-Fitur "Find & Replace" atau "Check Document" di kedua software bisa membantu mendeteksi path terbuka secara otomatis.
+## Tips Desain di Adobe Illustrator
 
-## Hindari Path yang Tumpang Tindih (Overlapping)
+### 1. Gunakan Stroke, Bukan Fill untuk Jalur Potong
 
-Dua objek yang posisinya tumpang tindih akan menyebabkan laser melewati area yang sama dua kali. Untuk material tipis, ini bisa menyebabkan terbakar atau potongan yang tidak bersih.
+Di Illustrator, jalur cutting harus memiliki **Stroke** (warna garis) tapi **tanpa Fill**. Set stroke weight ke **0.001 pt** atau pilih **Hairline** jika tersedia di printer driver.
 
-Solusinya: **Weld atau Unite** semua objek yang bersinggungan menjadi satu path tunggal sebelum mengirim file.
+### 2. Expand All Strokes dan Effects
 
-Di CorelDRAW: pilih kedua objek → Object > Shaping > Weld
-Di Illustrator: pilih objek → Pathfinder panel → Unite
+Jika kamu menggunakan **Stroke Effect** atau **Pathfinder**, pastikan semuanya di-**Expand** sebelum menyimpan. Caranya: **Object → Expand Appearance**, lalu **Object → Expand** untuk stroke.
 
-## Ukuran Dokumen dan Satuan
+Mesin laser tidak dapat membaca efek live yang belum di-expand.
 
-Pastikan dokumen kamu menggunakan satuan **milimeter (mm)**, bukan piksel atau inch. Ini menghindari konversi ukuran yang bisa menyebabkan error.
+### 3. Outline Semua Teks
 
-**Ukuran artboard = ukuran material yang akan digunakan.** Jika material kamu 60cm × 90cm, set artboard menjadi 600mm × 900mm. Ini memudahkan operator mesin dalam pengaturan posisi laser.
+Jika desainmu mengandung teks, wajib di-**Outline** sebelum dikirim: **Type → Create Outlines** (Ctrl+Shift+O). Ini mengubah teks menjadi path vektor sehingga tidak bergantung pada font yang diinstall di komputer operator.
 
-Jangan lupa berikan **margin minimal 5–10mm** dari tepi artboard ke elemen terdekat, untuk mengantisipasi ketidaksempurnaan fixturing material di mesin.
+### 4. Simpan sebagai .AI atau .EPS, Bukan .PDF
 
-## Font: Convert to Curve/Outline Sebelum Kirim
+Meski PDF secara teknis bisa mengandung vektor, banyak mesin laser lebih stabil membaca .AI atau .EPS. Hindari menyimpan dengan kompresi yang dapat mengubah kualitas path.
 
-Kalau desainmu mengandung teks yang ingin di-laser cut atau engrave, **wajib convert font ke outline/curve** sebelum menyimpan file.
+### 5. Periksa Overlapping Path
 
-Kenapa? Operator mesin tidak selalu punya font yang sama dengan yang kamu gunakan. Kalau font tidak terinstall, huruf akan diganti otomatis dengan font default — hasilnya bisa jauh berbeda dari desainmu.
-
-Di CorelDRAW: pilih semua teks → Text > Convert to Curves (Ctrl+Q)
-Di Illustrator: pilih semua teks → Type > Create Outlines (Shift+Ctrl+O)
-
-## Format File yang Diterima
-
-Format yang umum diterima oleh jasa laser cutting:
-- **.cdr** (CorelDRAW) — native, paling direkomendasikan
-- **.ai** (Adobe Illustrator)
-- **.pdf** (pastikan vektor, bukan piksel)
-- **.dxf** — universal, cocok untuk komunikasi antara software berbeda
-- **.svg** — alternatif yang semakin umum
-
-Hindari mengirim file dalam format **.eps lama** kecuali diminta, karena sering ada masalah kompatibilitas.
+Path yang saling tumpuk akan menyebabkan mesin laser memotong jalur yang sama dua kali — boros waktu dan bisa merusak material. Gunakan **Pathfinder → Unite** untuk menggabungkan path yang tumpang tindih.
 
 ## Checklist Sebelum Kirim File
 
-Sebelum mengirim file ke jasa laser cutting, pastikan:
+Sebelum mengirimkan file ke jasa laser cutting, pastikan:
 
-- [ ] Semua elemen sudah dalam format vektor
-- [ ] Stroke set ke hairline, tidak ada fill pada elemen cutting
-- [ ] Warna cutting = merah, engrave = biru/hitam
-- [ ] Semua path tertutup (closed)
-- [ ] Tidak ada path yang tumpang tindih (sudah di-weld)
-- [ ] Font sudah di-convert ke curve/outline
-- [ ] Ukuran dokumen dalam mm, sesuai ukuran material
-- [ ] Ada margin dari tepi artboard
-- [ ] File disimpan dalam format yang kompatibel
+- [ ] Format file: .CDR, .AI, .EPS, atau .SVG
+- [ ] Semua ukuran dalam skala 1:1
+- [ ] Garis potong menggunakan hairline/stroke tipis
+- [ ] Teks sudah di-outline (Illustrator) atau Convert to Curves (CorelDRAW)
+- [ ] Tidak ada open path pada jalur cutting
+- [ ] Tidak ada overlapping path
+- [ ] Objek sudah di-ungroup dan layer bersih
+- [ ] Warna cutting dan engraving sesuai standar jasa yang digunakan
 
----
+## Butuh Bantuan Menyiapkan File?
 
-Tidak yakin apakah file desainmu sudah benar? **Tim Jasalasercutting siap membantu cek file** sebelum proses produksi dimulai. Kirim file desainmu ke WhatsApp kami untuk konsultasi gratis — kami akan pastikan hasilnya sempurna sebelum mesin dinyalakan.
+Masih bingung atau tidak yakin file desainmu sudah benar? Tim Jasalasercutting siap membantu. Kami melayani konsultasi file desain sebelum proses cutting dimulai, sehingga kamu tidak perlu khawatir hasil akhirnya.
+
+**Kirim file dan diskusikan kebutuhan kamu via WhatsApp atau halaman kontak kami.** Kami memastikan setiap proyek laser cutting berjalan presisi sejak tahap persiapan file.
+
+Desain yang baik adalah separuh jalan menuju hasil laser cutting yang sempurna!
