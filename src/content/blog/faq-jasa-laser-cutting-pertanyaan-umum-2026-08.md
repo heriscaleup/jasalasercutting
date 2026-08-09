@@ -1,127 +1,130 @@
 ---
-title: "FAQ Jasa Laser Cutting: Semua Pertanyaan Umum Dijawab"
-description: "Kumpulan pertanyaan paling sering tentang jasa laser cutting CO2 — material, harga, file desain, hingga proses order. Semuanya dijawab di sini."
-pubDate: 2026-08-02T07:00:00.000Z
+title: "FAQ Jasa Laser Cutting: Semua Pertanyaan Dijawab"
+description: "Kumpulan FAQ jasa laser cutting CO2 paling sering ditanyakan — material, harga, file desain, hingga waktu pengerjaan. Temukan jawabannya di sini!"
+pubDate: 2026-08-09T07:00:00.000Z
 category: "Tips"
-tags: ["FAQ laser cutting", "pertanyaan laser cutting", "jasa laser cutting"]
+tags: ["FAQ laser cutting", "jasa laser cutting", "laser CO2"]
 image: "/images/blog/faq-jasa-laser-cutting-pertanyaan-umum-2026-08.jpg"
 readTime: "7 min read"
 author: "Tim Jasalasercutting"
 draft: false
 ---
 
-Setiap hari kami menerima banyak pertanyaan dari calon pelanggan — mulai dari yang baru pertama kali ingin menggunakan laser cutting, hingga yang sudah punya pengalaman tapi masih penasaran dengan detail teknis tertentu.
+FAQ jasa laser cutting adalah salah satu hal yang paling sering kami terima dari pelanggan baru maupun yang sudah berpengalaman. Pertanyaannya beragam — mulai dari jenis material yang bisa dipotong, format file yang diterima, hingga berapa lama pengerjaan selesai.
 
-Daripada menjawab satu per satu, kami kumpulkan pertanyaan paling sering dan jawab semuanya di sini. Bookmarks halaman ini — pasti berguna!
+Daripada menjawab satu per satu via chat, kami rangkum semua pertanyaan umum di sini. Bookmark halaman ini untuk referensi kamu!
 
-## Pertanyaan Umum Tentang Material
+## Pertanyaan Umum Seputar Material
 
 **Q: Material apa saja yang bisa dipotong dengan laser CO2?**
 
-Laser CO2 sangat efektif untuk material non-logam, antara lain:
-- Acrylic (bening, berwarna, frosted)
-- MDF dan plywood (kayu olahan)
-- Kayu solid tipis (pinus, albasia, dll)
-- Kain dan kulit sintetis
-- Kertas tebal dan kardus
-- Karet dan foam EVA
-- Triplek hingga ketebalan tertentu
+Laser CO2 paling efektif untuk material non-metal, di antaranya:
+- Acrylic (semua ketebalan umum, 2mm–20mm)
+- MDF dan kayu lapis (plywood)
+- Kayu solid tipis
+- Karet dan foam
+- Kertas tebal dan karton
+- Kulit sintetis
+- Kain dan tekstil tertentu
 
-Untuk logam seperti besi, stainless, atau aluminium — laser CO2 umumnya tidak cocok. Itu membutuhkan laser fiber.
+Untuk material metal (besi, stainless, aluminium), laser CO2 kurang optimal — sebaiknya gunakan layanan laser fiber.
 
-**Q: Berapa ketebalan maksimal acrylic yang bisa dipotong?**
+**Q: Apakah bisa cutting acrylic warna gelap?**
 
-Kami bisa memotong acrylic hingga ketebalan 20mm, tergantung pada spesifikasi mesin dan jenis potongan yang dibutuhkan. Untuk ketebalan di atas 15mm, waktu proses lebih lama dan hasil tepi bisa sedikit berbeda. Konsultasikan kebutuhan kamu lebih dahulu.
+Bisa. Laser CO2 bekerja dengan baik di hampir semua warna acrylic, termasuk hitam, coklat tua, dan transparan berwarna. Kualitas hasil cutting tidak terpengaruh oleh warna material.
 
-**Q: Apakah laser cutting bisa untuk kayu yang keras?**
+**Q: Berapa ketebalan maksimum yang bisa dipotong?**
 
-Bisa, namun ada batasan. Kayu keras seperti jati atau mahoni membutuhkan daya lebih tinggi dan kecepatan lebih lambat. Hasilnya tetap rapi, tapi harga jasa per mm bisa lebih tinggi dibanding kayu lunak seperti pinus atau MDF.
+Tergantung material:
+- Acrylic: hingga 20mm dengan hasil tepi bersih
+- MDF/kayu lapis: hingga 18mm
+- Kayu solid: sekitar 10–12mm (tergantung jenis kayu)
 
----
+Untuk ketebalan di luar range ini, kami akan informasikan hasilnya mungkin kurang optimal.
 
-## Pertanyaan Tentang File Desain
+## Pertanyaan Seputar File Desain
 
-**Q: Format file apa yang harus saya kirim?**
+**Q: Format file apa yang diterima?**
 
-Format yang kami terima:
-- **Vektor:** CDR (CorelDRAW), AI (Adobe Illustrator), SVG, DXF
-- **Raster/gambar:** JPG, PNG (dengan catatan akan dikonversi ke vektor; biaya tambahan mungkin berlaku)
+Kami menerima:
+- **.CDR** (CorelDRAW) — paling disarankan
+- **.AI** (Adobe Illustrator)
+- **.SVG** (Scalable Vector Graphics)
+- **.DXF** (AutoCAD)
+- **.PDF** (dengan catatan: harus vector, bukan gambar/raster)
 
-**Penting:** File vektor wajib untuk hasil terbaik. Gambar raster tidak bisa langsung diproses mesin laser.
+**Tidak kami terima:** JPG, PNG, BMP, atau gambar raster lainnya langsung sebagai file cutting.
 
-**Q: Bagaimana cara membuat file yang benar untuk laser cutting?**
+**Q: Apakah saya perlu membuat file sendiri?**
 
-Beberapa aturan dasar:
-1. Garis potong (cutting line) gunakan warna merah, stroke 0.01mm (hairline)
-2. Garis engrave/ukiran gunakan warna hitam atau abu
-3. Pastikan semua garis tertutup (closed path) — garis terbuka tidak akan dipotong sempurna
-4. Ukuran file harus sesuai dengan ukuran benda yang diinginkan (skala 1:1)
+Tidak wajib. Kami menyediakan layanan desain dengan biaya tambahan. Cukup kirimkan referensi gambar atau deskripsi kebutuhan kamu, tim desainer kami yang akan mengerjakan.
 
-**Q: Apakah kamu menerima desain dari handphone / foto?**
+**Q: Garis harus diatur seperti apa di file desain?**
 
-Bisa, tapi perlu proses tracing/vektorisasi terlebih dahulu. Kami menyediakan layanan ini dengan biaya tambahan tergantung kompleksitas desain.
+Untuk hasil terbaik:
+- Garis potong: ketebalan **0.01mm** (hair line), warna merah
+- Garis engrave/ukir: ketebalan lebih tebal, warna hitam atau biru
+- Semua objek harus dalam bentuk **vector**, bukan bitmap
+- Pastikan tidak ada objek yang overlap kecuali memang disengaja
 
----
+## Pertanyaan Seputar Harga
 
-## Pertanyaan Tentang Harga
+**Q: Bagaimana sistem penghitungan harga laser cutting?**
 
-**Q: Berapa harga laser cutting per mm?**
+Harga dihitung berdasarkan beberapa faktor:
+1. **Jenis dan ketebalan material** — acrylic lebih mahal dari MDF
+2. **Panjang total garis potong** — semakin panjang/rumit, semakin mahal
+3. **Area material yang digunakan** — ada biaya minimum per lembar
+4. **Jumlah order** — makin banyak, makin hemat per unit
 
-Harga bervariasi tergantung:
-- Jenis material (acrylic, kayu, kain, dll)
-- Ketebalan material
-- Kompleksitas desain
-- Jumlah item yang dipesan
+**Q: Ada harga minimum order?**
 
-Sebagai gambaran umum, untuk acrylic 3mm mulai dari Rp 1.500–Rp 3.000 per meter garis potong (bukan per mm area). Hubungi kami untuk kalkulasi akurat sesuai file desainmu.
+Ya. Kami memiliki minimum order per sesi mesin untuk menjaga efisiensi. Untuk detail, hubungi tim kami — kami akan coba akomodasi kebutuhan kamu termasuk untuk order kecil.
 
-**Q: Apakah ada minimum order?**
+**Q: Apakah ada biaya setup/plate?**
 
-Tidak ada minimum order dalam jumlah unit. Namun ada minimum biaya jasa per sesi kerja mesin, jadi untuk pesanan yang sangat kecil atau sederhana, tetap ada biaya dasar yang berlaku.
+Untuk laser cutting, tidak ada biaya setup terpisah. Biaya desain (jika menggunakan layanan desain kami) dikenakan terpisah berdasarkan kompleksitas desain.
 
-**Q: Apakah material harus dari saya atau disediakan oleh Jasalasercutting?**
-
-Keduanya bisa:
-- **Material dari kami:** kami sediakan acrylic, MDF, kayu sesuai spesifikasi dengan harga kompetitif
-- **Material dari kamu:** kamu kirim material, kami hanya proses jasa cutting-nya
-
----
-
-## Pertanyaan Tentang Proses Order
-
-**Q: Bagaimana cara memesan?**
-
-1. Hubungi kami via WhatsApp
-2. Kirim file desain + keterangan material dan ketebalan yang diinginkan
-3. Kami kirim kalkulasi harga dan estimasi waktu pengerjaan
-4. Setuju → transfer DP (biasanya 50%)
-5. Proses produksi
-6. Pelunasan → pengiriman atau pickup
+## Pertanyaan Seputar Proses dan Pengiriman
 
 **Q: Berapa lama waktu pengerjaan?**
 
-Untuk pesanan normal, estimasi 1–3 hari kerja setelah file disetujui dan DP masuk. Untuk pesanan besar atau kompleks, bisa 5–7 hari kerja. Ada opsi *rush order* dengan biaya tambahan jika kamu butuh lebih cepat.
+- **Order standar:** 2–4 hari kerja setelah file disetujui
+- **Order express:** 1 hari kerja (biaya tambahan berlaku)
+- **Order besar/kompleks:** estimasi akan diberikan setelah review file
 
-**Q: Apakah ada layanan pengiriman?**
+**Q: Apakah tersedia pengiriman ke luar kota?**
 
-Ya, kami melayani pengiriman ke seluruh Indonesia via ekspedisi. Untuk area tertentu, tersedia juga layanan antar langsung.
+Ya. Kami bekerja sama dengan jasa ekspedisi terpercaya. Biaya pengiriman ditanggung pembeli dan dihitung berdasarkan berat dan tujuan. Untuk produk besar dan mudah pecah (seperti acrylic), kami lakukan packaging khusus.
+
+**Q: Bagaimana proses pemesanan dari awal?**
+
+1. Kirim file desain dan spesifikasi via WhatsApp atau email
+2. Tim kami review dan kirimkan penawaran harga + estimasi waktu
+3. Konfirmasi order dan lakukan pembayaran DP (50%)
+4. Proses produksi dimulai
+5. Selesai → foto konfirmasi → pelunasan → pengiriman
+
+## Pertanyaan Lain yang Sering Muncul
+
+**Q: Apakah bisa melihat proses cutting secara langsung?**
+
+Bisa, dengan perjanjian terlebih dahulu. Kami membuka workshop visit untuk pelanggan yang ingin melihat proses produksi.
+
+**Q: Apakah ada garansi kualitas?**
+
+Ya. Kami menjamin hasil cutting sesuai spesifikasi file yang disetujui. Jika ada ketidaksesuaian dari sisi kami, kami akan proses ulang tanpa biaya tambahan.
+
+**Q: Bisa custom ukuran di luar standar?**
+
+Tentu. Custom size adalah keunggulan laser cutting dibanding produksi massal. Berikan dimensi yang kamu butuhkan dan kami kerjakan sesuai.
 
 ---
 
-## Pertanyaan Seputar Kualitas
+Masih ada pertanyaan yang belum terjawab di atas? Jangan ragu untuk langsung tanyakan ke tim kami!
 
-**Q: Apakah tepi hasil potongan laser rapi?**
+**Hubungi Jasa Laser Cutting kami via WhatsApp:**
 
-Untuk acrylic dan MDF, hasil tepi laser cutting sangat rapi dan halus — bahkan sering tidak perlu finishing tambahan. Untuk kayu solid, tepi potongan mungkin sedikit menghitam (gosong) karena reaksi panas, namun ini bisa diamplas atau diterima sebagai efek estetis.
+👉 **[Chat dengan Tim Kami Sekarang](https://wa.me/62xxxxxxxxxx)**
 
-**Q: Apakah ada toleransi ukuran yang perlu saya ketahui?**
-
-Toleransi kami ±0,1mm untuk acrylic dan MDF. Untuk material fleksibel seperti kain atau foam, toleransi bisa lebih longgar tergantung jenis bahannya.
-
----
-
-## Masih Ada Pertanyaan Lain?
-
-Kalau pertanyaanmu belum terjawab di sini, jangan ragu untuk langsung menghubungi tim kami.
-
-**Hubungi Jasalasercutting via WhatsApp** — kami siap konsultasikan kebutuhan proyekmu, dari desain sederhana hingga produksi skala besar. Tidak perlu sungkan bertanya, karena proyek terbaikmu dimulai dari pertanyaan yang tepat!
+Kami siap membantu dari tahap konsultasi desain, estimasi harga, hingga pengiriman produk jadi ke tangan kamu. Respon cepat, hasil berkualitas!
