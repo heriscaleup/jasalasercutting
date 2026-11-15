@@ -89,7 +89,11 @@ const jsonLd = props.jsonLd || [];
           window.addEventListener('pointermove', (event) => { dot.style.left = `${event.clientX}px`; dot.style.top = `${event.clientY}px`; ring.style.left = `${event.clientX}px`; ring.style.top = `${event.clientY}px`; }, { passive: true });
           document.querySelectorAll('a, button, input, select, textarea, summary').forEach((el) => { el.addEventListener('pointerenter', () => document.body.classList.add('cursor-hover')); el.addEventListener('pointerleave', () => document.body.classList.remove('cursor-hover')); });
         }
-        document.querySelectorAll('a[href*="api.whatsapp.com"], a[href*="wa.me"]').forEach((link) => link.addEventListener('click', () => { if (typeof window.gtag === 'function') window.gtag('event', 'whatsapp_click', { event_category: 'engagement', event_label: link.dataset.waLabel || link.textContent?.trim() || 'WhatsApp Button', page_path: window.location.pathname }); }));
+        const params = new URLSearchParams(window.location.search);
+        const gclid = params.get('gclid');
+        if (gclid) { try { sessionStorage.setItem('jcl_gclid', gclid); } catch {} }
+        const storedGclid = (() => { try { return sessionStorage.getItem('jcl_gclid') || ''; } catch { return ''; } })();
+        document.querySelectorAll('a[href*="api.whatsapp.com"], a[href*="wa.me"]').forEach((link) => link.addEventListener('click', () => { if (typeof window.gtag === 'function') window.gtag('event', 'whatsapp_click', { event_category: 'engagement', event_label: link.dataset.waLabel || link.textContent?.trim() || 'WhatsApp Button', page_path: window.location.pathname, gclid: storedGclid || undefined }); }));
       });
     </script>
   </body>

@@ -120,4 +120,4 @@ Yang terpenting: jangan hanya bandingkan harga — pertimbangkan juga kualitas m
 
 Tim kami siap bantu hitung biaya proyek laser cutting kamu secara gratis dan transparan — tanpa biaya tersembunyi!
 
-👉 **[Chat dengan kami via WhatsApp sekarang](https://wa.me/6281234567890)** — Respon cepat, konsultasi gratis!
+👉 **[Chat dengan kami via WhatsApp sekarang](https://api.whatsapp.com/send?phone=6285165693179&text=Halo%20Jasa%20Cutting%20Laser%2C%20saya%20ingin%20konsultasi%20estimasi%20harga%20project.)** — Respon cepat, konsultasi gratis!

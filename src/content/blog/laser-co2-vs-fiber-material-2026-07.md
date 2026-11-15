@@ -99,4 +99,4 @@ Laser fiber umumnya lebih mahal untuk investasi awal mesinnya, tapi biaya operas
 
 Masih bingung teknologi laser mana yang tepat untuk proyekmu? **Jasalasercutting.com** siap membantu kamu memilih solusi terbaik sesuai material dan anggaran.
 
-Konsultasi GRATIS via WhatsApp sekarang juga: **[Chat WhatsApp Jasa Laser Cutting](https://wa.me/6281234567890)**. Tim kami siap menjawab semua pertanyaanmu dan memberikan estimasi harga tanpa biaya!
+Konsultasi GRATIS via WhatsApp sekarang juga: **[Chat WhatsApp Jasa Laser Cutting](https://api.whatsapp.com/send?phone=6285165693179&text=Halo%20Jasa%20Cutting%20Laser%2C%20saya%20ingin%20konsultasi%20pemilihan%20material%20dan%20teknologi%20laser.)**. Tim kami siap menjawab semua pertanyaanmu dan memberikan estimasi harga tanpa biaya!

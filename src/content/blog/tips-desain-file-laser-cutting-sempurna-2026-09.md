@@ -107,6 +107,6 @@ Sudah punya desain tapi tidak yakin apakah filenya siap produksi? **Jasa Laser C
 
 **Hubungi kami sekarang via WhatsApp** untuk konsultasi gratis, estimasi biaya, dan pengiriman file:
 
-📱 [Chat WhatsApp Sekarang](https://wa.me/6281234567890)
+📱 [Chat WhatsApp Sekarang](https://api.whatsapp.com/send?phone=6285165693179&text=Halo%20Jasa%20Cutting%20Laser%2C%20saya%20ingin%20konsultasi%20file%20desain%20laser%20cutting.)
 
 Kami tangani acrylic, kayu, MDF, dan berbagai material non-metal dengan mesin laser CO2 presisi tinggi.

@@ -95,6 +95,6 @@ Sekarang kamu sudah punya gambaran cara menghitung estimasi biaya laser cutting.
 
 Tim Jasalasercutting siap membantu kamu dengan konsultasi gratis dan quotation cepat untuk semua kebutuhan laser cutting acrylic, MDF, kayu, dan material non-metal lainnya.
 
-**[Konsultasi Gratis via WhatsApp Sekarang →](https://wa.me/)**
+**[Konsultasi Gratis via WhatsApp Sekarang →](https://api.whatsapp.com/send?phone=6285165693179&text=Halo%20Jasa%20Cutting%20Laser%2C%20saya%20ingin%20konsultasi%20estimasi%20biaya%20project.)**
 
 Ceritakan proyek kamu dan kami akan berikan estimasi harga dalam 1×24 jam!

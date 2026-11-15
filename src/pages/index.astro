@@ -60,7 +60,7 @@ const featuredProjects = PORTFOLIO_PROJECTS.slice(0, 6);
 </BaseLayout>
 
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', () => { const form = document.querySelector('#quote-builder-form'); const status = document.querySelector('#quote-status'); form?.addEventListener('submit', (event) => { event.preventDefault(); const data = new FormData(form); const message = ['Halo Jasa Cutting Laser, saya ingin konsultasi project.', `Nama: ${data.get('name')}`, `Material: ${data.get('material')}`, `Dimensi/jumlah: ${data.get('scope')}`, `Layanan: ${data.get('service')}`, `Catatan: ${data.get('notes') || '-'}`].join('\n'); if (status) status.classList.remove('hidden'); window.open(`https://api.whatsapp.com/send?phone=6285165693179&text=${encodeURIComponent(message)}`, '_blank', 'noopener'); }); });
+  document.addEventListener('DOMContentLoaded', () => { const form = document.querySelector('#quote-builder-form'); const status = document.querySelector('#quote-status'); form?.addEventListener('submit', (event) => { event.preventDefault(); const data = new FormData(form); const message = ['Halo Jasa Cutting Laser, saya ingin konsultasi project.', `Nama: ${data.get('name')}`, `Material: ${data.get('material')}`, `Dimensi/jumlah: ${data.get('scope')}`, `Layanan: ${data.get('service')}`, `Catatan: ${data.get('notes') || '-'}`].join('\n'); if (status) status.classList.remove('hidden'); if (typeof window.gtag === 'function') window.gtag('event', 'whatsapp_click', { event_category: 'engagement', event_label: 'Quote Builder Form', page_path: window.location.pathname }); window.open(`https://api.whatsapp.com/send?phone=6285165693179&text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer'); }); });
 </script>
 
 <style is:global>
